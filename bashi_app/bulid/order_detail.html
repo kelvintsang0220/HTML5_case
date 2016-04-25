@@ -1,0 +1,429 @@
+<!DOCTYPE >
+<html>
+	<head>
+		<title>退票</title> 
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<link rel="stylesheet" href="css/base.css">
+		<script>
+			!function(a){function d(){var c=b.getBoundingClientRect().width;a.rem=c/6.4>100?100:50>c/6.4?50:c/6.4,b.style.fontSize=a.rem+"px"}var c,b=a.document.documentElement;a.addEventListener("resize",function(){clearTimeout(c),c=setTimeout(d,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(c),c=setTimeout(d,300))},!1),d()}(window);
+		</script>
+		<style type="text/css">
+			.wrap,.container,.footer{font-family: STHeitiSC Light;}
+		    .container{padding-bottom: 1rem;}
+		    .links_con{position: absolute;overflow: hidden; bottom: 0;right: 0;}
+		    .links_con a{font-size: inherit; font-size: .2rem; color: #BABABA;text-decoration: underline;}
+		    	.footer{height: 1rem;padding: 0;}
+		    	.footer .data{position: static;}
+		    	.footer .data .time_con{position: absolute;top:50%;-webkit-transform: translateY(-50%);left: .3rem;}
+		    	.time_con .time,.time_con .money{font-family: inherit; color: #909090;}
+		    	.time_con .money span{font-size:.28rem;color: #ff4d02;}
+		    	.time_con .time{font-size: .2rem;margin-top: .04rem;margin-left: .1rem;}
+			.footer .pay{text-align: right;}
+			.footer .pay .btn,.footer .pay .btn-confirm{display: inline-block; margin-top:.1rem;margin-right: .3rem; width: 3.5rem; height: .8rem;line-height: .8rem;text-align: center; font-family: inherit;font-size: .28rem;color: #fff;background-color: #FD4E0B;border-radius: .1rem;}
+			.footer .pay .btn-confirm{border: 1px solid #ff5000;background: #fff; color: #FD4E0B;height: .68rem;line-height: .68rem;margin-top: .15rem;}
+			.footer .rebooking{display: inline-block; margin-top:.1rem;margin-left: .3rem; width: 5.8rem; height: .8rem;line-height: .8rem;text-align: center; font-family: inherit;font-size: .28rem;color: #fff;background-color: #FD4E0B;border-radius: .1rem;}
+			
+			.table .done{position: absolute;right: 0;top: 50%; -webkit-transform: translateY(-50%); color: #FF9402;font-family: inherit;font-size: .28rem;}
+		    .line .time{font-family: inherit;font-size: .2rem; color: #BABABA;}
+		    .line_con{width: 3.8rem;}
+		    .go-off{font-weight: normal;}
+		    .table-view:before{content: '';position: absolute;top: 0;left: 0; width: 100%;height: 1px;-webkit-transform: scaleY(.5);background: #c8c7cc;}
+		    .table-view-cell:after{content: '';position: absolute;bottom: 0;left: 0; width: 100%;height: 1px;-webkit-transform: scaleY(.5);background: #c8c7cc;}
+		    
+			
+			/*------日历------*/
+			.calendar,.calendar .hd{position: relative;font-family: inherit;}
+			.calendar .hd{height: .72rem;line-height: .72rem; padding: 0 .3rem; background: #fff;color: #353535;}
+			.hd .month{font-size: .32rem;}
+			.hd .select{font-size: .24rem;}
+			.hd .select .sel_icon{width: .48rem;height: .48rem;background: url(../bulid/images/icons/checkall.png) no-repeat 50% 50%; background-size: .48rem .48rem;margin:.12rem 0 0 .15rem;}
+			.hd .select .fl{display: none;}
+			.hd .select.checked .sel_icon{background-image: url(../bulid/images/icons/click.png)}
+			/*------日历 主体------*/
+			.calendar_wrap .table{width: 100%;text-align: center; border-collapse: collapse;border-spacing: 0;}
+			.calendar_wrap .table li{display: table-cell;vertical-align:middle;}
+			.calendar>.body .weeks{height: .6rem;line-height: .6rem;background: #eee;font-family: inherit;font-size: .28rem;color: #353535;}
+			.calendar>.body .dates{background-color: #fff;}
+			.calendar>.body .dates > div{position: relative;width: 1.28rem; height: 1rem; border-right: 1px solid #D8D8D8;border-bottom: 1px solid #D8D8D8;font-size: .24rem;float: left;-webkit-box-sizing: border-box;}
+			.calendar>.body .dates .inner{display: block; position: absolute; left: 50%;-webkit-transform: translateX(-50%);margin-top: .15rem;}
+			.inner span,.inner i{display: block;text-align: center;}
+			.calendar>.body .dates li{position: relative;width: 1.28rem; height: 1rem;line-height: 1rem; border-right: 1px solid #D8D8D8;border-top: 1px solid #D8D8D8;font-size: .24rem; /*color: #D7D7D7;*/}
+			.calendar>.body .dates li.no_border{border-right: 0;}
+			.calendar>.body .dates li span,.calendar>.body .dates li i{display: block;line-height: 1;}
+			.calendar>.body .dates li span{margin-bottom: .1rem;}
+			.calendar>.body .dates li i{font-size: .2rem; color: #FF9402;}
+			.calendar>.body .dates li.past_day{background-color: #E7E7E7;border-right: 1px solid #D7D7D7;border-top: 1px solid #D7D7D7;}
+			.calendar>.body .dates li.cur{background-color: #ffaf41;border-right: 1px solid #D7D7D7;border-top: 1px solid #D7D7D7;}
+			.calendar>.body .dates li.pur{background-color: #63bbed;border-right: 1px solid #D7D7D7;border-top: 1px solid #D7D7D7;}
+			.calendar>.body .dates li.full{background-color: #f87c48;border-right: 1px solid #D7D7D7;border-top: 1px solid #D7D7D7;}
+			.calendar>.body .dates li.cur i,
+			.calendar>.body .dates li.pur i,
+			.calendar>.body .dates li.full i{color: #FFF;}
+			.calendar_wrap .status{height: .80rem; line-height: .80rem; font-size: .24rem;}
+			.calendar_wrap .status li{font-size: .24rem; color: #909090;}
+			.calendar_wrap .status li:before{display: inline-block;content: '';height: .22rem;width: .22rem;border: 1px solid #D8D8D8;background: #987;vertical-align: middle;margin-right: .06rem;-webkit-border-radius: .06rem;}
+			.calendar_wrap .status li.opt:before{background-color: #fff;}
+			.calendar_wrap .status li.sel:before{background-color: #FFAF41;}
+			.calendar_wrap .status li.buy:before{background-color: #63BBED;}
+			.calendar_wrap .status li.full:before{background-color: #F87C48;}
+			.calendar_wrap .status li.not:before{background-color: #D7D7D7;}
+			.calendar_wrap .voucher_wrap{position: relative;padding: .16rem .3rem;padding-left: .48rem; line-height: .46rem;border-bottom: 1px solid #D8D8D8;font-size: .26rem;color: #999;overflow: hidden;background: #F8F8F8;}
+			.calendar_wrap .bus_voucher{position: relative;height: .64rem;line-height: .64rem;margin: .3rem 0 0 0;padding-left: .2rem;font-family: inherit; font-size: .24rem;color: #FF9402; border: 1px solid #FF9402;-webkit-border-radius: .1rem;}
+			.calendar_wrap .bus_voucher .arrow{position: absolute;width:.15rem;height: .27rem;top: 50%;-webkit-transform: translateY(-50%);right: .2rem;background: url(../bulid/images/icons/arrows_r.png) no-repeat; background-size: 100% 100%;}
+			.calendar_wrap .bus_voucher .voucher_price{float: right; margin-right: .5rem;}
+			.wrap .table-view-cell{padding: 0;}
+			
+			/*--日历表格--*/
+            .calendar{ position: relative;  width: 6.4rem;}
+            .calendar table{ width: 100%;}
+            .calendar table tbody{background: #fff;}
+            .calendar th{border-left: 1px #d9d9d9 solid; border-bottom: 1px #d9d9d9 solid; text-align: center;}
+            .calendar td{ height: .8rem; text-align: center; border-top: 1px #d9d9d9 solid; border-left: 1px #d9d9d9 solid; color: #1800cc;background: #F8F8F8;}
+           
+            .calendar td.past,.calendar td.enable{ color: #353535; background-color: #F8F8F8;width: .9rem; height: .9rem;overflow: hidden;}
+            .calendar td.disable{ color: #999; background-color: #F8F8F8;}
+            .calendar td.cnr{ color: #999; background-color: #e6e6e6;}
+            .calendar td.hasTicket{ background-color: #fff; color: #1800cc;}
+            .calendar td.purchase{ color: #fff; background-color: #63BBED;} 
+            .calendar td.full{ color: #fff; background-color: #F87C48;} 
+            .calendar td.selected{ background-color: #FFAF41; color: #fff;}
+            .calendar td.selected .price{color: #fff;}
+            .calendar td .day,.calendar td .last,.calendar td .price{font-size: .2rem;}
+            .price{color: #fff; display: none;}
+
+            .select-box{position: absolute; top: 0; right: -250px; width: 240px; border:1px #d9d9d9 solid;}
+            .select-box li{ list-style: none; padding: 10px; border-bottom: 1px #d9d9d9 solid;}
+            .day-time{ display: inline-block; border:1px #4e84ff solid;text-align: center; line-height: 25px;}
+            .weekday{ border-top: 1px #4e84ff solid; background-color: #4e84ff; color: #fff;}
+            .select{ display: inline-block; float: right;}
+            .select div{ display: inline-block;}
+            .select-btn{ padding: 3px 5px; margin-top: 15px;}
+
+            .select-tit{ text-align: center;}
+            .select-box .close{ width: 20px; height: 20px; float: right; border:1px #fff solid; border-radius: 50%; line-height: 22px; margin-top: 9px; margin-right: 10px; cursor: pointer; }
+            .booking_calendar{padding: .15rem;color: #999;font-size: .24rem;}
+            .btn-refund, .btn-cancel{width: 1.8rem;height: .72rem;margin-top: .14rem;margin-left: .3rem;font-size: .36rem;color:#7C7C7C;border: 1px solid #D8D8D8;border-radius: .1rem;}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="wrap">
+			<ul class="table-view">
+				<li class="table-view-cell">
+					<div class="flex line">
+						<div class="flex line_con">
+							<div class="flex-cell go-off">08:30始发</div>
+							<div class="flex-cell">
+								<span class="m_line">
+									粤A6780
+								</span>
+							</div>
+							<div class="flex-cell arrival-time">到达07:45</div>
+						</div>
+						<div class="flex-cell time tr">07月24日</div>
+					</div>
+					<div class="table line_1">
+						<div class="table-cell">
+							<div class="start">
+								祈福新村
+							</div>
+							<div class="end">
+								客村tit创意园
+							</div>
+						</div>
+						<div class="table-cell tr">
+							<p class="done">0.1元</p>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<p class="booking_calendar">本订单购票日历</p>
+			<footer class="footer" id="footer">
+				<div class="flex">
+					<div class="flex-cell data">
+						<div class="time_con" style="display: none;">
+							<div class="fl money">
+								共计退
+								<span id="sum_price">0</span>元
+							</div>
+						</div>
+						<button class="btn-refund">退票</button>
+					</div>
+					<div class="flex-cell pay">
+						<a class="btn" id="submit_btn" href="pay.html">
+							续订
+						</a>
+						<a class="btn-confirm" style="display: none;">
+							确认退票
+						</a>
+					</div>
+					<!--<a class="rebooking">
+						重新购票
+					</a>-->
+				</div>
+			</footer>
+			<div class="container">
+				<div class="calendar_wrap">
+					
+					<div class="calendar" id="calendar">
+						
+						
+					</div>
+					
+					<div style="padding: 0 .3rem;">
+						<ul class="status table">
+				          <!--<li class="opt">可选</li>-->
+				          <li class="sel">已选</li>
+				          <li class="buy">已购</li>
+				          <li class="full">已退</li>
+				          <!--<li class="full">退款中</li>-->
+				          <li class="not">不可退</li>
+				        </ul>
+					</div>
+					<div class="voucher_wrap">
+					      <div class="order_price">总&emsp;&emsp;额：1元</div>
+					      <div class="order_real_price">实&emsp;&emsp;付：1元</div>
+					      <div class="pay-type">支付方式：微信支付</div>
+					      <div class="number">订单编号：1508111234385608（1张）</div>
+					      <div class="create-time">下单时间：2015-08-11 12:34</div>
+					</div>
+					
+					<form id="sub_form">
+						<input type="hidden" id="sub_price">
+						<input type="hidden" id="sub_days">
+						<input type="hidden" id="ids">
+					</form>
+				
+				</div>
+			</div>
+		</div>
+	
+	</body>
+	<script src="js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/Mibus.js" type="text/javascript" charset="utf-8"></script>
+   	<script type="text/javascript">
+   		(function($){
+   			
+   			// 后台传入数据
+   			var data = [{
+   				id: 10086,
+   				time: '2015-08-12T00:00:00Z',
+				price: 0.1,
+				status: 0
+			},{
+   				id: 10086,
+   				time: '2015-07-29T00:00:00Z',
+				price: 0.1,
+				status: 0
+			},
+   			{	
+   				id: 10087,
+   				time: '2015-08-13T00:00:00Z',
+				price: 0.1,
+				status: 1
+			},
+			{
+   				id: 10087,
+   				time: '2015-08-14T00:00:00Z',
+				price: 0.1,
+				status: 2
+			},
+			{
+   				id: 10087,
+   				time: '2015-08-15T00:00:00Z',
+				price: 0.1,
+				status: 3,
+				statusName: '退款中'
+			},
+			{
+   				id: 10087,
+   				time: '2015-08-16T00:00:00Z',
+				price: 0.1,
+				status: 0,
+				statusName: '退款中'
+			},
+			{
+   				id: 10087,
+   				time: '2015-08-17T00:00:00Z',
+				price: 0.1,
+				status: 0,
+				statusName: '退款中'
+			},
+			{
+   				id: 10087,
+   				time: '2015-08-18T00:00:00Z',
+				price: 0.1,
+				status: 0,
+				statusName: '退款中'
+			}];
+			
+   			var oTd = $("#calendar table tbody").find('td'),
+   				arr = [],past=[],
+   				hasTickets = [],
+   				json = {},
+   				btn = true,
+   				all = 0,
+   				oDate = new Date(),
+   				yh = null,
+   				ok = false;
+   				
+   			var wrap = $(".time_con"),
+   				money_wrap = wrap.find(".money"),
+   				time_wrap = wrap.find(".time");
+   			
+   			var initPage = function(){
+	   			
+	   			// 购票操作
+	   			$.each(oTd, function(i,item) {
+					selectVote($(item)); 
+					if ($(item).hasClass('purchase')) {
+						$(this).on('tap',function(e){
+							if (ok) {
+								toggle($(this));
+		   						calcul($(this));
+							}
+		   				});
+					}
+	   			});
+   			}
+   			
+   			
+   			// 渲染dom
+   			function selectVote(obj){
+   				var html = '';
+   				var day = obj.text(); //日期
+   				var month = parseInt( obj.attr('data-month') );
+   				
+				for (var i = 0; i < data.length; i++) {
+					var date = new Date(data[i].time);
+					
+					if( day == date.getDate() && month == (date.getMonth()+1) ){
+						html = '<div class="day">' + date.getDate() + '</div><div class="price">' + data[i].price + '</div>';
+						if (data[i].status == 0) { //已购
+							obj.attr('data-id',data[i].id).addClass('purchase');
+							hasTickets.push(obj);
+						}else if(data[i].status == 1){//已退
+							obj.attr('data-id',data[i].id).addClass('full');
+						}else if(data[i].status == 2){//不可退
+							obj.attr('data-id',data[i].id).addClass('cnr');
+						}else if(data[i].status == 3){//退票中
+							obj.attr('data-id',data[i].id).addClass('full');
+							html = '<div class="day">' + date.getDate() + '</div><div class="last"><span>'+ data[i].statusName +'</span></div><div class="price">' + data[i].price + '</div>';
+							obj.html(html);
+						}
+						obj.html(html);
+					}
+				}
+   			}
+   			
+   			//计算票价
+   			function calcul(obj){
+   				var allPrice;
+   				var getPrice = parseFloat(obj.find('.price').text());
+   				
+   				yh = parseInt(obj.find('.last > span').text());
+   				
+				if ($("#sum_price").length != 0) {
+					var sum_price = parseFloat( $("#sum_price").text() );
+					allPrice = sum_price;
+					if (btn) {
+						if (getPrice < 1) {
+							allPrice =  ( parseFloat( allPrice ) + parseFloat(getPrice) ).toFixed(1);
+						}else{
+							allPrice += getPrice;
+							
+						}
+					}else{
+						if (getPrice < 1) {
+							// 为了不出现0.0元的问题 
+							allPrice =  ( parseFloat( allPrice )*10 - parseFloat(getPrice)*10 )/10; 
+						}else{
+							allPrice -= getPrice;
+						}
+					}
+				} else{
+					if (getPrice < 1) {
+						allPrice = getPrice*10/10;
+					}else{
+						allPrice = getPrice;
+					}
+				}
+				
+				var allDays = all;
+   				
+   				money_wrap.html('共计退'+'<span id="sum_price">' + allPrice + '</span>元');
+   			}
+   			
+   			function calIds(){
+   				json.ids = [];
+   				// 获取可购票的td
+	   			$.each(arr, function(i,item) {
+	   				if ($(this).hasClass('selected')) {
+	   					var id = $(this).attr('data-id');
+	   					json.ids.push(id);
+	   				}
+	   			});
+   			}
+   			
+   			
+   			//提交表单
+   			function on_submit(){
+   				var $price = $('#sum_price');
+   				var $days = $('#sum_days');
+   				var postData = {
+   					price: $price.text(),
+   					days: $days.text()
+	          	};
+	          	
+	          	return postData;
+   			}
+   			
+   			function toggle($obj){
+   				if (!$obj.hasClass('selected')) {
+					$obj.addClass('selected');
+					++all;
+					btn = true;
+				}else{
+					$obj.removeClass('selected');
+					--all;
+					btn = false;
+				}
+				
+				yh = parseInt($obj.find('.last > span').text());
+				// 票数改变
+   				if (btn) {
+   					--yh;
+   					$obj.find('.last > span').text(yh);
+   				} else{
+   					++yh;
+   					$obj.find('.last > span').text(yh);
+   				};
+   			}
+   			
+
+   			$("#submit_btn").on('click',function(){
+   				calIds();
+   				var data = on_submit();
+   				$("#sub_price").attr('value',data.price);
+   				$("#sub_days").attr('value',data.days);
+   				$("#ids").attr('value',json.ids);
+   			});
+   			
+   			$(".btn-refund").on('tap',function(){
+   				$(this).hide();
+   				$(".time_con").css('display','block');
+   				$(".btn-confirm").css('display','inline-block');
+   				$("#submit_btn").css('display','none');
+   				ok = true;
+   			});
+   			
+   			initPage();
+   		})(Zepto);
+   	</script>
+
+</html>

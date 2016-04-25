@@ -1,0 +1,106 @@
+<!DOCTYPE >
+<html>
+	<head>
+		<title>我的钱包</title> 
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<link rel="stylesheet" href="css/base.css">
+		<script>
+			!function(a){function d(){var c=b.getBoundingClientRect().width;a.rem=c/6.4>100?100:50>c/6.4?50:c/6.4,b.style.fontSize=a.rem+"px"}var c,b=a.document.documentElement;a.addEventListener("resize",function(){clearTimeout(c),c=setTimeout(d,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(c),c=setTimeout(d,300))},!1),d()}(window);
+		</script>
+		<style>
+		    *,.wrap,.container{font-family: STHeitiSC Light;}
+		    
+		    .h-nav{height: .72rem;line-height: .72rem;}
+		    .h-nav > div{text-align: center; color: #353535;}
+		    .h-nav > div.cur:after,.h-nav > div:nth-child(2):before{content: '';position: absolute;display: block;left: 0;}
+		    .h-nav > div.cur:after{width: 100%;height: .05rem;background-color: #FF9402;bottom: -.01rem;}
+		    .h-nav > div:nth-child(2):before{width: 1px; height: .4rem;background-color: #D8D8D8;top: .16rem;}
+		    .account{position: relative; height: 1.28rem; background: #2c3136; color: #fff;}
+		    .account .left{position: absolute;left: .5rem; top: 50%;-webkit-transform: translateY(-50%);}
+		    .account .right{position: absolute;right: .5rem; top: 50%;-webkit-transform: translateY(-50%);}
+		    .account .right .button{margin-top: 0;padding: .15rem .3rem;color: #32B553; border-color: #32B553;}
+		    
+		    .account h4{font-family: inherit; font-size: .24rem;}
+		    .account .money{font-size: .42rem; font-family: "微软雅黑";padding-top: .1rem;}
+		    
+		    .footer{height: .72rem; line-height: .72rem;}
+		    .footer .route{position: absolute;width: 5.8rem;height:.68rem;left: .3rem;top: 50%;margin-top: -.34rem;line-height: .68rem;border: 1px solid #D8D8D8;border-radius: .1rem;font-size: .32rem;color: #FF9402;text-align: center;}
+		    
+		    .table .done{position: absolute;right: 0;top: 50%; -webkit-transform: translateY(-50%); color: #FF9402;font-family: "微软雅黑";font-size: .28rem;}
+		    .line .time{font-family: inherit;font-size: .2rem; color: #BABABA;}
+		    .line_con{width: 2.2rem;}
+		    .go-off{font-weight: normal;}
+		    .table-view:before{content: '';position: absolute;top: 0;left: 0; width: 100%;height: 1px;-webkit-transform: scaleY(.5);background: #c8c7cc;}
+		    .table-view-cell:after{content: '';position: absolute;bottom: 0;left: 0; width: 100%;height: 1px;-webkit-transform: scaleY(.5);background: #c8c7cc;}
+		    
+		    header.header{height: auto; line-height: 1;position: relative;}
+		    .h-nav .table-cell a{color: #353535;}
+		    .h-nav .table-cell.cur a{color: #FF9402;}
+		    .line_1{padding: .3rem;}
+		    .table-cell .time{color: #BABABA; font-size: .24rem;}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="wrap">
+			<header class="header">
+				<div class="account">
+					<div class="left">
+						<h4>帐号余额</h4>
+						<div class="money">
+							￥50
+						</div>
+					</div>
+					<div class="right">
+						<a href="rechange.html" class="button">充值</a>
+					</div>
+				</div>
+				<div class="table h-nav">
+					<div class="table-cell">
+						<a href="wallet.html">消费记录</a>
+					</div>
+					<div class="table-cell cur">
+						<a href="javascript:;">充值记录</a>
+					</div>
+				</div>
+			</header>
+			<div class="container">
+				
+				<ul class="table-view mt20">
+					<li class="table-view-cell">
+						<div class="table line_1">
+							<div class="table-cell">
+								<p>充值面额</p>
+								<p class="time">2015-10-09 11:00</p>
+							</div>
+							<div class="table-cell tr">
+								<p class="done">100元</p>
+							</div>
+						</div>
+					</li>
+					
+					<li class="table-view-cell">
+						<div class="table line_1">
+							<div class="table-cell">
+								<p>充值面额</p>
+								<p class="time">2015-10-09 11:00</p>
+							</div>
+							<div class="table-cell tr">
+								<p class="done">100元</p>
+							</div>
+						</div>
+					</li>
+					
+				</ul>
+			
+			</div>
+		</div>
+	</body>
+	
+
+</html>

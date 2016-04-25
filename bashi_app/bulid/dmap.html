@@ -1,0 +1,88 @@
+<!DOCTYPE >
+<html>
+
+	<head>
+		<title>米巴</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<script>
+			!function(a) {
+				function d(){
+					var c=b.getBoundingClientRect().width;
+					a.rem=c/6.4>100?100: 50>c/6.4?50:c/6.4;
+					b.style.fontSize=a.rem+"px";
+				}
+			
+				var c,b=a.document.documentElement;
+				a.addEventListener("resize",function() {
+					clearTimeout(c),c=setTimeout(d,300)
+				},!1);
+				a.addEventListener("pageshow",function(a) {
+					a.persisted&&(clearTimeout(c),c=setTimeout(d,300))
+				},!1);
+				d();
+			}(window);
+		</script>
+		<link rel="stylesheet" href="css/base.css">
+		<title>购票</title>
+		<style>
+			body.bg { background: #f0eff5; }
+		    .wrap {/*  padding-bottom: .94rem; */ background: none; }
+		    .container{/* width:5.8rem; */margin:0 auto;font-family:'微软雅黑'; padding: 0 .3rem .4rem ; background: #fff; }
+		    .on_site, .off_site{padding-top:.27rem; position: relative;}
+		    .on_site img, .off_site img{width:.27rem;height:.36rem;padding-left:.1rem;}
+		    .on_site span, .off_site span{font-size:.3rem;margin-left:.12rem;   color: #2b2b2b;}
+		    .on_site div, .off_site div{width:5.56rem;height:.7rem;line-height:.7rem;padding-left:.2rem;border:1px solid #ccc;/*color:#b6b6b6*/ white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: .1rem; border-radius:.1rem; }
+		    .on_site div span, .off_site div span { color:#b6b6b6; }
+		    .query{background-color:#ff9c00;margin-top:.465rem;font-size:.36rem;text-align:center;height:.72rem;line-height:.72rem; color: #fff; border-radius: .1rem;}
+		    .wrapper{transform:translate3d(0,0,0);transition:all .5s ease 0s;-webkit-transform:translate3d(0,0,0);-webkit-transition:all .5s ease 0s;}
+		    .search_ad { width: 6.4rem; height: 1.68rem;}
+		    .bottom_declare { text-align: center; width: 5.8rem; margin: 0 auto; color: #bbbbbb; font-size: .24rem; position: absolute; bottom: .1rem; left: .3rem; border-top: 1px solid #e2e2e2; padding: .1rem 0;}
+		    .buy_history_title {background: #f0eff5;   height: .6rem; line-height: .6rem; font-size: .3rem; padding-left: .29rem; color: #2b2b2b;}
+		    .buy_history {background: #f0eff5;  padding-bottom: .94rem;}
+		    .buy_history .line { margin-bottom: .14rem;}
+		    .buy_history .line_right .btn {   background: transparent; color: #ff5000; border: 1px solid #ff5000;  border-radius: .1rem; }
+		    .tips { text-align: center; color: #bfbfbf; font-size: .2rem; padding: .24rem 0 .2rem; position: relative;}
+		    .tips:after { display: block; content: ''; position: absolute; bottom: -1px; left: 0; height: 1px; width: 100%; background: #eee;  }
+		    .on_site .close_location,.off_site .close_location { width: .7rem; height: .7rem; position: absolute; bottom: 0;right: 0; background: url(delete.png)center center no-repeat; background-size: .26rem .26rem; border: 0; margin: 0; padding: 0;  }
+		</style>
+	</head>
+
+	<body>
+		<h1>eeee</h1>
+		<div id="mapWrap" style="width: 100%; height: 100%; position: fixed; left: 0; top: 0;"></div>
+	</body>
+	<script src="http://api.map.baidu.com/api?v=1.4&ak=cqG9ilO8and6RQ9KDUoMQSG1"></script>
+	<script type="text/javascript">
+		var map,
+			_city = '广州', //默认定位至广州
+			geolocation;
+		var LBS = {
+			init:function(){
+				this.initEvent();
+			},
+			initEvent:function(){
+				map = new BMap.Map("mapWrap");
+				map.centerAndZoom(_city, 18);
+				geolocation = new BMap.Geolocation(); 
+				geolocation.getCurrentPosition(function(r){
+					if(this.getStatus() == BMAP_STATUS_SUCCESS){
+						var myIcon = new BMap.Icon("images/select_pos.png", new BMap.Size(30,41));
+						var mk = new BMap.Marker(r.point,{icon: myIcon});
+						map.addOverlay(mk);
+						map.panTo(r.point);
+//						alert('您的位置：'+r.point.lng+','+r.point.lat);
+					}
+					else {
+						alert('failed'+this.getStatus());
+					}        
+				},{enableHighAccuracy: true})
+			},
+		};
+		LBS.init();
+	</script>
+
+</html>

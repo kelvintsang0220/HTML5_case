@@ -1,0 +1,85 @@
+<!DOCTYPE >
+<html>
+	<head>
+		<title>米巴</title> 
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<link rel="stylesheet" href="css/base.css">
+		<script>
+			!function(a){function d(){var c=b.getBoundingClientRect().width;a.rem=c/6.4>100?100:50>c/6.4?50:c/6.4,b.style.fontSize=a.rem+"px"}var c,b=a.document.documentElement;a.addEventListener("resize",function(){clearTimeout(c),c=setTimeout(d,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(c),c=setTimeout(d,300))},!1),d()}(window);
+		</script>
+		<style>
+		    .container{font-family: STHeitiSC Light;padding-top: 1.6rem;}
+		    
+		    .header{height: 1.6rem;}
+		    .header p{position: relative;left: 50%;margin-left: -1.35rem; width: 2rem;background: #ffdac9;-webkit-border-radius: .06rem;padding: .05rem; margin-top: 1.02rem; color: #FF3C00;font-family: inherit;font-size: .20rem; text-align: center;}
+		    .failed{position: absolute;font-size: .34rem;font-family: "微软雅黑"; color: #ff3c00; font-weight: bold;left: 50%;-webkit-transform: translateX(-50%);margin-top: .34rem;}
+		    .failed:before{content: '';position: absolute;top: 0;left: -.60rem; width: .48rem;height: .48rem;background: url(images/icons/fail.png) no-repeat;-webkit-background-size:cover;}
+		    .line_1{padding-bottom: 0;}
+		    .btn_wrap{padding: .3rem;}
+		    .btn_wrap .button{margin-top:.1rem; width: 5.8rem; height: .8rem;font-family: inherit;font-size: .28rem;color: #FF3C00;background-color: transparent; border-color: #FF3C00;}
+		    
+		    .links_con{position: absolute;overflow: hidden; bottom: 0;right: 0;}
+		    .links_con a{font-size: inherit; font-size: .2rem; color: #BABABA;text-decoration: underline;}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="wrap">
+			<header class="header">
+				<div class="failed">
+					支付失败
+				</div>
+				<p>支付超时，订单已取消</p>
+			</header>
+			<div class="container">
+				
+				<ul class="table-view mt20">
+					<li class="table-view-cell mb20">
+						<div class="flex line">
+							<div class="flex line_con">
+								<div class="flex-cell go-off">08:30</div>
+								<div class="flex-cell m_line">
+										M678
+								</div>
+								<div class="flex-cell kilometers">17公里</div>
+								<div class="flex-cell arrival-time">到达07:45</div>
+							</div>
+							<div class="flex-cell price tr">约8元</div>
+						</div>
+						<div class="dotted"></div>
+						<div class="table line_1">
+							<div class="table-cell">
+								<div class="start">
+									祈福新村
+								</div>
+								<div class="end">
+									客村tit创意园
+								</div>
+							</div>
+							<div class="table-cell tr">
+								<div class="links_con">
+									<a href="#">查看站点</a>
+									<a href="#" class="ml30">申请退票</a>
+								</div>
+							</div>
+						</div>
+						<div class="btn_wrap">
+							<button class="button">
+								重新支付
+							</button>
+						</div>
+					</li>
+					
+				</ul>
+			
+			</div>
+		</div>
+	</body>
+	
+
+</html>

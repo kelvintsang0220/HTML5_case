@@ -1,0 +1,6 @@
+@import "compass/utilities/sprites";
+@import "_icons/*.png";
+//$icons-sprite-dimensions: true;
+$_icons-spacing: 10px; //控制间隙 
+@include all-_icons-sprites();
+

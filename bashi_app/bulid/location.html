@@ -1,0 +1,441 @@
+<!DOCTYPE >
+<html>
+
+	<head>
+		<title>地图</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<link rel="stylesheet" href="css/base.css">
+		<script>
+			!function(a){function d(){var c=b.getBoundingClientRect().width;a.rem=c/6.4>100?100:50>c/6.4?50:c/6.4,b.style.fontSize=a.rem+"px"}var c,b=a.document.documentElement;a.addEventListener("resize",function(){clearTimeout(c),c=setTimeout(d,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(c),c=setTimeout(d,300))},!1),d()}(window);
+		</script>
+		<style>
+			.wrap{font-family: STHeitiSC Light;}
+			.wrapper{width: 100%; height: 100%; position: relative; font-family: STHeitiSC Light;}
+			
+			.nav{position: fixed;box-sizing:border-box;-webkit-box-sizing:border-box; max-width: 640px; overflow: hidden; width: 100%; background-color: #FF9402; padding: .15rem .24rem; height: .94rem; z-index: 2;}
+			.nav .back{height: .48rem; width: .48rem;margin-top: .08rem; background:url('images/icons/back.png') no-repeat; background-size: .48rem .48rem;}
+			
+			#sec1 .int{position: relative; width: 5.2rem;height: .64rem;margin-left: .24rem;}
+			
+			.int .keyword{box-sizing:border-box;-webkit-box-sizing:border-box;width: 100%; height: 100%; border: none; background: #fff; -webkit-border-radius: .08rem;border-radius: .08rem; text-align: left; color: #959595; font-size: .24rem; line-height: .64rem; font-size: inherit; padding-left: .48rem;}
+			.int .keyword.c35{color: #353535; font-family: inherit; font-size: .28rem;}
+			.location_wrap{position: relative; top: .94rem;}
+			.map_con{position: fixed;top: .94rem; margin: auto; height: 4.18rem;z-index: 1;}
+			.map_con #mymap{width: 100%; height: 100%;}
+			.location_con{position: static;background: #fff;}
+			#sec1 .location_con{padding-top: 4.18rem;}
+			.map_con,.location_con{width: 6.4rem;}
+			
+			#sec1 .location_con li, #sec2 .location_con li{position: relative; padding: .15rem .26rem;box-sizing:border-box;-webkit-box-sizing:border-box; height: 1rem; overflow: hidden;}
+			#sec1 .location_con li .left,#sec2 .location_con li .left{width: 4.6rem; height: 100%; overflow: hidden;}
+			#sec1 .location_con li.active, #sec2 .location_con li.active{background: #F8F8F8;}
+			#sec1 .location_con li.active .ok, #sec2 .location_con li.active .ok{display: block;}
+			
+			#sec1 .location_con li:after, #sec2 .location_con li:after{content: ''; position: absolute;right: 0;bottom: 0;left: 0;height: 1px;-webkit-transform: scaleY(.5);transform: scaleY(.5);background: #ccc;}
+			#sec1 .location_con li:last-child:after, #sec2 .location_con li:last-child:after{height: 0;}
+			#sec1 .location_con .station,#sec2 .location_con .station{font-family: inherit;font-size: .28rem; color: #000; margin-bottom: 2px;}
+			#sec2 .location_con .station{color: #FF9402; white-space: nowrap;text-overflow: ellipsis;overflow: hidden;}
+			#sec2 .location_con .detail{color: #858585;}
+			#sec1 .location_con .road,#sec2 .location_con .road{width:100%;font-family: inherit; font-size: .24rem; color: #BABABA; line-height: .24rem; padding: 0 0 .05rem; white-space: nowrap;text-overflow: ellipsis;overflow: hidden;}
+			#sec1 .location_con button{padding: .1rem .3rem; font-size: .28rem; margin-top: .1rem; font-family: inherit; color: #FF9402; border: 1px solid #FF9402; border-radius: .1rem;-webkit-border-radius: .1rem;}
+			#sec1 .location_con .ok{align-self: center; right: .3rem; display: none;}
+			
+			#sec2 .int button{position: absolute; right: 10px; background: #456;}
+			#sec2 .input-row{width: 5rem; height: .64rem; padding: .125rem 0 .125rem .2rem;}
+			#sec2 .input-row .del{width: .32rem; height: .32rem; background-size:.32rem .32rem; margin: .16rem .16rem 0 0;}
+			#sec2 nav .close{font-family: inherit; font-size: .3rem;color:#fff;position: absolute; right: 0.24rem;top: 0; height: 100%;}
+			.tangram-suggestion table{display: none;}
+			.tangram-suggestion-main{background: transparent;display: none;opacity: 0;}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="wrap">
+			<section id="sec1" style="display: block;">
+				<nav class="nav clearfix">
+					<button class="back fl" id="back"></button>
+					<a href="javascript:;" id="search">
+						<div class="int fr">
+							<div class="keyword">搜索地点</div>
+							<!--<div class="keyword" data-lng="113.283445" data-lat="23.125402" data-location="广东省广州市越秀区大东街道荣华南58" data-name="荣华南" style="color: rgb(180, 180, 180);">搜索地点</div>-->
+						</div>
+					</a>
+				</nav>
+				<div class="location_wrap">
+					<div class="map_con">
+						<div id="mymap">
+						</div>
+					</div>
+					<div class="location_con">
+						<ul>
+							<!--<li class="active" data-lng="113.280022" data-lat="23.125055" data-location="家家乐托儿所" data-citycode="020"><div class="left fl"><div class="station">家家乐托儿所</div><div class="road">荣华南52号</div></div><div class="right fr"><button class="ok">确定</button></div></li>-->
+							<!--<li class="active">
+								<div class="fl left">
+									<div class="station">[中信广场]</div>
+									<div class="road">广东省广州市越秀区大东街道荣华南58道荣华南58道荣华南58道荣华南58道荣华南58</div>
+								</div>
+								<div class="fr">
+									<button class="ok">确定</button>
+								</div>
+							</li>-->
+						</ul>
+					</div>
+
+				</div>
+			</section>
+			<section id="sec2" style="display: none;">
+				<div class="wrapper">
+					<nav class="nav">
+						<div class="input-row bg border">
+							<input class="input keyword" id="ac_keyword" type="text" placeholder="输入地名" />
+							<button class="del show" id="del"></button>
+						</div>
+						<a href="javascript:;" id="close">
+							<button class="close">取消</button>
+						</a>
+						<a href="javascript:;" id="btn_search" style="display: none;">
+							<button class="close">搜索</button>
+						</a>
+					</nav>
+					<div class="location_wrap">
+
+						<div class="location_con">
+							<ul>
+								
+							</ul>
+						</div>
+
+					</div>
+				</div>
+			</section>
+		</div>
+	</body>
+	<script src="js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/Mibus.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=cqG9ilO8and6RQ9KDUoMQSG1"></script>
+	<script type="text/javascript">
+		var map,
+			_city = '广州', //默认定位至广州
+			geolocation,
+			oLocation = true,
+			localSearch,
+			myGeo,
+			info = {},
+			marker;
+		var LBS = {
+			init:function(){
+				this.marker = marker;
+				this.initEvent();
+			},
+			initEvent:function(){
+				var self = this;
+				map = new BMap.Map("mymap");
+				map.centerAndZoom(_city);
+				geolocation = new BMap.Geolocation(); 
+				geolocation.getCurrentPosition(function(r){ //根据浏览器定位
+					if(this.getStatus() == BMAP_STATUS_SUCCESS){
+						onComplete(r);
+					}
+					else {
+//						alert('定位失败');
+					}        
+				},{enableHighAccuracy: true,timeout: 10000,maximumAge: 0,});
+				
+				// 逆地址解析函数 用于搜索附近线路
+				function geocoder_callBack(data){
+					if (typeof data != 'object') {
+						return false;
+					}
+					var html = '',
+						oName = '',
+						olng = '',
+						oLat = '';
+					// 获取详细地点
+//					if (data.addressComponents.street) {
+//						oName = data.addressComponents.street;
+//					} 
+					if (data.addressComponents.streetNumber) {
+						oName = data.addressComponents.streetNumber;
+					} 
+					
+					// 获取坐标点
+					if (data.point) {
+						olng = data.point.lng;
+						oLat = data.point.lat;
+					}
+					
+					if (oLocation) {
+						$('#sec1 .keyword').attr({
+							'data-lng': olng,
+							'data-lat': oLat,
+							'data-location': data.address,
+							'data-name': oName
+						}).css('color', '#b4b4b4').text('搜索地点');
+					}
+					
+					if (oLocation) {
+						html = '<li  class="active" data-lng="' + olng + '" data-lat="' + oLat + '" data-location = "' + oName + '" data-citycode="' + data.addressComponents.city + '"><div class="fl left"><div class="station">' + "[您的位置]" + '</div><div class="road">' + data.address + '</div></div><div class="fr"><button class="ok">确定</button></div></li>';
+						oLocation = false;
+					}
+					data.surroundingPois.forEach(function(item, i) {
+						if (item.title == $('#sec1 .keyword').attr('data-name')) {
+							return false;
+						}
+						html += '<li  data-lng="' + item.point.lng + '" data-lat="' + item.point.lat + '" data-location="' + item.title + '" data-citycode ="' + item.city + '"><div class="left fl"><div class="station">' + item.title + '</div>';
+						html += '<div class="road">' + item.address + '</div></div><div class="fr"><button class="ok">确定</button></div></li>';
+					});
+					$('#sec1 .location_con ul').html(html);	
+				}
+				
+//				map.addEventListener("dragging", function(e){
+//					var p = map.getCenter();
+//					marker && marker.setPosition(p);
+//					map.setCenter(p);
+//					myGeo && myGeo.getLocation(p, geocoder_callBack);
+//				});
+				
+				//地图加载完后调用
+				function onComplete(data){
+					var point = data.point;
+					myIcon = new BMap.Icon("images/icons/lbs_pos.png", new BMap.Size(30,41)); 
+					if(!marker){
+						marker = new BMap.Marker(point,{icon: myIcon});
+						map.addOverlay(marker);
+						map.setZoom(18);
+						map.panTo(point);
+					}
+					var lnglatXY = new BMap.Point(point.lng, point.lat);
+					// 创建地址解析器实例
+					myGeo = new BMap.Geocoder();
+					myGeo.getLocation(lnglatXY, function(result){
+						geocoder_callBack(result);
+					},{
+						poiRadius:100,//以已知坐标为中心点，radius为半径，返回范围内兴趣点和道路信息
+						numPois: 10 //返回的POI点个数，默认为10个
+					});
+					
+				}
+				
+				//点击选取地点
+				$('#sec1 .location_con ul').on('tap', 'li', function() {
+					$('#sec1 .location_con ul li').removeClass('active');
+					$(this).addClass('active');
+					info.lng = $(this).attr('data-lng');
+					info.lat = $(this).attr('data-lat');
+					info.location = $(this).attr('data-location');
+					var point = new BMap.Point(info.lng, info.lat);
+					map.setZoom(18);
+					map.setCenter(point);
+					marker && marker.setPosition(point);
+					
+					$('#sec1 .keyword').attr({
+						'data-lng': info.lng,
+						'data-lat': info.lat,
+						'data-name': info.location
+					});
+					return false;
+				});
+				
+				//点击选取地点
+				/*$('#sec2 .location_con ul').on('tap', 'li', function() {
+					oLocation = false;
+					info.lng = $(this).attr('data-lng');
+					info.lat = $(this).attr('data-lat');
+					var point = new BMap.Point(info.lng, info.lat);
+					map.setZoom(18);
+					map.setCenter(point);
+					marker && marker.setPosition(point);
+
+					$('#sec1 .keyword').css('color', '#353535');
+					$('#sec1 .keyword').text($(this).find('.station').text());
+					$('#sec1 .keyword').attr({
+						'data-lng': info.lng,
+						'data-lat': info.lat,
+						'data-name': $(this).find('.station').text(),
+						'data-location': $(this).find('.road').text()
+					});
+					myGeo.getLocation(point, function(result){
+						geocoder_callBack(result);
+					},{
+						poiRadius:1000,//以已知坐标为中心点，radius为半径，返回范围内兴趣点和道路信息
+						numPois: 10 //返回的POI点个数，默认为10个
+					});
+					$('#sec1').css('display', 'block');
+					$('#sec2').css('display', 'none');
+					$('#sec2 .keyword').blur();
+				});*/
+
+				$('#sec2 .location_con ul').on('tap', 'li', function() {
+					var myValue;
+					oLocation = false;
+					myValue = $(this).attr('data-location');
+					setPlace(myValue,$(this));
+					
+					$('#sec1').css('display', 'block');
+					$('#sec2').css('display', 'none');
+					$('#sec2 .keyword').blur();
+				});
+//				
+				function setPlace(keyword,that){
+					var point;
+					map.clearOverlays(); //清除地图上所有覆盖物
+					
+					function func(){
+						point = local.getResults().getPoi(0).point; //获取第一个智能搜索的结果
+						map.centerAndZoom(point, 18);
+						console.log(marker);
+						map.setZoom(18);
+						map.setCenter(point);
+						marker && marker.setPosition(point);
+						map.addOverlay(marker); //添加标注
+						
+						$('#sec1 .keyword').css('color', '#353535');
+						$('#sec1 .keyword').text(that.find('.station').text());
+						
+						$('#sec1 .keyword').attr({
+							'data-lng': point.lng,
+							'data-lat': point.lat,
+							'data-name': that.find('.station').text(),
+							'data-location': that.find('.road').text()
+						});
+						
+						myGeo.getLocation(point, function(result){
+							geocoder_callBack(result);
+							var first_li = '<li data-lng="' + point.lng + '" data-lat="' + point.lat + '" data-location="' + that.find('.station').text() + '" data-name="' + that.find('.road').text() +'"><div class="left fl"><div class="station">' + that.find('.station').text() + '</div><div class="road">' + that.find('.road').text() + '</div></div><div class="fr"><button class="ok">确定</button></div></li>';
+							$('#sec1 .location_con ul').prepend(first_li);
+						},{
+							poiRadius:1000,//以已知坐标为中心点，radius为半径，返回范围内兴趣点和道路信息
+							numPois: 10 //返回的POI点个数，默认为10个
+						});
+					}
+					var local = new BMap.LocalSearch(map, { //智能搜索
+						onSearchComplete: func
+					});
+					local.search(keyword);
+				}
+				
+				function click_show(e){
+					var point = new BMap.Point(e.point.lng, e.point.lat);
+					map.setZoom(18);
+					map.setCenter(point);
+					marker.setPosition(point);
+					myGeo && myGeo.getLocation(point, geocoder_callBack);
+				};
+				
+				// 单击地图获取坐标
+				map.addEventListener("click", click_show);
+				
+				// 确定按钮
+				$('#sec1  ul').on('tap', 'button.ok', function() {
+					var url = Mib.getParam('source') || 'index.html?';
+					if (Mib.getParam('source') && url.indexOf('?') === -1) {
+						url += '?';
+					}
+					var value = $('#sec1 nav .keyword');
+					
+					if (value.attr('data-lng')) {
+						url = Mib.setParam(Mib.getParam('location') + '_lng', value.attr('data-lng'), url);
+						url = Mib.setParam(Mib.getParam('location') + '_lat', value.attr('data-lat'), url);
+						url = Mib.setParam(Mib.getParam('location'), value.attr('data-name'), url);
+					}
+					Mib.href(url);
+				});
+				
+				//返回上一页
+				$(".nav").on('tap','#back',function(){
+					Mib.href(Mib.getParam('source'));
+				});
+				
+				$("#search").on('tap',function(){
+					$('#sec1').css('display', 'none');
+					$('#sec2').css('display', 'block');
+					$('#sec2 .keyword').focus().trigger('click');
+				});
+				
+				$('#sec2 input[type="text"]').on('focus', function() {
+//					self.search(this.value);
+					self.autocomplete();
+					$(this).on('input',function(){
+						$("#btn_search").show();
+						$("#close").hide();
+					});
+				});
+				
+				$('#close').on('tap', function() {
+					$('#sec1').css('display', 'block');
+					$('#sec2').css('display', 'none');
+				});
+				$('#del').on('tap', function() {
+					$('#sec2 .keyword').val('');
+					$('#sec2 .location_con ul').html('');
+					$("#btn_search").hide();
+					$("#close").show();
+				})
+				
+			},
+			
+			// 关键字搜索
+			/*search:function(keyword){
+				
+				localSearch = new BMap.LocalSearch('广州', { 
+					renderOptions:{map: '广州'},
+					onSearchComplete : getLocalResult 
+				});
+				localSearch.search(keyword); 
+				function getLocalResult(rs){
+					var html = '';
+					if ( localSearch.getStatus() == 0 ) {
+						for (var i = 0; i < rs.getNumPages(); i++ ) {
+							html += '<li data-lng="' + rs.getPoi(i).point.lng + '" data-lat="' + rs.getPoi(i).point.lat + '"><div class="fl left">';
+							html += '<p><span class="station">' + rs.getPoi(i).title + '</span></p>'; 
+							html += '<div class="road">' + rs.getPoi(i).address + '</div></div></li>';
+						}
+						$('#sec2 .location_con ul').html(html);
+					}else if(localSearch.getStatus() == 2 || localSearch.getStatus() == 3 ){
+						$('#sec2 .location_con ul').html('<li class="active"><div class="fl left"><p><span class="detail">没有找到你想要的</span></p></div></li>');
+					}
+				}
+			},
+			*/
+			
+			autocomplete:function(){
+				var	html = '',local;
+				var ac = new BMap.Autocomplete({ //建立一个自动完成的对象
+					"input": "ac_keyword",
+					"location": map,
+				});
+					
+
+				$("#btn_search").on('tap',function(){
+					var lis = $('#sec2 .location_con ul').find('li');
+					var item = ac.getResults().Oq;
+					if ( lis.length ) {
+						html='';
+						putLis(item);
+					}else{
+						putLis(item);
+					}
+					
+					function putLis(data){
+						if (data.length) {
+							for (var i =0; i<data.length;i++) {
+								html += '<li data-location="'+ data[i].province + data[i].city + data[i].district + data[i].street + data[i].streetNumber + data[i].business + '"><div class="fl left">';
+								html += '<p><span class="station">' + data[i].business + '</span></p>'; 
+								html += '<div class="road">' + data[i].city+ data[i].district + '</div></div></li>';
+								$('#sec2 .location_con ul').html(html);
+							}
+						}
+					}
+				});
+			
+			},
+		};
+		LBS.init();
+	</script>
+
+</html>

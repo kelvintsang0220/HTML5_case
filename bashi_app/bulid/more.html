@@ -1,0 +1,80 @@
+<!DOCTYPE >
+<html>
+	<head>
+		<title>我的</title> 
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<link rel="stylesheet" href="css/base.css">
+		<script>
+			!function(a){function d(){var c=b.getBoundingClientRect().width;a.rem=c/6.4>100?100:50>c/6.4?50:c/6.4,b.style.fontSize=a.rem+"px"}var c,b=a.document.documentElement;a.addEventListener("resize",function(){clearTimeout(c),c=setTimeout(d,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(c),c=setTimeout(d,300))},!1),d()}(window);
+		</script>
+		<style type="text/css">
+			.wrap{position: relative;height: 100%; min-height: 9.8rem;}
+			*,.wrap{font-family: STHeitiSC Light;}
+			.container{padding-top: 1.3rem;}
+			.list{position: relative;background: #fff;}
+			.list:before{content: '';position: absolute;top: 0; right: 0;left: 0; width: 100%;height: 1px;-webkit-transform: scaleY(.5);background: #c8c7cc;}
+			.list:after{content: '';position: absolute;bottom: 0; right: 0;left: 0; width: 100%;height: 1px;-webkit-transform: scaleY(.5);background: #c8c7cc;}
+		    .list>li,.list>li>a{ position: relative; overflow: hidden;}
+		    .list>li>a{ display: block;height: 1rem; line-height: 1rem; padding: 0 20px 0 .86rem; color: #353535;font-size: .24rem;font-family: inherit;}
+		    	.list>li>a:before{content: '';position: absolute;width: .48rem; height: .48rem; top: 50%; left: .25rem; -webkit-transform: translateY(-50%);}
+		    	.list>li>a:before{background: url(images/mine-s8445767782.png) no-repeat center / .72rem 6rem;}
+		    	.list>li>a#back:before{background: none; }
+		    	.list>li>a#back i{position: absolute;left: .34rem;top: .36rem; display: block;width: .34rem;height: .24rem;border: 1px solid #c8c7cc;border-radius: .1rem;border-left: none;border-top-left-radius: 0;border-bottom-left-radius: 0;}
+		    	.list>li>a#back i:before{content: '';position: absolute;left: 0;top: 0; display: block;width: .1rem;height: .1rem;border: 2px solid #c8c7cc;-webkit-transform: rotate(-45deg);-webkit-transform-origin: left top; border-bottom: 0;border-right: none;}
+		    	.list>li:after{content: '';position: absolute;bottom: 0; right: 0;left: .86rem; width: 100%;height: 1px;-webkit-transform: scaleY(.5);background: #c8c7cc;}
+		    	.list>li:last-child:after{height: 0;}
+		    .list li.wallet a:before { background-position: 0 -3.84rem; }
+		    .list li.order a:before{ background-position: 0 -1.44rem; }
+		    .list li.myline a:before{background-position: 0 -.48rem; }
+		    .list li.voucher a:before{ background-position: 0 0rem; }
+		    
+		    
+		    .list li.more a:before{ background-position: 0 -2.88rem; }
+		    .list>li> .icon { position: absolute; right: .3rem; top: 50%; width: .15rem; height: .27rem; margin-top: -.135rem; background: url(images/icons/icon_right.png) 0 center / .15rem .27rem no-repeat;}
+		    .input-row .submit_btn{position:relative;margin: auto; width: 5.8rem;height:.68rem;line-height: .68rem;background-color: #FF9402; border-radius: .1rem;font-size: .32rem;color: #fff;text-align: center;}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="wrap">
+			<header class="header">
+				<nav class="nav clearfix">
+					<a class="back fl" id="back" href="/wx/trunk/User/more.html"></a>
+					<h2>用户指南</h2>
+				</nav>
+			</header>
+			<div class="container" style="padding-bottom: 2rem;">
+				<ul class="list">
+					<li class="order">
+						<a href="booking_rules.html">用户指南</a>
+						<i class="icon"></i>
+					</li>
+					<li class="myline">
+						<a href="use_agreement.html">使用协议</a>
+						<i class="icon"></i>
+					</li>
+					<li class="voucher">
+						<a href="about.html">关于我们</a>
+						<i class="icon"></i>
+					</li>
+					<!--<li class="voucher">
+						<a href="about.html" id="back">返回<i></i></a>
+						<i class="icon"></i>
+					</li>-->
+				</ul>
+				<div class="input-row" style="padding-top: .3rem;">
+					<div class="submit_btn">
+						登出
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+
+</html>

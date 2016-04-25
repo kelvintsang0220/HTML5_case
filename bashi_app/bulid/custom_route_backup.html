@@ -1,0 +1,201 @@
+<!DOCTYPE >
+<html>
+	<head>
+		<title>定制路线</title> 
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<link rel="stylesheet" href="css/base.css">
+		<script>
+			!function(a){function d(){var c=b.getBoundingClientRect().width;a.rem=c/6.4>100?100:50>c/6.4?50:c/6.4,b.style.fontSize=a.rem+"px"}var c,b=a.document.documentElement;a.addEventListener("resize",function(){clearTimeout(c),c=setTimeout(d,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(c),c=setTimeout(d,300))},!1),d()}(window);
+		</script>
+		<style>
+		    .header{font-family: STHeitiSC Light;padding-top: 3.44rem; padding-bottom: 60px;background-color: transparent;border: 0;}
+		    
+		    .start,.end{position: relative; height: .32rem; line-height: .32rem;padding-left: .36rem;background: url(images/icons/origin.png) no-repeat left center; background-size: .32rem .32rem;font-family: inherit; font-size: .24rem; color: #909090;}
+		    .end{margin-top: .2rem; background-image: url(images/icons/terminal.png);}
+		    
+		    .header{box-sizing: border-box;-webkit-box-sizing: border-box;height: 3.44rem; z-index: 10; padding: .3rem;}
+		    .header .search{position:relative;display: block; margin: auto;margin-top:.3rem; width: 5.8rem;height:.78rem;line-height: .78rem;background-color: #32B553; border-radius: .1rem;font-size: .32rem;color: #fff;text-align: center;}
+		    .header .location_con{position:relative;margin:auto;width: 5.8rem;height: 1.9rem; border: 1px solid #D8D8D8;border-radius: .1rem;background-color: #fff;}
+		    .header .flex{-webkit-box-orient: vertical;}
+		    .header .flex-cell{color: #353535; font-family: inherit; font-size: .28rem;height: .92rem;line-height: .92rem;text-align: left;padding-left: .92rem;}
+		    .header .origin,.header .terminal,.header .date_wrap span{position: relative;background: url(images/icons/lbs_y.png) no-repeat;background-size: .48rem .48rem;background-position: .22rem .22rem;}
+		    .header .terminal{background-image: url(images/icons/lbs_g.png);}
+		    .header .origin:after{position: absolute;content: '';width: 100%; height: 1px; background: #D8D8D8; left: 0; bottom: -1px;}
+		    .header .date_wrap{position: relative; width: 5.8rem; height: .92rem; background-color: #fff; border: 2px solid #D8D8D8; border-radius: .1rem;margin-top: .3rem;}
+		    .header .date_wrap span{position: absolute;display: block; width: 5.8rem; height: .92rem;line-height: .92rem;text-align: left;padding-left: .92rem;}
+		    
+		    .start_time img,.end_time img{width: .48rem; height: .48rem; vertical-align: middle;}
+		    .start_time span,.end_time span{color: #353535; font-size: .28rem; font-family: inherit;}
+		    .start_time div,.end_time div{width: 5.8rem; height: .72rem; line-height: .72rem; padding-left: .3rem; background: #fff; border: 1px solid #D8D8D8;border-radius: .1rem; -webkit-box-sizing: border-box;}
+		    .start_time input,.end_time input{width: 100%;height: 100%; border: none; background: transparent;  font-size: .28rem;}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="wrap">
+			<header class="header">
+				<div class="location_con flex">
+					<div class="ori_btn">
+						<div class="flex-cell origin" id="origin"></div>
+						<div class="close_lbs" data-info='start'></div>
+					</div>
+					
+					<div class="ori_btn">
+						<div class="flex-cell terminal" id="terminal"></div>
+						<div class="close_lbs" data-info='end'></div>
+					</div>
+					
+					<div class="start_time" style="margin-top: 1rem;">
+						<img src="images/icons/icon_time01.png"/><span>选择上班时间</span>
+						<div>
+							<input type="time" id="start_time"/>
+						</div>
+					</div>
+					
+					<div class="end_time" style="margin-top: .2rem;">
+						<img src="images/icons/icon_time02.png"/><span>选择上班时间</span>
+						<div>
+							<input type="time" id="end_time"/>
+						</div>
+					</div>
+					
+					<a class="search" href="custom_result.html">
+						发起定制
+					</a>
+				</div>
+				
+			</header>
+			<footer class="footer" id="footer">
+				<a class="by_ticket" href="index.html">购票</a>
+				<a class="custom active" href="wait_bus.html">定制</a>
+				<a class="by_bus" href="wait_bus.html">坐车</a>
+				<a class="mine" href="mine.html">我的</a>
+			</footer>
+			
+			<!--时间插件-->
+			<section class="time_selector">
+				<div class="masker"></div>
+				<div class="wrapper" id="one">
+					<div class="wrapper_title">
+						<span class="title">出发时间</span>
+						<span class="fl" onclick="fnSelectTime('close')">取消</span>
+						<span class="fr" onclick="fnSelectTime('ok','#one')">确定</span>
+					</div>
+					<div class="wrapper_con">
+						<div class="active_bg"></div>
+						<div class="scroller_left">
+							<ul>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
+						<div class="scroller_right">
+							<ul>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
+			
+		</div>
+	</body>
+	<script src="js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/Mibus.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function(){
+			
+			var location = function(str){
+	          	var url = Mib.setObj('location.html' + window.location.search,{'location':str,'source':'custom_route.html' + window.location.search});
+			  	Mib.href(url);
+	        };
+			
+	        var initPage = function() {
+		        var origin = Mib.getParam('origin') || '出发地';
+		        var terminal = Mib.getParam('terminal') || '目的地';
+		        
+		        // 获取经纬度
+//		        var lng = Mib.getParam('origin_lng');
+//		        var lat = Mib.getParam('terminal_lat');
+		        
+		        $('#origin').text(origin);
+		        $('#terminal').text(terminal);
+		        
+		        // 显示隐藏删除按钮
+		        if( Mib.getParam('origin_lng') && Mib.getParam('origin_lat') && Mib.getParam('origin') ){
+	            		$('div[data-info="start"]').show();
+	            }else{
+	            		$('div[data-info="start"]').hide();
+	            }
+	            
+	            if(  Mib.getParam('terminal_lng') && Mib.getParam('terminal_lat') && Mib.getParam('terminal') ){
+	            		$('div[data-info="end"]').show();
+	            }else{
+	            		$('div[data-info="end"]').hide();
+	            }
+	            getTime();
+	      	};
+	      	
+	      	function close_btn(){
+	      		var str = $(this).attr('data-info');
+	      		if(str == 'start'){
+		            if( Mib.getParam('origin_lng') && Mib.getParam('origin_lat') && Mib.getParam('origin') ){
+		            		if(  Mib.getParam('terminal_lng') && Mib.getParam('terminal_lat') && Mib.getParam('terminal') ){
+			            		var url = Mib.setParam('terminal_lng', Mib.getParam('terminal_lng'), 'index.html?');
+			                url = Mib.setParam('terminal_lat', Mib.getParam('terminal_lat'), url);
+			                url = Mib.setParam('terminal', Mib.getParam('terminal'), url);
+			                window.history.replaceState({}, "", url);
+		            		}else{
+		            			window.history.replaceState({}, "", 'index.html');
+		            		}
+		            }
+		            $('#origin').text('出发地');
+		            $('div[data-info="start"]').hide();
+	      		}else if(str == 'end'){
+	      			if( Mib.getParam('terminal_lng') && Mib.getParam('terminal_lat') && Mib.getParam('terminal') ){
+		            		if(  Mib.getParam('origin_lng') && Mib.getParam('origin_lat') && Mib.getParam('origin') ){
+			            		var url = Mib.setParam('origin_lng', Mib.getParam('origin_lng'), 'index.html?');
+			                url = Mib.setParam('origin_lat', Mib.getParam('origin_lat'), url);
+			                url = Mib.setParam('origin', Mib.getParam('origin'), url);
+			                window.history.replaceState({}, "", url);
+		            		}else{
+		            			window.history.replaceState({}, "", 'index.html');
+		            		}
+		            }
+	      			$('#terminal').text('目的地');
+		            $('div[data-info="end"]').hide();
+	      		}
+	      		
+	      		return false;
+	      	}
+	      	
+	      	$('.location_con').on('tap', '#origin', function(){location('origin')});
+	      	$('.location_con').on('tap', '#terminal', function(){location('terminal')});
+	      	
+	      	$('.ori_btn').on('tap', '.close_lbs', close_btn);
+	      	
+	      	function getTime(){
+	      		$(".date_wrap").on('tap',function(){
+	      			$("#dataPicker").trigger('click');
+	      			console.log('dddddd');
+	      		});
+				$("#dataPicker").on('change',function(){
+					console.log($(this).val());
+				});
+	      	}
+	      	
+	      	initPage();
+		});
+	</script>
+
+</html>

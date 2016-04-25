@@ -1,0 +1,97 @@
+<!DOCTYPE >
+<html>
+	<head>
+		<title>米巴</title> 
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<link rel="stylesheet" href="css/base.css">
+		<script>
+			!function(a){function d(){var c=b.getBoundingClientRect().width;a.rem=c/6.4>100?100:50>c/6.4?50:c/6.4,b.style.fontSize=a.rem+"px"}var c,b=a.document.documentElement;a.addEventListener("resize",function(){clearTimeout(c),c=setTimeout(d,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(c),c=setTimeout(d,300))},!1),d()}(window);
+		</script>
+		<style>
+		    .container{font-family: STHeitiSC Light;padding-top: 1.6rem;}
+		    
+		    .header{height: 1.6rem;}
+		    .header p{margin-top: 1.02rem; color: #909090;font-family: inherit;font-size: .20rem; text-align: center;}
+		    .success{position: absolute;font-size: .34rem;font-family: "微软雅黑"; color: #2996F1; font-weight: bold;left: 50%;-webkit-transform: translateX(-50%);margin-top: .34rem;}
+		    .success:before{content: '';position: absolute;top: 0;left: -.60rem; width: .48rem;height: .48rem;background: url(images/icons/success.png) no-repeat;-webkit-background-size:cover;}
+		    .line_1{padding-bottom: 0;}
+		    .btn_wrap{padding: .3rem;}
+		    .btn_wrap .button{margin-top:.1rem; width: 5.8rem; height: .8rem;font-family: inherit;font-size: .28rem;color: #fff;background-color: #FF9402;}
+		    .btn_wrap .button.waite{color: #909090;background-color: #F1F1F1;border-color: #F1F1F1;}
+		    .footer{height: .72rem; line-height: .72rem;}
+		    .footer .route{position: absolute;width: 5.8rem;height:.68rem;left: .3rem;top: 50%;margin-top: -.34rem;line-height: .68rem;border: 1px solid #D8D8D8;border-radius: .1rem;font-size: .32rem;color: #FF9402;text-align: center;}
+		    .links_con{position: absolute;overflow: hidden; bottom: 0;right: 0;}
+		    .links_con a{font-size: inherit; font-size: .2rem; color: #BABABA;text-decoration: underline;}
+		    a.button{-webkit-box-sizing: border-box;}
+		    .checked{position:relative;display: block; margin: auto; width: 5.8rem;height:.78rem;line-height: .78rem;border: 1px solid #FF9402;background-color: #FF9402; border-radius: .1rem;font-size: .32rem;color: #fff;text-align: center;}
+		    .checked.disable{color: #909090;background-color: #F1F1F1;border-color: #F1F1F1;}
+
+		</style>
+	</head>
+
+	<body>
+
+		<div class="wrap">
+			<header class="header">
+				<div class="success">
+					购票成功
+				</div>
+				<p>温馨提示:请在上车前点击"验票"，并向司机出示电子票</p>
+			</header>
+			<footer class="footer" id="footer">
+				<div class="route">
+					继续购票
+				</div>
+			</footer>
+			<div class="container">
+				<img style="padding: .62rem; width: 5.16rem;" src="images/erweima.png"/>
+				
+				<ul class="table-view mt20">
+					<li class="table-view-cell mb20">
+						<div class="flex line">
+							<div class="flex" style="width: 4.2rem;">
+								<div class="flex-cell go-off">08:30</div>
+								<div class="flex-cell m_line">
+										M678
+								</div>
+								<div class="flex-cell kilometers">17公里</div>
+								<div class="flex-cell arrival-time">到达07:45</div>
+							</div>
+							<div class="flex-cell price tr">约8元</div>
+						</div>
+						<div class="dotted"></div>
+						<div class="table line_1">
+							<div class="table-cell">
+								<div class="start">
+									祈福新村
+								</div>
+								<div class="end">
+									客村tit创意园
+								</div>
+							</div>
+							<div class="table-cell tr">
+								<div class="links_con">
+									<a href="#">查看站点</a>
+									<a href="#" class="ml30">申请退票</a>
+								</div>
+							</div>
+						</div>
+						<div class="btn_wrap">
+							<a class="checked disable">
+								开始验票
+							</a>
+						</div>
+					</li>
+					
+				</ul>
+			
+			</div>
+		</div>
+	</body>
+	
+
+</html>

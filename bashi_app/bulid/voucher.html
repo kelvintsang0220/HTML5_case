@@ -1,0 +1,116 @@
+<!DOCTYPE >
+<html>
+	<head>
+		<title>代金卷</title> 
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<link rel="stylesheet" href="css/base.css">
+		<script>
+			!function(a){function d(){var c=b.getBoundingClientRect().width;a.rem=c/6.4>100?100:50>c/6.4?50:c/6.4,b.style.fontSize=a.rem+"px"}var c,b=a.document.documentElement;a.addEventListener("resize",function(){clearTimeout(c),c=setTimeout(d,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(c),c=setTimeout(d,300))},!1),d()}(window);
+		</script>
+		<style>
+		    .container{font-family: STHeitiSC Light; padding: 0 .2rem 1.04rem;}
+		    .tips{height: .5rem;line-height: .5rem; text-align: left; font-size: .2rem;font-family: inherit; color: #BABABA;}
+		    .voucher{position: relative;height: 1.53rem;overflow: hidden;background:transparent url(../bulid/images/_icons-s77b075e69e.png) no-repeat;background-size: 6.02rem 8.43rem; margin-bottom: .2rem;}
+		    .voucher.normal{background-position: 0 -1.92rem;}
+		    .voucher.special{background-position: 0 -3.45rem;}
+		    .voucher.past{background-position: 0 -4.98rem;}
+		    .voucher .flex{width: 100%; height: 100%;}
+		    .price{text-align: left;font-size: .6rem;font-family: inherit;margin-right: .16rem;text-indent: .28rem;}
+		    .price{position: absolute;top: 50%;left: 0;-webkit-transform: translateY(-50%);}
+		    .price span{font-size: .36rem;}
+		    .voucher.normal .price{color: #2996f1;}
+		    .voucher.special .price{color: #FF9402;}
+		    .voucher.past .price{color: #BABABA;}
+		    .voucher.special .price>div>div{font-family: "微软雅黑"; font-size: .28rem; font-weight: bold; font-style: italic;}
+		    .voucher.special .price .money{font-family:inherit; font-size: .34rem;margin-top: .22rem;}
+		    .voucher_l{width: 1.8rem;overflow: hidden;}
+		    .voucher_r{margin: .48rem .24rem 0 0rem; text-align: left;}
+		    .voucher_r .info{font-family: inherit; font-size: .28rem; color: #909090;}
+		    .voucher_r .time{font-family: inherit; font-size: .20rem; color: #BABABA;}
+		    
+		    	.footer{height: auto;padding: 0;}
+		    .footer .route{position: absolute;width: 5.8rem;height:.68rem;left: .3rem;top: 50%;margin-top: -.34rem;line-height: .68rem;border: 1px solid #D8D8D8;border-radius: .1rem;font-size: .32rem;color: #FF9402;text-align: center;}
+			.footer .ex_input{padding: .2rem .15rem .2rem .3rem;}
+			.input-row{padding: .125rem 0 .125rem .2rem;height: .64rem;width: 4.34rem;} 
+			.input-row.bg{background-color: #f1f1f1;}
+			.input-row.border{border: none;}
+			.input-row .input{font-size: .24rem; color: #BABABA;background-color: #f1f1f1;}
+			.add{text-align: left;}
+			.add .button{height: .64rem;margin-top: .2rem; font-family: inherit;font-size: .28rem;color: #909090;border: 1px solid #cbcbcb;}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="wrap">
+			<footer class="footer" id="footer">
+				<div class="flex">
+					<div class="flex-cell ex_input">
+						<div class="input-row bg border">
+							<input class="input" type="text" placeholder="可兑换代金卷，朋友的邀请码"/>
+						</div>
+					</div>
+					<div class="flex-cell add">
+						<button class="button">
+							添加
+						</button>
+					</div>
+				</div>
+			</footer>
+			<div class="container">
+				<div class="tips">
+					每次只可以使用一张，不找零哦~
+				</div>
+				
+				<div class="voucher normal">
+					<div class="flex">
+						<div class="voucher_l">
+							<div class="price"><span>￥</span>6</div>
+						</div>
+						<div class="flex-cell voucher_r">
+							<div class="info">代金卷(上下班可用)</div>
+							<div class="time"><span>2015-07-09至2015-09-06</span></div>
+						</div>
+					</div>
+				</div>
+				<div class="voucher special">
+					<div class="flex">
+						<div class="voucher_l">
+							<div class="price clearfix">
+								<div class="fl">
+									<div>仅需</div>
+									<div>支付</div>
+								</div>
+								<div class="fl money">
+									0.1
+								</div>
+							</div>
+						</div>
+						<div class="flex-cell voucher_r">
+							<div class="info">代金卷(上下班可用)</div>
+							<div class="time"><span>2015-07-09至2015-09-06</span></div>
+						</div>
+					</div>
+				</div>
+				<div class="voucher past">
+					<div class="flex">
+						<div class="voucher_l">
+							<div class="price"><span>￥</span>6</div>
+						</div>
+						<div class="flex-cell voucher_r">
+							<div class="info">代金卷(上下班可用)</div>
+							<div class="time"><span>2015-07-09至2015-09-06</span></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	</body>
+	
+
+</html>

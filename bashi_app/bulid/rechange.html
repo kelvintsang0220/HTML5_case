@@ -1,0 +1,63 @@
+<!DOCTYPE >
+<html>
+	<head>
+		<title>充值记录</title> 
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<link rel="stylesheet" href="css/base.css">
+		<script>
+			!function(a){function d(){var c=b.getBoundingClientRect().width;a.rem=c/6.4>100?100:50>c/6.4?50:c/6.4,b.style.fontSize=a.rem+"px"}var c,b=a.document.documentElement;a.addEventListener("resize",function(){clearTimeout(c),c=setTimeout(d,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(c),c=setTimeout(d,300))},!1),d()}(window);
+		</script>
+		<style>
+		    *,.wrap,.container{font-family: STHeitiSC Light;}
+		    .container{padding: .3rem;}
+		   .selectMoney{font-family: inherit;font-size: .24rem;color: #353535;padding: .15rem 0;}
+		   .list{position: relative; font-family: inherit; font-size: 0;}
+		   .list > li{display: inline-block;width: 2.75rem; height: 1rem;line-height: 1rem;text-align: center; font-size: .28rem; color: #353535;border-radius: .1rem; background: #fff;border: 2px solid transparent;}
+		   .list > li span{font-size: .28rem;}
+		   .list > li i{font-size: .20rem; color: #FF4D02;padding-left: .1rem;}
+		   .list > li.selected{ background: #ffe2d6;border: 2px solid #FF4D02;color: #FF4D02;}
+		   .list > li:nth-child(2){float: right;}
+		   .input-row .submit_btn{position:relative;display: block; margin: auto; width: 5.8rem;height:.78rem;line-height: .78rem;background-color: #FA4F20; border-radius: .1rem;font-size: .32rem;color: #fff;text-align: center;}
+		   .instr{font-family: inherit;font-size: .2rem; color: #BABABA; text-align: center;}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="wrap">
+			
+			<div class="container" >
+				<p class="selectMoney">选择充值的金额</p>
+				<ul class="list">
+					<li class="selected">
+						<span>30元</span><i>送5元</i>
+					</li>
+					<li class="">
+						<span>50元</span><i>送10元</i>
+					</li>
+				</ul>
+				<ul class="list" style="margin-top: .3rem;">
+					<li class="">
+						<span>100元</span><i>送50元</i>
+					</li>
+					<li class="">
+						<span>200元</span><i>送100元</i>
+					</li>
+				</ul>
+				<div class="input-row" style="padding-top: 1rem;">
+					<a class="submit_btn">
+						提交
+					</a>
+				</div>
+				<p class="instr mt20">以上四种充值返利活动，每种可参加一次</p>
+				<p class="instr mt10">充值返利活动的金额暂时不能提现</p>
+			</div>
+		</div>
+	</body>
+	
+
+</html>

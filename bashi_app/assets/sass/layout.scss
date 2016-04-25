@@ -1,0 +1,199 @@
+.padded{padding: 15px;}
+
+.ml5{margin-left: 5px;}
+.ml10{margin-left: 10px;}
+.ml15{margin-left: 15px;}
+.ml20{margin-left: 20px;}
+.ml30{margin-left: 30px;}
+.ml50{margin-left: 50px;}
+
+.mr5{margin-right: 5px;}
+.mr10{margin-right: 10px;}
+.mr15{margin-right: 15px;}
+.mr20{margin-right: 20px;}
+.mr30{margin-right: 30px;}
+.mr50{margin-right: 50px;}
+
+.mt5{margin-top: .05rem;}
+.mt10{margin-top: .1rem;}
+.mt15{margin-top: .15rem;}
+.mt20{margin-top: .2rem;}
+.mt30{margin-top: .3rem;}
+.mt50{margin-top: .5rem;}
+
+.mb5{margin-bottom: 5px;}
+.mb10{margin-bottom: 10px;}
+.mb15{margin-bottom: 15px;}
+.mb20{margin-bottom: 20px;}
+.mb30{margin-bottom: 30px;}
+
+.mb0{margin-bottom: 0px;}
+
+.pl10{padding-left: .1rem;}
+.pl15{padding-left: .15rem;}
+.pl20{padding-left: .2rem;}
+.pl30{padding-left: .3rem;}
+.p30{padding: .3rem;}
+.p15{padding: .15rem;}
+
+.pr10{padding-right: .1rem;}
+.pr15{padding-right: .15rem;}
+.pr20{padding-right: .2rem;}
+.pr30{padding-right: .3rem;}
+.heading-pr{padding-right: 2%;}
+
+.pt10{padding-top: .1rem;}
+.pt15{padding-top: .15rem;}
+.pt20{padding-top: .2rem;}
+.pt30{padding-top: .3rem;}
+
+.pb10{padding-bottom: .1rem;}
+.pb15{padding-bottom: .15rem;}
+.pb20{padding-bottom: .2rem;}
+.pb30{padding-bottom: .3rem;}
+.padded0{padding: 0;}
+.margined0{margin: 0;}
+
+.fl{float: left;}
+.fr{float: right;}
+.pr{position: relative;}
+.pa{position: absolute;}
+.pf{position: fixed;}
+
+.tc{text-align: center;}
+.tr{text-align: right;}
+.tl{text-align: left;}
+.tj{text-align: justify;}
+
+.c35{color: #353535;}
+.bababa{color: #BABABA;}
+.ababab{color: #ABABAB;}
+.c95{color: #959595;}
+.ff9402{ color: #FF9402; }
+.ff3c04{ color: #FF3C04; }
+.c39b44a{ color: #39b44a; }
+.c000{ color: #000; }
+.ccc{ color: #ccc; }
+.cfff{ color: #fff; }
+.c39B44A{ color: #39B44A; }
+.c909090{ color: #909090; }
+.text-justify{ text-align: justify; }
+
+.bb{ border-bottom: 1px solid #D9D9D9; }
+.bt{ border-top: 1px solid #D9D9D9; }
+.boxSizing{ box-sizing: border-box; }
+
+.f10{font-size: .2rem;}
+.f12{font-size: .24rem;}
+.f14{font-size: .28rem;}
+.f16{font-size: .32rem;}
+
+/* 省略号 */
+.ellipsis
+{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.ellipsis-3
+{
+    display: -webkit-box;
+    overflow: hidden;
+    white-space: normal !important;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+.ellipsis-2
+{
+    display: -webkit-box;
+    overflow: hidden;
+    white-space: normal !important;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.col-xs-1, .col-sm-1, .col-xs-2, .col-sm-2, .col-xs-3, .col-sm-3, .col-xs-4, .col-sm-4, .col-xs-5, .col-sm-5, .col-xs-6, .col-sm-6, .col-xs-7, .col-sm-7, .col-xs-8, .col-sm-8, .col-xs-9, .col-sm-9, .col-xs-10, .col-sm-10, .col-xs-11, .col-sm-11, .col-xs-12, .col-sm-12
+{
+    position: relative;
+
+    min-height: 1px;
+}
+
+.col-xs-12
+{
+    width: 100%;
+}
+
+.col-xs-11
+{
+    width: 91.66666667%;
+}
+
+.col-xs-10
+{
+    width: 83.33333333%;
+}
+
+.col-xs-9
+{
+    width: 75%;
+}
+
+.col-xs-8
+{
+    width: 66.66666667%;
+}
+
+.col-xs-7
+{
+    width: 58.33333333%;
+}
+
+.col-xs-6
+{
+    width: 50%;
+}
+
+.col-xs-5
+{
+    width: 41.66666667%;
+}
+
+.col-xs-4
+{
+    width: 33.33333333%;
+}
+
+.col-xs-3
+{
+    width: 25%;
+}
+
+.col-xs-2
+{
+    width: 16.66666667%;
+}
+
+.col-xs-1
+{
+    width: 8.33333333%;
+}
+
+.media, .media-body{ overflow: hidden; zoom: 1; }
+.media-body, .media-left, .media-right{ display: table-cell; vertical-align: top; }
+.media-left, .media>.pull-left{ padding-right: .1rem; }
+.media-right, .media>.pull-right{ padding-left: .1rem; }
+
+
+
+
+@import "compass/utilities/general";
+.clearfix{
+//  @include legacy-pie-clearfix();
+    @include pie-clearfix();
+}

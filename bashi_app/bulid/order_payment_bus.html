@@ -1,0 +1,361 @@
+<!DOCTYPE >
+<html>
+	<head>
+		<title>定制路线</title> 
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<link rel="stylesheet" href="css/base.css">
+		<script>
+			!function(a){function d(){var c=b.getBoundingClientRect().width;a.rem=c/6.4>100?100:50>c/6.4?50:c/6.4,b.style.fontSize=a.rem+"px"}var c,b=a.document.documentElement;a.addEventListener("resize",function(){clearTimeout(c),c=setTimeout(d,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(c),c=setTimeout(d,300))},!1),d()}(window);
+		</script>
+		<style>
+			input::-webkit-input-placeholder{ color: #FF9402; font-size: .28rem; }
+			.container{ padding-bottom: 1.3rem; }
+			.row{ padding: .3rem; background: #fff; }
+			.row input{ width: 75%; font-size: .28rem; padding-left: .15rem; color: #222; }
+			.title{ padding: .2rem .3rem; background: transparent; font-size: .24rem; }
+			
+			.list{position: relative;background: transparent; -webkit-box-shadow: 0px 2px 4px rgba(235,235,235,.9);box-shadow: 0px 2px 4px rgba(235,235,235,.9); border-top:1px solid rgba(217,217,217,.9);}
+			.list .list-item{ position: relative; background: #fff; padding: .3rem; border-bottom: 1px solid rgba(217,217,217,.9); }
+			.list-item label{ font-size: .28rem; }
+			.list-item input{ width: 75%; font-size: .28rem; padding-left: .15rem; color: #909090; }
+			.btn,.btn:visited{position:relative;display: block; margin: .3rem auto; width: 5.8rem;height:.78rem;line-height: .78rem;background-color: #FF9402; border-radius: .78rem;font-size: .32rem;color: #fff;text-align: center;}
+			.btn:active{ background: transparent;  color: #FF9402; border: 1px solid #FF9402; }
+			.wallet .table{ padding: .3rem; background: #FFF; box-sizing: border-box; border-bottom: 1px solid rgba(217,217,217,.9) ;}
+			.table .t1{width: .78rem; height: .72rem; background: url(images/zhongchou/mibus_wallet.png) no-repeat left center / cover; background-size: .6rem .6rem;}
+			.table.wx .t1{background: url(images/zhongchou/wx_wallet.png) no-repeat left center / cover; background-size: .6rem .6rem;}
+			.table .t1.wallet{background: url(images/icons/pay_wallet.png) no-repeat left center/ cover;background-size: .6rem .6rem;}
+			.table .t2:after{content: ''; position: absolute; width: .48rem; height: .48rem; right: 0;top: 50%; -webkit-transform: translateY(-50%);background: url(images/icons/checkall.png) no-repeat center / .48rem .48rem;}
+			.table .t2 h1{color: #000; font-size: .28rem;}
+			.table .t2 p{color: #BABABA; font-size: .20rem;}
+			.table.checked .t2:after{background-image: url(images/icons/click.png);}
+			
+			.tip00{ vertical-align: middle; width: .28rem;margin-right: .1rem; margin-bottom: .04rem; }
+			.r-arrow{ width:auto; height:.2rem; vertical-align: middle; margin-left: .02rem; margin-bottom: .02rem; }
+			
+		</style>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="container">
+				<div class="row bb tc c39B44A"><img class="tip00" src="images/zhongchou/icon_tips00.png"/>感谢支持！请在15分钟内完成支付~</div>
+				
+				<!-- 回报信息 -->
+				<div class="title tl c909090">回报信息</div>
+				<div class="row bb tj f14">
+					首月特惠月票1张，享有连续1个月坐车权益。
+					<p class="f10 c95 mt5">班次成功开通后，首周特惠日票1张，享有1次坐车权益。预计开通时间众筹结束后7天内。</p>
+				</div>
+				<div class="row bb">
+					<label style="">订单号</label>
+					<span class="fr">201510221115</span>
+				</div>
+				<div class="row bb">
+					<label style="">车票数</label>
+					<span class="fr ff9402">22张</span>
+				</div>
+				<div class="row bb">
+					<label style="">支持金额</label>
+					<span class="fr">￥25.00</span>
+				</div>
+				<div class="row bb">
+					<label style="">联系人</label>
+					<input type="text" placeholder="必填">
+				</div>
+				<div class="row bb">
+					<label style="">手机号</label>
+					<span class="pl15">1234455566</span>
+				</div>
+				  
+				<!-- 路线班次建议 -->
+				<div class="title tl c909090 ">路线班次建议</div>
+				<div class="row bb flex boxSizing start-time" onclick="show('#one')">
+					<div class="flex-cell tl">出发时间</div>
+					<div class="flex-cell tr ccc"><span id="start_time">选择上车时间</span> <img class="r-arrow" src="images/zhongchou/arrow.png"></div>
+				</div>
+				<div class="row bb flex boxSizing start-station" onclick="show('#two')">
+					<div class="flex-cell tl">上车点</div>
+					<div class="flex-cell tr ccc"><span id="staff">选择上车点</span> <img class="r-arrow" src="images/zhongchou/arrow.png"></div>
+				</div>
+				<div class="row bb flex boxSizing off-station" onclick="show('#three')">
+					<div class="flex-cell tl">下车点</div>
+					<div class="flex-cell tr ccc"><span id="end">花城大道</span> <img class="r-arrow" src="images/zhongchou/arrow.png"></div>
+				</div>
+				
+				<div class="title tl c909090">选择支付方式</div>
+				
+				<!-- 支付 -->
+				<div class="list">
+					<div class="list-item">
+						<label style="">订单号</label>
+						<span class="fr">201510221115</span>
+					</div>
+					<div class="list-item">
+						<label>在线支付</label>
+						<span class="fr ff9402">&#65509;4850</span>
+					</div>
+					<!-- 支付钱包 -->
+					<div class="wallet">
+						<div class="table checked" id="mibus" data-type="mibus">
+		                		<div class="table-cell t1"></div>
+		                		<div class="table-cell t2">
+		                			<div class="mt10">
+		                				<span>米巴余额:</span>
+		                				<span class="c909090 f12 ml5">150元</span>
+		                			</div>
+		                		</div>
+		                </div>
+						<div class="table wx" id="wx" data-type="wx">
+		                		<div class="table-cell t1"></div>
+		                		<div class="table-cell t2">
+		                			<h1>微信钱包</h1>
+		                			<p>推荐安装微信5.0及以上版本的使用</p>
+		                			<i></i>
+		                		</div>
+		                </div>
+					</div>
+					<a type="submit" class="btn" href="order_payment_success_bus.html">立即支付</a>
+				</div>
+			</div>
+			
+			<!--时间插件-->
+			<section class="time_selector">
+				<div class="masker"></div>
+				<div class="wrapper" id="one">
+					<div class="wrapper_title">
+						<span class="title">出发时间</span>
+						<span class="fl" onclick="fnSelectTime('close')">取消</span>
+						<span class="fr" onclick="fnSelectTime('ok','#one')">确定</span>
+					</div>
+					<div class="wrapper_con">
+						<div class="active_bg"></div>
+						<div class="scroller_left">
+							<ul>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
+						<div class="scroller_right">
+							<ul>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="wrapper" id="two">
+					<div class="wrapper_title">
+						<span class="title">出发时间</span>
+						<span class="fl" onclick="fnSelectTime('close')">取消</span>
+						<span class="fr" onclick="fnSelectTime('ok','#two')">确定</span>
+					</div>
+					<div class="wrapper_con">
+						<div class="active_bg"></div>
+						<div class="scroller_left">
+							<ul>
+								<li></li>
+								<li></li>
+								<li>选择上车点</li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
+						<div class="scroller_right">
+							<ul>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="wrapper" id="three">
+					<div class="wrapper_title">
+						<span class="title">出发时间</span>
+						<span class="fl" onclick="fnSelectTime('close')">取消</span>
+						<span class="fr" onclick="fnSelectTime('ok','#three')">确定</span>
+					</div>
+					<div class="wrapper_con">
+						<div class="active_bg"></div>
+						<div class="scroller_left">
+							<ul>
+								<li></li>
+								<li></li>
+								<li>选择下车点</li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
+						<div class="scroller_right">
+							<ul>
+								<li></li>
+								<li></li>
+								<li></li>
+								<li></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</body>
+	<script src="js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/Mibus.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		// 时间数组
+		var data_time = {
+			hour: ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"],
+			minute: ["00","05", "10","15", "20","25", "30","35", "40","45", "50","55"]
+		};
+		
+		// 上下车点
+		var data_station_start = {
+			go: ["雅居乐剑桥郡","官堂东","广贸大厦"],
+			off: ["雅居乐剑桥郡","官堂东","广州银行大侠","广贸大厦"],
+		};
+		
+		/*
+		 * 初始化插件dom结构
+		 * 
+		 * */
+		// 时间选择
+		readDom(data_time.hour,$("#one .scroller_left > ul"));
+		readDom(data_time.minute,$("#one .scroller_right > ul"));
+		// 上车点
+		readDom(data_station_start.go,$("#two .scroller_right > ul"));
+		// 下车点
+		readDom(data_station_start.off,$("#three .scroller_right > ul"));
+		
+		var myScroll1,myScroll2,myScroll3,myScroll4;
+		
+		
+		// 点击确定后得事件
+		function fnSelectTime(){
+			if (arguments[0] == 'close'){
+				hide();
+			}else if(arguments.length > 1 && arguments[arguments.length-1] == '#one' ){ // 获得时间
+				hide();
+				var hour = $(arguments[arguments.length-1]).find('.scroller_left li[eq="0"]').html();
+			    var minute =  $(arguments[arguments.length-1]).find('.scroller_right li[eq="0"]').html();
+			    $("#start_time").html(hour+ ":" +minute);
+			    myScroll1.refresh();
+			    myScroll2.refresh();
+			}else if(arguments.length > 1 && arguments[arguments.length-1] == '#two' ){ // 获得上车点
+				hide();
+			    var startP =  $(arguments[arguments.length-1]).find('.scroller_right li[eq="0"]').html();
+			    $("#staff").html(startP);
+			    myScroll3.refresh();
+			}else if(arguments.length > 1 && arguments[arguments.length-1] == '#three' ){ // 获得下车点
+				hide();
+			    var offP =  $(arguments[arguments.length-1]).find('.scroller_right li[eq="0"]').html();
+			    $("#end").html(offP);
+			    myScroll4.refresh();
+			}
+		}
+		
+		// .wrapper 弹出
+		function show(wrap){
+			$(wrap).removeClass('hide').addClass('show');
+			$(".masker").show();
+		}
+		
+		// .wrapper 收起
+		function hide(){
+			$(".wrapper").removeClass('show').addClass('hide');
+			$(".masker").hide();
+		}
+		
+		// 渲染
+		function readDom(d,target){
+			var html = '';
+			var $ul = target;
+			var $secondLi = $ul.children().eq(1);
+			$.each(d, function(i,v) {
+				if ( i <= 3) {
+					html+="<li eq="+ i +">"+ v +"</li>";
+				} else{
+					html+="<li eq="+ 3 +">"+ v +"</li>";
+				}
+			});
+			$secondLi.after(html);
+		}
+		
+		//时间插件
+		(function($){
+			// 选择支付方式
+			$(".wallet").on('click','.table',payChose);
+			
+			myScroll1 = new IScroll('#one .scroller_left', {
+				  hScrollbar: false,
+				  disableMouse: true,
+				  disablePointer: true,
+				  snap: "li"
+		    });
+			myScroll2 = new IScroll('#one .scroller_right', {
+				  hScrollbar: false,
+				  disableMouse: true,
+				  disablePointer: true,
+				  snap: "li"
+		    });
+			myScroll3 = new IScroll('#two .scroller_right', {
+				  hScrollbar: false,
+				  disableMouse: true,
+				  disablePointer: true,
+				  snap: "li"
+		    });
+			myScroll4 = new IScroll('#three .scroller_right', {
+				  hScrollbar: false,
+				  disableMouse: true,
+				  disablePointer: true,
+				  snap: "li"
+		    });
+		    
+		    myScroll1.on('scrollEnd', function () {
+			     scrollEnd(this, $('#one .scroller_left') );
+		    });
+		    
+		    myScroll2.on('scrollEnd', function () {
+			     scrollEnd(this, $('#one .scroller_right') );
+		    });
+		    
+		    myScroll3.on('scrollEnd', function () {
+			     scrollEnd(this, $('#two .scroller_right') );
+		    });
+		    myScroll4.on('scrollEnd', function () {
+			     scrollEnd(this, $('#three .scroller_right') );
+		    });
+		    
+		    function scrollEnd(myScroll,target){
+		    		var oH = target.find('li').eq(0).height();
+			    var idx = Math.abs(Math.round(myScroll.y / oH));
+			    var This = target.find('li[eq]').eq(idx).attr('eq',0);
+			    This.siblings('li[eq]').attr('eq',3);
+			    for (var i = 1 ; i <= 3; i++) {
+		      		target.find('li[eq]').eq(idx-i).attr('eq',i);
+		      		target.find('li[eq]').eq(idx+i).attr('eq',i);
+			    }
+		    }
+			
+			function payChose(){
+				//  是否选中
+				if ($(this).hasClass('checked')) {
+					$(this).removeClass('checked'); //  取消选中
+				}else{
+					$(this).addClass('checked'); // 选中
+					type = $(this).attr('data-type'); // 判断是选中是钱包还是微信
+					$(this).siblings().removeClass('checked'); // 取消其它节点选中
+				}
+			}
+			
+		})(Zepto);
+	</script>
+</html>

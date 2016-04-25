@@ -1,0 +1,248 @@
+<!DOCTYPE >
+<html>
+	<head>
+		<title>定制路线</title> 
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<link rel="stylesheet" href="css/base.css">
+		<script>
+			!function(a){function d(){var c=b.getBoundingClientRect().width;a.rem=c/6.4>100?100:50>c/6.4?50:c/6.4,b.style.fontSize=a.rem+"px"}var c,b=a.document.documentElement;a.addEventListener("resize",function(){clearTimeout(c),c=setTimeout(d,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(c),c=setTimeout(d,300))},!1),d()}(window);
+		</script>
+		<style>
+			.container{ padding-bottom: 1.5rem; }
+			.row{ background-color: #fff; }
+			/*.item > a{ display: block; width: 100%; height: auto; }*/
+			.thumbnail{ display: block;line-height: 1.42857143;background: #FFF;-webkit-transition: all .2s ease-in-out;transition: all .2s ease-in-out; }
+			.thumbnail>img{ display: block;max-width: 100%;height: auto; }
+			
+			.caption{ background: #fff;padding: .3rem; }
+			.caption .title{ font-size: .34rem; color: #000; }
+			.progress{ position: relative; height: 10px; margin-bottom: .1rem; margin-top: .3rem; background-color: #f5f5f5; border-radius: 4px; -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.1);box-shadow: inset 0 1px 2px rgba(0,0,0,.1); }
+			.progress-bar{ position: relative; height: 10px; border-radius: 4px; background-color: #39B44A; font-size: .24rem; text-align: center; -webkit-box-shadow: inset 0 -1px 0 rgba(0,0,0,.15);box-shadow: inset 0 -1px 0 rgba(0,0,0,.15); -webkit-transition: width .6s ease;transition: width .6s ease;  }
+			.progress-bar span{ display: block; position: absolute; right: -.1rem; bottom: .1rem; z-index: 1; color: #39B44A;  } 
+			.flex{ display: -webkit-flex; width: 100%; }
+			.flex.half .flex-cell{ -webkit-flex: 1; }
+			
+			
+			.percent > div{ font-size: .34rem; }
+			.ff9402{ color: #FF9402; }
+			.c000{ color: #000; }
+			.c39B44A{ color: #39B44A; }
+			.c909090{ color: #909090; }
+			
+			.media-left img{ border-radius: 100%; width: 1rem; height: 1rem; }
+			.p15{ padding: .15rem; }
+			.p30{ padding: .3rem; }
+			.border-box{-webkit-box-sizing: border-box;box-sizing: border-box;}
+			.border_top{ border-top: 1px solid rgba(217,217,217,.9); }
+			.border_bottom{ -webkit-box-shadow: 0px 1px 1px rgba(217,217,217,.9);box-shadow: 0px 1px 1px rgba(217,217,217,.9);}
+			.img_title{ padding: .1rem 0; -webkit-box-sizing:border-box;box-sizing:border-box; position: relative; bottom: 0; left: 0; width: 100%; background: transparent; }
+			.img_title span{  color: #909090; font-size: .20rem; display: block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+			.bubble_ing,.bubble_success,.bubble_end{ font-size: .20rem; -webkit-box-sizing:border-box;box-sizing:border-box; line-height: 1.746666; padding-left: .14rem; text-align: left; display: inline-block; width: .94rem; height: .34rem; background: url(images/zhongchou/bubble.png) no-repeat left /100%; color: #03bf5e; }
+			.bubble_success{ background: url(images/zhongchou/bubble_success.png) no-repeat left / 100%; color: #FF9402}
+			.bubble_end{ background: url(images/zhongchou/bubble_end.png) no-repeat left / 100%; color: #808080}
+			.link_btn,.link_btn:visited{ width: 100%; color: #39B44A; display: block;background: #fff;text-align: center;border-top: 1px solid #ddd;padding: .3rem; }
+			.ellipsis-2{display: -webkit-box;overflow: hidden;white-space: normal !important;text-overflow: ellipsis;word-wrap: break-word; -webkit-line-clamp: 2; -webkit-box-orient: vertical;}
+			.icon_wrap img{ width: .28rem; vertical-align: text-bottom; margin-right: .05rem; }
+			.btn-primary,.btn-primary:visited,.btn-default{ width: 2rem; height:.63rem;line-height: .63rem; text-align: center; border: 1px solid #FF9402; color: #FF9402; border-radius: .64rem; background: #fff; display: block; }
+			.btn-default,.btn-default:visited{ background: #fff; color: #ABABAB; border:1px solid #bebebe; }
+			.btn-pos1{ position: absolute; right: 0.3rem; bottom: .4rem; }
+			.btn-pos2{ position: relative; display: inline-block; vertical-align: middle; margin-bottom: .1rem; width: .96rem; height: .32rem; line-height: .32rem; font-size: .2rem;margin-left: .1rem;}
+			.btn-primary.lg { width: 3.2rem; height: .8rem; line-height: .8rem; border-radius: .8rem; }
+			.btn-primary:active{ background: #FF9402; color: #fff; border: 1px solid #FF9402; }
+			.caption_bottom{ padding:0 0 .3rem .62rem; color: #909090; font-size: .24rem; }
+			.caption_bottom p{  color: #ABABAB; font-size: .2rem; }
+			
+			/* 底部支持 */
+			.flexbox{
+				display: -webkit-flex;
+				width: 100%;
+				-webkit-box-sizing: border-box;
+				background: #F8F8F8;
+				border-top: 1px solid #D9D9D9; padding: .15rem .3rem; 
+			}
+			.flexbox .flexbox-cell{ -webkit-flex: 1; }
+			.flexbox .item_btn{ width: 3.2rem; }
+			.share,.collect{  margin-top: .08rem; width: .64rem; height: .64rem; }
+			.share{ background: url(images/zhongchou/fenxiang.png) no-repeat; background-size: 100%; float: right; }
+			.collect{ background: url(images/zhongchou/collect.png) no-repeat; background-size: 100%; float: left; padding-left: .64rem; color: #909090;font-size: .28rem; }
+			
+			/* 时间轴 */
+			.time_axis_con{ padding-left: .56rem; background: #fff; border-top: 1px solid #D9D9D9;}
+			.time_axis{ position: relative; }
+			.time_axis:before{ background: url(images/zhongchou/line.png) repeat-y; } 
+			.time_axis .list{position: relative; height: 1rem; line-height: 1rem; border-bottom: 1px solid #D9D9D9; margin-left: .3rem; color:#000000; font-size: .28rem; }
+			.time_axis .list:last-child{ border-bottom: none; }
+			.time_axis .list:after{ content: '';position: absolute; background: url(images/zhongchou/line.png) no-repeat; top: 0; left: -0.3rem; width: 1px;height: 100%;  }
+			.time_axis .list:first-child:after{ top: 50%; }
+			.time_axis .list:last-child:after{ height: 50%; }
+			.time_axis .list.sp:before,.time_axis .list.on:before,.time_axis .list.off:before,.time_axis .list.terminal:before{ z-index: 1; display: block; position: absolute; width: .32rem; height: .32rem; border-radius: 100%; top: .34rem; left: -.47rem; font-size: .2rem; line-height: .32rem;text-align: center;}
+			.time_axis .list.first:before,.time_axis .list.tail:before{content: ''; z-index: 1; display: block; position: absolute; width: .16rem; height: .16rem; border-radius: 100%; top: .41rem; left: -.40444555rem; }
+			.time_axis .list.first:before{ background: #fff; border: 2px solid #2996F1; color: #2996F1; }
+			.time_axis .list.tail:before{ background: #fff; border: 2px solid #FF9402; color: #FF9402; }
+			.time_axis .list.sp:before{ background: #fff; border: 1px solid #2996F1;content: '起'; color: #2996F1; }
+			.time_axis .list.terminal:before{ background: #fff; border: 1px solid #FF9402;content: '终'; color: #FF9402; }
+			.time_axis .list.on:before{ background: #2796EF; border: 1px solid #2996F1;content: '上'; color: #fff; }
+			.time_axis .list.off:before{ background: #FF9402; border: 1px solid #FF9402;content: '下'; color: #fff; }
+			.time_axis .list span{ display: inline-block; vertical-align: middle; font-size:.24rem; color: #BABABA; margin-right: .4rem; }
+			.time_axis .list span img{ width:auto; height: .18rem; vertical-align: middle; margin-left: .1rem; }
+
+		</style>
+	</head>
+
+	<body>
+
+		<div class="wrap">
+			<div class="container">
+				<div class="row">
+					<div class="caption">
+						<h2 class="title">7:30始发 雅居乐剑桥郡 - 珠江新城</h2>
+						<div class="img_title">
+							<span><i class="bubble_ing">筹资中</i>本线路需10月30日前众筹人数达到20人立即开通</span>
+						</div>
+						<div class="progress progress-mini">
+                            <div style="width: 60%;" class="progress-bar"><span>48%</span></div>
+                        </div>
+						<div class="flex percent half">
+							<div class="flex-cell tl c000">48%</div>
+							<div class="flex-cell ff9402">18人</div>
+							<div class="flex-cell tr c000">20天</div>
+						</div>
+						<div class="flex c95 f12 half">
+							<div class="flex-cell tl">完成率</div>
+							<div class="flex-cell">目标人数20人</div>
+							<div class="flex-cell tr">距离结束</div>
+						</div>
+					</div>
+				</div>
+				<div class="row p30 bt">
+					<div class="media">
+						<div class="media-left">
+					        <a href="#">
+					          <img class="media-object" alt="80x80" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+PCEtLQpTb3VyY2UgVVJMOiBob2xkZXIuanMvNjR4NjQKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNTA4NGM0MGI2ZiB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1MDg0YzQwYjZmIj48cmVjdCB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSIxNC41IiB5PSIzNi41Ij42NHg2NDwvdGV4dD48L2c+PC9nPjwvc3ZnPg==">
+					        </a>
+					    </div>
+					    <div class="media-body">
+					        <h4 class="media-heading f14 mt10">心碎巴士</h4>
+					        <p class="c95 f10 ellipsis-2">最大的民营公交企业，多年公交运营经验</p>
+					    </div>
+					</div>
+				</div>
+				
+				<div class="row mt15">
+					<div class="flex p30 border-box half">
+						<div class="flex-cell tl f16">途径站点</div>
+					</div>
+				</div>
+				<div class="time_axis_con">
+					<div class="time_axis">
+						<div class="list sp">
+							雅居乐剑桥郡
+							<span class="fr"><i>发车 07:30</i><img src="images/zhongchou/arrow.png"></span>
+						</div>
+						<div class="list on">
+							官堂东
+							<span class="fr"><i>预计 07:40</i><img src="images/zhongchou/arrow.png"></span>
+						</div>
+						<div class="list first">
+							广州银行大侠
+							<span class="fr"><i>预计 07:40</i><img src="images/zhongchou/arrow.png"></span>
+						</div>
+						<div class="list first">
+							广州银行大侠
+							<span class="fr"><i>预计 07:40</i><img src="images/zhongchou/arrow.png"></span>
+						</div>
+						<div class="list tail">
+							广贸大厦
+							<span class="fr"><i>预计 07:40</i><img src="images/zhongchou/arrow.png"></span>
+						</div>
+						<div class="list tail">
+							广贸大厦
+							<span class="fr"><i>预计 07:40</i><img src="images/zhongchou/arrow.png"></span>
+						</div>
+						<div class="list off">
+							雅居乐剑桥郡
+							<span class="fr"><i>发车 07:30</i><img src="images/zhongchou/arrow.png"></span>
+						</div>
+						<div class="list tail">
+							广贸大厦
+							<span class="fr"><i>预计 07:40</i><img src="images/zhongchou/arrow.png"></span>
+						</div>
+						<div class="list terminal">
+							雅居乐剑桥郡
+							<span class="fr"><i>发车 07:30</i><img src="images/zhongchou/arrow.png"></span>
+						</div>
+					</div>
+				</div>
+				<div class="row mt15">
+					<div class="flex p30 border-box border_bottom">
+						<div class="flex-cell tl">选择回报</div>
+					</div>
+					<div class="border_bottom" id="#back_top">
+						<div class="p30 border-box pr">
+							<h4 class="media-heading f16">&#65509;2.99<span href="#" class="btn-default btn-pos2">限20人</span></h4>
+					        <p class="mt10 icon_wrap"><img src="images/zhongchou/time-icon.png"/><span class="c39B44A f14">剩余65位</span><span class="c909090 f12">(已经有21位支持)</span></p>
+							<a href="order_payment_bus.html" class="btn-primary btn-pos1">立即支持</a>
+						</div>
+						<div class="caption_bottom">
+							首月特惠月票1张，享有连续1个月坐车权益
+							<p class="mt10"><span>预计开通时间：</span><span class="ml5">众筹结束后7天内。</span></p>
+						</div>
+					</div>
+					<div class="border_bottom" id="#back_top">
+						<div class="p30 border-box pr">
+							<h4 class="media-heading f16">&#65509;9.9<span href="#" class="btn-default btn-pos2">限20人</span></h4>
+					        <p class="mt10 icon_wrap"><img src="images/zhongchou/time-icon.png"/><span class="c39B44A f14">剩余65位</span><span class="c909090 f12">(已经有21位支持)</span></p>
+							<a href="order_payment_bus.html" class="btn-primary btn-pos1">立即支持</a>
+						</div>
+						<div class="caption_bottom">
+							首月特惠月票1张，享有连续1个月坐车权益
+							<p class="mt10"><span>预计开通时间：</span><span class="ml5">众筹结束后7天内。</span></p>
+						</div>
+					</div>
+					<div>
+						<div class="p30 border-box pr">
+							<h4 class="media-heading f16">&#65509;0.99<span href="#" class="btn-default btn-pos2">限20人</span></h4>
+					        <p class="mt10 icon_wrap"><img src="images/zhongchou/time-icon.png"/><span class="c39B44A f14">剩余65位</span><span class="c909090 f12">(已经有21位支持)</span></p>
+							<a href="#" class="btn-default btn-pos1">已满额</a>
+						</div>
+						<div class="caption_bottom">
+							首月特惠月票1张，享有连续1个月坐车权益
+							<p class="mt10"><span>预计开通时间：</span><span class="ml5">众筹结束后7天内。</span></p>
+						</div>
+					</div>
+					
+				</div>
+				
+				
+			</div>
+			<footer class="flexbox footer">
+				<div class="flexbox-cell"><button class="collect">48</button></div>
+				<div class="item55"><a href="##back_top" class="btn-primary lg">我要支持</a></div>
+				<div class="flexbox-cell"><button class="share" id="yq"></button></div>
+			</footer>
+		</div>
+	
+	</body>
+	<script src="js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/Mibus.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function(){
+			
+			$("#yq").on('click',function(){
+				//分享
+				Mib.share('分享给你的好友<br />一起哈皮');
+				
+				$("#mask").on('click',function(){
+		   			$("#mask").css('display','none');
+		   			$("#share").css('display','none');
+		   		});
+			});
+			
+		});
+	</script>
+	
+</html>

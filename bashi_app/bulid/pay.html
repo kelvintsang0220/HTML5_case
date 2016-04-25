@@ -1,0 +1,168 @@
+<!DOCTYPE >
+<html>
+	<head>
+		<title>确认支付</title> 
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<link rel="stylesheet" href="css/base.css">
+		<script>
+			!function(a){function d(){var c=b.getBoundingClientRect().width;a.rem=c/6.4>100?100:50>c/6.4?50:c/6.4,b.style.fontSize=a.rem+"px"}var c,b=a.document.documentElement;a.addEventListener("resize",function(){clearTimeout(c),c=setTimeout(d,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(c),c=setTimeout(d,300))},!1),d()}(window);
+		</script>
+		<style>
+		   	.container{font-family: STHeitiSC Light; position:relative;background-color: #fff; width: 6.4rem;}
+			.container .last_time{position: relative; width: 100%;height: .8rem;text-align: center; font-family: inherit; background: #7e8387;}
+			.last_time .info{position: absolute; left: 50%;top: 50%; -webkit-transform: translate3d(-50%,-50%,0);padding-left: .30rem; background: url(images/icons/time.png) no-repeat left center; background-size: .24rem .24rem;font-size: .24rem;color: #BABABA}
+			.container .route,.container .pay_price {color: #000; font-size: .28rem; font-family: inherit;padding: .3rem;}
+			.container .pay_price {padding-top: 0;}
+			.container .route{border-bottom: 1px solid #E2E2E2;}
+			.container .route.nopb{padding-bottom: 0; border: none;}
+			.container .price{color: #FF4D02;}
+			
+			.wrap .select_pay{font-family: inherit; font-size: .24rem; color: #BABABA; padding: .3rem 0 .1rem .3rem;}
+			.wrap .search{position:relative;display: block; margin: auto;margin-top:.4rem; width: 5.8rem;height:.78rem;line-height: .78rem;background-color: #FF4D02; border-radius: .1rem;font-size: .32rem;color: #fff;text-align: center;}
+			.wrap .search.disable{background: #D7D7D7;color:#BABABA}
+			
+			.container.border_top,{border-top: 1px solid #E2E2E2;}
+			.nth_child2 .table{padding: .3rem; -webkit-box-sizing: border-box; border-bottom: 1px solid #E2E2E2;}
+			.nth_child2 .table .t1{width: .78rem; height: .72rem; background: url(images/icons/pay_wx.png) no-repeat left center / cover; background-size: .6rem .6rem;}
+			.nth_child2 .table .t1.wallet{background: url(images/icons/pay_wallet.png) no-repeat left center/ cover;background-size: .6rem .6rem;}
+			.nth_child2 .table .t2 h1{color: #000; font-size: .28rem;}
+			div[data-type='wallet'] h1{padding-top: .1rem;}
+			div[data-type='wallet'] h1 span{font-family: inherit;font-size: .2rem; color: #BABABA;}
+			.nth_child2 .table .t2 p{color: #BABABA; font-size: .20rem;}
+			.nth_child2 .table .t2:after{content: ''; position: absolute; width: .48rem; height: .48rem; right: 0;top: 50%; -webkit-transform: translateY(-50%);background: url(images/icons/checkall.png) no-repeat center / .48rem .48rem;}
+			.nth_child2 .table.checked .t2:after{background-image: url(images/icons/click.png);}
+			.route > p{color: #BABABA;font-size: .24rem; line-height: .48rem;}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="wrap">
+			<div class="container">
+				<div class="last_time">
+					<p class="info">
+						支付剩余时间:<span class="time pl10 minute" id="minute">15</span>:<span class="time second" id="second">00</span>
+					</p>
+                </div>
+                <div class="route">
+                		7:00祈福新村 - 客村TIT创意园
+                </div>
+                <div class="pay_price">
+                		<span>支付金额:</span>
+                		<span class="fr price">20元</span>
+                </div>
+			</div>
+			<p class="select_pay">请选择支付方式:</p>
+			<div class="container border_top nth_child2">
+                <div class="table" id="wx" data-type="wx">
+                		<div class="table-cell t1"></div>
+                		<div class="table-cell t2 checked">
+                			<h1>微信</h1>
+                			<p>推荐安装微信5.0及以上版本使用</p>
+                			<i></i>
+                		</div>
+                </div>
+			</div>
+			<a class="search" id="submit_btn">确认支付</a>
+		</div>
+	</body>
+	<script src="js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/Mibus.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		(function($){
+			var time = 243, //后台传入的数据
+				minute,
+				second,
+				timer1,
+				timer2,
+				url = 'http://wwww.baidu.com'; //重新购票的页面链接
+				
+			var initPage = function(){
+				if (time) {
+					minute = Math.floor(time/60);
+					second = time%60;
+					secondCount();
+				}
+				
+			};
+			
+			// 选择支付方式
+			$(".nth_child2").on('tap','.table',payChose);
+			
+			function payChose(){
+				//  是否选中
+				if ($(this).hasClass('checked')) {
+					$(this).removeClass('checked'); //  取消选中
+				}else{
+					$(this).addClass('checked'); // 选中
+					type = $(this).attr('data-type'); // 判断是选中是钱包还是微信
+					$(this).siblings().removeClass('checked'); // 取消其它节点选中
+				}
+			}
+			
+			// 确认支付
+			$("#submit_btn").on('tap',function(e){
+				
+				e.preventDefault();
+				if ( $("#wx").hasClass('checked') ) {
+					alert('充值成功');
+				}else{
+					alert('请选择支付方式');
+				}
+			});
+			
+			function secondCount(){
+				if (minute < 10) {
+					$("#minute").html('0' + minute);
+				}else{
+					$("#minute").html(minute);
+				}
+				if (second < 10) {
+					$("#second").html('0' + second);
+				}else{
+					$("#second").html(second);
+				}
+				
+				if (second == 0) {
+			        console.log(minute);
+					if (minute > 0 ) {
+						second = 59;
+						if (second < 10) {
+							$("#second").html('0' + second);
+						}else{
+							$("#second").html(second);
+						}
+						clearTimeout(timer1);
+						timer2 = setTimeout(function () {
+				            secondCount(second);
+				        }, 0);
+				        minute--;
+					}else{
+						$("#submit_btn").addClass('disable');
+						$("#submit_btn").html('您的订单时间到，请重新购票');
+						$("#submit_btn").attr('href',url);
+						clearTimeout(timer2);
+					}
+					
+			        if (minute < 10) {
+						$("#minute").html('0' + minute);
+					}else{
+						$("#minute").html(minute);
+					}
+			    } else {
+			        second -= 1;
+			        timer1 = setTimeout(function () {
+			            secondCount(second);
+			        }, 1000);
+			    }
+			}
+			
+			initPage();
+		})(Zepto);
+	</script>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE >
+<html>
+
+	<head>
+		<title>米巴</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<link rel="stylesheet" href="css/base.css">
+		<script>
+			!function(a){function d(){var c=b.getBoundingClientRect().width;a.rem=c/6.4>100?100:50>c/6.4?50:c/6.4,b.style.fontSize=a.rem+"px"}var c,b=a.document.documentElement;a.addEventListener("resize",function(){clearTimeout(c),c=setTimeout(d,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(c),c=setTimeout(d,300))},!1),d()}(window);
+		</script>
+		<style>
+			.container{font-family: STHeitiSC Light;padding-top: 1.6rem;}
+			html, body{background: #fff;}
+			.header{height: auto;border: 0; position: relative;}
+			.header .tips{text-align: center;margin-top: .3rem;}
+			.header .tips a{background: #ffdac9;-webkit-border-radius: .06rem;padding: .1rem;  color: #FF3C00;font-family: inherit;font-size: .20rem;}
+			.header .tips a{display: inline-block;max-width: 3.2rem;text-align: left;}
+			.failed,.success{position: relative;font-size: .34rem;font-family: "微软雅黑"; color: #ff3c00; font-weight: bold;margin-top: .34rem;}
+			.success{color: #2996F1;}
+			.failed span,.success span{display: inline-block;position: relative;margin-left: 50%; -webkit-transform: translateX(-50%);}
+			.failed img,.success img{width: .48rem;height: .48rem;vertical-align: top;padding-right: .04rem;}
+			.header .route{position: relative;display: block; width: 5.8rem;height:.68rem;left: .3rem;top: 50%;margin-top: -.34rem;line-height: .68rem;border: 1px solid #D8D8D8;border-radius: .1rem;font-size: .32rem;color: #8E8F90;text-align: center;}
+			.wrap p {margin-top: .3rem;color: #909090;font-family: inherit;font-size: .20rem; text-align: center;}
+			.wrap p a{text-decoration: underline;color:#FF9402;}
+		</style>
+
+	</head>
+
+	<body>
+
+		<div class="wrap">
+			<header class="header">
+					<div class="success">
+						<span><img src="images/icons/success.png"/>成功</span>
+					</div>
+					<div class="failed">
+						<span><img src="images/icons/fail.png"/>失败</span>
+					</div>
+					<div class="tips"><a>支付超时支付超时支付超时支付超时支付超时支付超时支付超时支付超时支付超时支付超时支付超时支付超时.header .tips a.header .tips a.header .tips a.header .tips a.header .tips a</a></div>
+			</header>
+			<p>温馨提示:页面自动 <a id="href" href="<?php echo($jumpUrl); ?>">跳转</a> 等待时间： <b id="wait"><?php echo($waitSecond); ?></b></p>
+		</div>
+
+	</body>
+
+</html>

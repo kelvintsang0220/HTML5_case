@@ -1,0 +1,240 @@
+<!DOCTYPE >
+<html>
+	<head>
+		<title>定制结果</title> 
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<link rel="stylesheet" href="css/base.css">
+		<script>
+			!function(a){function d(){var c=b.getBoundingClientRect().width;a.rem=c/6.4>100?100:50>c/6.4?50:c/6.4,b.style.fontSize=a.rem+"px"}var c,b=a.document.documentElement;a.addEventListener("resize",function(){clearTimeout(c),c=setTimeout(d,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(c),c=setTimeout(d,300))},!1),d()}(window);
+		</script>
+		<style>
+		    .container{font-family: STHeitiSC Light;padding:2.3rem .3rem .3rem;}
+		    /* 切换 */
+		   	.h-nav{ background-color: #fff; border-bottom: 1px solid #ddd;}
+		   	.h-nav .table-cell{ height: .9rem; line-height: .9rem; }
+		   	.h-nav .table-cell:active{ background: #E0E0E0; }
+		   	.h-nav .table-cell.cur{ pointer-events: none; }
+		    .h-nav > div{text-align: center; color: #353535;}
+		    .h-nav > div.cur:after,.h-nav > div:before{content: '';position: absolute;display: block;left: 0;}
+		    .h-nav > div.cur:after{width: 100%;height: 2px;background-color: #FF9402;bottom: -1px;}
+		    .h-nav > div:before{width: 1px; height: .52rem;background-color: #D8D8D8;top: .18rem;}
+		    .h-nav > div:first-child:before{width: 0px;}
+		    .h-nav > div.cur{ color: #FF9402; }
+		    
+		    /* 主容器 */
+		    .container > div{ display: none; }
+		    .container > div.active{ display: block; }
+		    
+		    /* 订单列表 */
+		   .flex{ box-sizing: border-box;-webkit-box-sizing: border-box }
+		   .media-left{ width: 2rem; }
+		   .media-left .media-object{ width: 100%; }
+		   .link-go{ display: block; padding: .3rem; font-size: .28rem; text-align: center;color: #333;  }
+		   .link-go:active,.link-go:visited{ background: #EBEBEB; color: #333; }
+		   
+		   .img_title{ padding: .1rem 0; -webkit-box-sizing:border-box;box-sizing:border-box; position: relative; bottom: 0; left: 0; width: 100%; background: transparent; }
+		   .img_title span{  color: #909090; font-size: .20rem; display: block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}
+		   .bubble_ing,.bubble_success,.bubble_end{ font-size: .20rem; -webkit-box-sizing:border-box;box-sizing:border-box; line-height: 1.746666; padding-left: .14rem; text-align: left; display: inline-block; width: .94rem; height: .34rem; background: url(images/zhongchou/bubble.png); background-repeat: no-repeat; background-size: 100%; color: #40e086; }
+		   .bubble_success{ background: url(images/zhongchou/bubble_success.png);background-repeat: no-repeat;background-position: left top;background-size: 100%; color: #FF9402}
+		   .bubble_end{ background: url(images/zhongchou/bubble_end.png);background-repeat: no-repeat;background-position: left top;background-size: 100%; color: #808080}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="wrap">
+			<header class="header">
+				<nav class="nav clearfix">
+					<a class="back fl" id="back" href="mine.html"></a>
+					<h2>我的订单</h2>
+				</nav>
+				<div class="table h-nav">
+					<div class="table-cell cur" data-href="#wrapOne">
+						周边游
+					</div>
+					<div class="table-cell" data-href="#wrapTwo">
+						上下班车
+					</div>
+				</div>
+			</header>
+			<div class="container">
+				<div class="active" id="wrapOne">
+					<!-- 订单列表 -->
+					<div class="card">
+						<div class="card-bar_b"></div>
+						<div class="card-head">
+							<div class="media">
+								<div class="media-left">
+							         <img class="media-object" src="images/zhongchou/pic750x563.jpg">
+							        <span class="state">众筹中</span>
+							    </div>
+							    <div class="media-body">
+							        <p class="media-heading f12 ellipsis-2">花都九龙湖酒店欧洲小镇+九龙湖自然风光两天一夜游花都九龙湖酒店欧洲小镇+九龙湖自然风光两天一夜游</p>
+							        <p class="c909090 f10 ellipsis-2 mt10">10月15日前得到￥8000的支持才可成功开通</p>
+							    </div>
+							</div>
+							<div class="strip">
+								<div class="flex">
+									<div class="flex-cell tl c000">48%</div>
+									<div class="flex-cell c000">&#65509;4850</div>
+									<div class="flex-cell tr c000">48%</div>
+								</div>
+								<div class="flex c909090 f12">
+									<div class="flex-cell tl">完成率</div>
+									<div class="flex-cell">目标金额&#65509;9000</div>
+									<div class="flex-cell tr">距离结束</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="p30 c909090 f12 tl bb">回报信息:每位支持者将可获得花都九龙湖酒店欧洲小镇+九龙湖自然风光两天一夜游,10月18号广州出发，往返空调大巴接送</div>
+						<a href="#" class="link-go c000 f14 tc">查看详情</a>
+					</div>
+					<div class="card mt30">
+						<div class="card-bar_b"></div>
+						<div class="card-head">
+							<div class="media">
+								<div class="media-left">
+							         <img class="media-object" src="images/zhongchou/pic750x563.jpg">
+							        <span class="state">众筹中</span>
+							    </div>
+							    <div class="media-body">
+							        <p class="media-heading f12 ellipsis-2">花都九龙湖酒店欧洲小镇+九龙湖自然风光两天一夜游花都九龙湖酒店欧洲小镇+九龙湖自然风光两天一夜游</p>
+							        <p class="c909090 f10 ellipsis-2 mt10">10月15日前得到￥8000的支持才可成功开通</p>
+							    </div>
+							</div>
+							<div class="strip">
+								<div class="flex">
+									<div class="flex-cell tl c000">48%</div>
+									<div class="flex-cell c000">&#65509;4850</div>
+									<div class="flex-cell tr c000">48%</div>
+								</div>
+								<div class="flex c909090 f12">
+									<div class="flex-cell tl">完成率</div>
+									<div class="flex-cell">目标金额&#65509;9000</div>
+									<div class="flex-cell tr">距离结束</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="p30 c909090 f12 tl bb">回报信息:每位支持者将可获得花都九龙湖酒店欧洲小镇+九龙湖自然风光两天一夜游,10月18号广州出发，往返空调大巴接送</div>
+						<!--<a href="#" class="link-go c000 f14 tc">查看详情</a>-->
+						<div class="flex p30">
+							<div class="flex-cell tl c000">48%</div>
+							<div class="flex-cell" style="border-left: ;"></div>
+							<div class="flex-cell tr c000">48%</div>
+						</div>
+					</div>
+					
+					
+					<div class="card mt30">
+						<div class="card-bar_none"></div>
+						<div class="card-head">
+							<div class="media">
+								<div class="media-left">
+							         <img class="media-object" src="images/zhongchou/pic750x563.jpg">
+							        <span class="state">众筹中</span>
+							    </div>
+							    <div class="media-body">
+							        <p class="media-heading f12 ellipsis-2">花都九龙湖酒店欧洲小镇+九龙湖自然风光两天一夜游花都九龙湖酒店欧洲小镇+九龙湖自然风光两天一夜游</p>
+							        <p class="c909090 f10 ellipsis-2 mt10">10月15日前得到￥8000的支持才可成功开通</p>
+							    </div>
+							</div>
+							<div class="strip">
+								<div class="flex">
+									<div class="flex-cell tl c000">48%</div>
+									<div class="flex-cell c000">&#65509;4850</div>
+									<div class="flex-cell tr c000">48%</div>
+								</div>
+								<div class="flex c909090 f12">
+									<div class="flex-cell tl">完成率</div>
+									<div class="flex-cell">目标金额&#65509;9000</div>
+									<div class="flex-cell tr">距离结束</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="p30 c909090 f12 tl bb">回报信息:每位支持者将可获得花都九龙湖酒店欧洲小镇+九龙湖自然风光两天一夜游,10月18号广州出发，往返空调大巴接送</div>
+						<a href="#" class="link-go c000 f14 tc">查看详情</a>
+					</div>
+			
+				</div>
+				<div id="wrapTwo">
+					<div class="card">
+						<div class="card-bar_g"></div>
+						<div class="card-head">
+							<div class="pl15 pr15">
+								<h2 class="title">7:30始发 雅居乐剑桥郡 - 珠江新城</h2>
+								<div class="img_title">
+									<span><i class="bubble_ing">筹资中</i>本线路需10月30日前众筹人数达到20人立即开通</span>
+									<!--<span><i class="bubble_success">已成功</i>本线路需10月30日前众筹人数达到20人立即开通</span>-->
+									<!--<span><i class="bubble_end">已结束</i>本线路需10月30日前众筹人数达到20人立即开通</span>-->
+								</div>
+							</div>
+							<div class="strip">
+								<div class="flex">
+									<div class="flex-cell tl c000">48%</div>
+									<div class="flex-cell c000">&#65509;4850</div>
+									<div class="flex-cell tr c000">48%</div>
+								</div>
+								<div class="flex c909090 f12">
+									<div class="flex-cell tl">完成率</div>
+									<div class="flex-cell">目标金额&#65509;9000</div>
+									<div class="flex-cell tr">距离结束</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="p30 c909090 f14 tl">回报信息:每位支持者将可获得花都九龙湖酒店欧洲小镇+九龙湖自然风光两天一夜游,10月18号广州出发，往返空调大巴接送</div>
+						<a class="link-go bt f14">
+							查看详情
+						</a>
+					</div>
+					
+					<div class="card mt30">
+						<div class="card-bar_none"></div>
+						<div class="card-head">
+							<div class="pl15 pr15">
+								<h2 class="title">7:30始发 雅居乐剑桥郡 - 珠江新城</h2>
+								<div class="img_title">
+									<span><i class="bubble_end">已结束</i>本线路需10月30日前众筹人数达到20人立即开通</span>
+								</div>
+							</div>
+							<div class="strip">
+								<div class="flex">
+									<div class="flex-cell tl c000">48%</div>
+									<div class="flex-cell c000">&#65509;4850</div>
+									<div class="flex-cell tr c000">48%</div>
+								</div>
+								<div class="flex c909090 f12">
+									<div class="flex-cell tl">完成率</div>
+									<div class="flex-cell">目标金额&#65509;9000</div>
+									<div class="flex-cell tr">距离结束</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="p30 c909090 f14 tl">回报信息:每位支持者将可获得花都九龙湖酒店欧洲小镇+九龙湖自然风光两天一夜游,10月18号广州出发，往返空调大巴接送</div>
+						<a class="link-go bt f14">
+							查看详情
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/Mibus.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function(){
+			tab('tap',$(".h-nav .table-cell"),function(that){
+				console.log('dddd');
+			});
+		});
+	</script>
+
+</html>

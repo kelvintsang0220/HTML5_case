@@ -1,0 +1,233 @@
+<!DOCTYPE >
+<html>
+	<head>
+		<title>购票</title> 
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<link rel="stylesheet" href="css/base.css">
+		<script>
+			!function(a){function d(){var c=b.getBoundingClientRect().width;a.rem=c/6.4>100?100:50>c/6.4?50:c/6.4,b.style.fontSize=a.rem+"px"}var c,b=a.document.documentElement;a.addEventListener("resize",function(){clearTimeout(c),c=setTimeout(d,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(c),c=setTimeout(d,300))},!1),d()}(window);
+		</script>
+		<style>
+			.wrap,.container,.footer{font-family: STHeitiSC Light;}
+		    .container{padding-bottom: 1rem;}
+		    	.footer{height: .8rem;}
+			.footer .pay{text-align: right; padding: 0 .3rem;}
+			.footer .pay .button{margin-top:.1rem; width: 5.8rem; height: .8rem;font-family: inherit;font-size: .28rem;color: #fff;background-color: #FD4E0B;}
+			.sign-up:last-child{text-decoration: underline;}
+			.links_con{position: absolute;overflow: hidden; bottom: 0;right: 0;}
+		    .links_con a{font-size: inherit; font-size: .2rem; color: #BABABA;text-decoration: underline;}
+			
+			/*---地图---*/
+			.map{position: absolute;top: 2.1rem; width: 6.4rem; height: 8.6rem;}
+			#mymap{position:absolute; width: 100%;height: 100%;}
+			.btn_wrap{padding-bottom: .3rem;}
+			.btn_wrap p{text-align: center; color: #2996F1;font-family: inherit;font-size: .4rem;}
+			.btn_wrap p:nth-child(2){font-size: .24rem;color: #909090;}
+			.line_1{padding-bottom: 0;}
+			.btn{position:relative;display: block; margin: auto; width: 5.8rem;height:.78rem;line-height: .78rem;background-color: #FA4F20; border-radius: .1rem;font-size: .32rem;color: #fff;text-align: center;}
+			.container .table-view-cell{padding-bottom: .3rem;}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="wrap">
+			<footer class="footer" id="footer">
+				<div class="flex">
+					<div class="flex-cell pay">
+						<a class="btn" href="by_ticket.html">
+							购票
+						</a>
+					</div>
+				</div>
+			</footer>
+			<div class="container">
+				
+				<ul class="table-view">
+					<li class="table-view-cell">
+						<div class="flex line">
+							<div class="flex line_con">
+								<div class="flex-cell go-off">08:30</div>
+								<div class="flex-cell m_line">
+										M678
+								</div>
+								<div class="flex-cell kilometers">17公里</div>
+								<div class="flex-cell arrival-time">到达07:45</div>
+							</div>
+							<div class="flex-cell price tr">0.1元</div>
+						</div>
+						<div class="dotted"></div>
+						<div class="table line_1">
+							<div class="table-cell">
+								<div class="start">
+									祈福新村
+								</div>
+								<div class="end">
+									客村tit创意园
+								</div>
+							</div>
+							<div class="table-cell tr">
+								<div class="links_con">
+									<a href="#">车企详情</a>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+				
+				<div class="map">
+					<!--<div class="" style="position: absolute; width: 6.4rem; height: 1.6rem;background: rgba(255,255,255,0.8);z-index: 99;padding: 1rem;-webkit-box-sizing: border-box;overflow: hidden;">
+						<div class="scroll" style="position: relative;w overflow-x: scroll;">
+							<div class="" style="position: relative; width: 7.2rem; height: 4px; background: #445;"></div>
+						</div>	
+					</div>-->
+					<div id="mymap">
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	</body>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=cqG9ilO8and6RQ9KDUoMQSG1"></script>
+	<script type="text/javascript">
+		var arr = [{
+				id: "4659",
+				lng: "113.339745",
+				lat: "22.977055",
+				name: "祈福新村"
+			},
+			{
+				id: "4659",
+				lng: "113.345065",
+				lat: "22.97692",
+				name: "祈福新村学院路口"
+			},{
+				id: "4659",
+				lng: "113.306956",
+				lat: "22.971881",
+				name: "钟村文化广场(公交站)"
+			},{
+				id: "4659",
+				lng: "113.32578",
+				lat: "23.120323",
+				name: "珠江新城碧海湾"
+			},{
+				id: "4659",
+				lng: "113.330409",
+				lat: "23.102199",
+				name: "客村TIT创意园"
+			}];
+		var map,
+			_city = '广州', //默认定位至广州
+			geolocation,
+			point = [], // 路线所有点
+			approach = []; //途径点
+			
+		map = new BMap.Map("mymap");
+		map.centerAndZoom(_city, 12);
+		map.enableScrollWheelZoom(true);	
+		
+		
+		// 地图定位模块
+		var LBS = {
+			init:function(){
+				this.initEvent();
+				this.setOverlay();
+			},
+			initEvent:function(){
+				
+				for (var i =0; i < arr.length; i++) {
+					point.push( new BMap.Point(arr[i].lng,arr[i].lat) );
+					approach = point;
+				}
+				approach.shift();
+				approach.pop();
+				var driving = new BMap.DrivingRoute(map, {renderOptions:{map: map, autoViewport: true}}); //创建驾车导航
+				driving.search(point[0], point[point.length-1],{waypoints:approach}); //waypoints表示途经点
+			},
+			
+			setOverlay:function(){
+				var mydivPoint = arr;
+				mydivPoint.shift();
+				mydivPoint.pop();
+				for (var i = 0; i<mydivPoint.length; i++) {
+					 var myCompOverlay = new complexOverlay(new BMap.Point(mydivPoint[i].lng,mydivPoint[i].lat), mydivPoint[i].name);
+					 map.addOverlay(myCompOverlay);
+				}
+			},
+		};
+		
+		
+		//创建复杂覆盖物
+		function complexOverlay(point,text,mouseoverText){
+			this._point = point;
+      		this._text = text;
+      		this._overText = mouseoverText;
+		}
+	    complexOverlay.prototype = new BMap.Overlay();
+	    complexOverlay.prototype.initialize = function(mp){
+	      this._map = mp;
+	      var self = this;
+	      var div = this._div = document.createElement("div");
+	      div.style.position = "absolute";
+	      div.style.zIndex = BMap.Overlay.getZIndex(this._point.lat);
+	      div.style.backgroundColor = "#FA4F20";
+//	      div.style.border = "1px solid #BC3B3A";
+	      div.style.color = "white";
+	      div.style.height = "18px";
+	      div.style.padding = "2px";
+	      div.style.lineHeight = "18px";
+	      div.style.whiteSpace = "nowrap";
+	      div.style.MozUserSelect = "none";
+	      div.style.fontSize = "12px";
+	      div.style.borderRadius = '4px';
+	      var span = this._span = document.createElement("span");
+	      div.appendChild(span);
+	      span.appendChild(document.createTextNode(this._text));      
+	      var that = this;
+	
+	      var arrow = this._arrow = document.createElement("div");
+	      arrow.style.background = "url(http://map.baidu.com/fwmap/upload/r/map/fwmap/static/house/images/label.png) no-repeat";
+	      arrow.style.position = "absolute";
+	      arrow.style.width = "11px";
+	      arrow.style.height = "10px";
+	      arrow.style.top = "22px";
+	      arrow.style.left = "5px";
+	      arrow.style.overflow = "hidden";
+	      div.appendChild(arrow);
+	     
+	      div.onmouseover = function(){
+	        this.style.backgroundColor = "#6BADCA";
+	        this.style.borderColor = "#0000ff";
+	        this.getElementsByTagName("span")[0].innerHTML = that._overText;
+	        arrow.style.backgroundPosition = "0px -20px";
+	      }
+	
+	      div.onmouseout = function(){
+	        this.style.backgroundColor = "#EE5D5B";
+	        this.style.borderColor = "#BC3B3A";
+	        this.getElementsByTagName("span")[0].innerHTML = that._text;
+	        arrow.style.backgroundPosition = "0px 0px";
+	      }
+//	      div.onclick = function(){
+//	      }
+	      
+	      map.getPanes().labelPane.appendChild(div);
+	      
+	      return div;
+	    }
+	    complexOverlay.prototype.draw = function(){
+	      var map = this._map;
+	      var pixel = map.pointToOverlayPixel(this._point);
+	      this._div.style.left = pixel.x - parseInt(this._arrow.style.left) + "px";
+	      this._div.style.top  = pixel.y - 60 + "px";
+	    }
+		
+		LBS.init();
+	</script>
+
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE >
+<html>
+	<head>
+		<title>定制结果</title> 
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<link rel="stylesheet" href="css/base.css">
+		<script>
+			!function(a){function d(){var c=b.getBoundingClientRect().width;a.rem=c/6.4>100?100:50>c/6.4?50:c/6.4,b.style.fontSize=a.rem+"px"}var c,b=a.document.documentElement;a.addEventListener("resize",function(){clearTimeout(c),c=setTimeout(d,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(c),c=setTimeout(d,300))},!1),d()}(window);
+		</script>
+		<style>
+		    .container{font-family: STHeitiSC Light;padding-top: 1.8rem; padding-bottom: 1.8rem;}
+		    /* 切换 */
+		   	.h-nav{ background-color: #fff; border-bottom: 1px solid #ddd;}
+		   	.h-nav .table-cell{ height: .9rem; line-height: .9rem; }
+		   	.h-nav .table-cell:active{ background: #E0E0E0; }
+		   	.h-nav .table-cell.cur{ pointer-events: none; }
+		    .h-nav > div{text-align: center; color: #353535;}
+		    .h-nav > div.cur:after,.h-nav > div:before{content: '';position: absolute;display: block;left: 0;}
+		    .h-nav > div.cur:after{width: 100%;height: 2px;background-color: #FF9402;bottom: -1px;}
+		    .h-nav > div:before{width: 1px; height: .52rem;background-color: #D8D8D8;top: .18rem;}
+		    .h-nav > div:first-child:before{width: 0px;}
+		    .h-nav > div.cur{ color: #FF9402; }
+		    
+		    	/* 底部支持 */
+			.flexbox{
+				display: -webkit-flex;
+				width: 100%;
+				-webkit-box-sizing: border-box;
+				background: #F8F8F8;
+				border-top: 1px solid #D9D9D9; padding: .15rem .3rem; 
+			}
+			.flexbox .flexbox-cell{ -webkit-flex: 1; }
+			.flexbox .item_btn{ width: 3.2rem; }
+			.share,.collect{  margin-top: .08rem; width: .64rem; height: .64rem; }
+			.share{ background: url(images/zhongchou/fenxiang.png) no-repeat; background-size: 100%; float: right; }
+			.collect{ background: url(images/zhongchou/collect.png) no-repeat; background-size: 100%; float: left; padding-left: .64rem; color: #909090;font-size: .28rem; }
+			
+			/* 我要支持 按钮 */
+			.btn-primary,.btn-primary:visited,.btn-default{ width: 2rem; height:.63rem;line-height: .63rem; text-align: center; border: 1px solid #FF9402; color: #fff; border-radius: .64rem; background: #FF9402; display: block; }
+			.btn-default,.btn-default:visited{ background: #D8D8D8; color: #fff; border:1px solid #D8D8D8; }
+			.btn-primary.lg { width: 3.2rem; height: .8rem; line-height: .8rem; border-radius: .8rem; }
+			.btn-primary:active{ background: #fff; color: #FF9402; border: 1px solid #FF9402; }
+			
+			/* 行程 */
+			#must-know,#travel{ background: #fff; border-top: 1px solid #ddd; }
+			#travel .title{ color:#FF9402; font-size: .28rem;  padding-left: .32rem; position: relative;}
+			#travel .title:before{ content: ''; position: absolute; left: 0; top:.04rem; width: .26rem;height: .32rem; background: url(images/zhongchou_detail/lbs.png) no-repeat left / .26rem .32rem;   }
+			#travel .caption{ color:#959595; font-size: .24rem; line-height: 180%; padding-left: .3rem; position: relative; text-align: justify;}
+			#travel .caption:before{ content: ''; position: absolute; left: .12rem; width: 1px;height: 100%; background: url(images/zhongchou_detail/line.png) no-repeat;   }
+			#travel .caption p{ padding: .1rem 0 .3rem; }
+			#travel .list:last-child .caption p{ padding: .1rem 0 0; }
+			#travel .list:last-child .caption:after{ content: ''; position: absolute; left: .04454545rem; width:.1rem; height: .1rem; background: #fff;border: 2px solid #FF9402; border-radius: 100%; }
+			#must-know .title{ color: #FF9402; font-size: .28rem; margin-bottom: 0; }
+			#must-know p { color: #959595; font-size: .24rem; margin-bottom: .3rem; text-align: justify;}
+			#must-know p.normal { color: #959595; font-size: .24rem; margin-bottom: .1rem; text-align: justify;}
+			.footer > div{ margin: 0 auto; }
+			
+			a:active,a:focus,a:visited{ color: #333; }
+		</style>
+	</head>
+
+	<body>
+
+		<div class="wrap">
+			<header class="header">
+				<nav class="nav clearfix">
+					<a class="back fl" id="back" href="mine.html"></a>
+					<h2>周边详情</h2>
+				</nav>
+				<div class="table h-nav">
+					<div class="table-cell cur" data-href="#zhoubianyou">
+						周边游
+					</div>
+					<div class="table-cell" data-href="#travel">
+						行程
+					</div>
+					<div class="table-cell" data-href="#must-know">
+						须知
+					</div>
+				</div>
+			</header>
+			<!--<footer class="footer">
+				<div class="item55"><a href="##back_top" class="btn-primary lg">我要支持</a></div>
+			</footer>-->
+			<div class="container">
+				<div class="p30" id="zhoubianyou">
+					<p class="f12 c95 mb10">广州驾车不到60分钟能“飞跃半个地球”到达花都九龙湖公主小镇！公主梦从这里开始！</p>
+					<img src="images/zhongchou_detail/pic01.jpg" width="100%"/>
+					<p class="f12 c95 mb10 mt20">公主小镇房<br />浓郁的欧式风情，小而精致的风格，开窗就可以看到欧洲小镇的风貌，你也想到这里感受公主/王子的情怀么？</p>
+					<img src="images/zhongchou_detail/pic02.png" width="100%"/>
+					<p class="f12 c95 mb10 mt20">九龙湖公主小镇<br />这里的布局、建筑风格和装饰，跟寻常所见的西欧的风情小镇很类似，不用去欧洲，也能发呆在欧陆真正的风情中。<br />温馨提醒：为了保证小镇住客的安宁，目前在各大入口设置了“皇家守卫”，有兴趣游览该小镇的朋友，如果不是住客，很可能会扫兴而归呢。</p>
+					<p class="f12 c95 mt20">行程</p>
+				</div>
+				<div class="p30" id="travel">
+					<div class="list">
+						<p class="title">第一天 ｜各地 —— 花都九龙湖小镇</p>
+						<div class="caption">
+							<p >1、不同城市出发（自行选择交通工具）前往花都九龙湖小镇，抵达后自费享用午餐； 
+								2、下午14:00后可前往酒店办理入住，下午可自由游览九龙湖小镇和享用酒店设施；
+								晚餐：;
+								<br />住宿:九龙湖公主酒店
+							</p>
+						</div>
+					</div>
+					<div class="list">
+						<p class="title">第二天｜花都九龙湖小镇—— 各地</p>
+						<div class="caption">
+							<p>在酒店睡到自然醒，后自由活动，可享用酒店其他的康乐设施。（自由活动期间，请注意人生财产安全，留意景区的各类安全提醒告示和通知，以免受伤或财产损失。）12：00前酒店退房，后自寻当地美味佳肴。餐后乘车返回各自城市，结束愉快行程！
+							<br />住宿:温馨的家</p>
+						</div>
+					</div>
+					<div class="list">
+						<p class="title">第二天｜花都九龙湖小镇—— 各地</p>
+						<div class="caption">
+							<p>在酒店睡到自然醒，后自由活动，可享用酒店其他的康乐设施。（自由活动期间，请注意人生财产安全，留意景区的各类安全提醒告示和通知，以免受伤或财产损失。）12：00前酒店退房，后自寻当地美味佳肴。餐后乘车返回各自城市，结束愉快行程！
+							<br />住宿:温馨的家</p>
+						</div>
+					</div>
+				</div>
+				
+				<div class="p30 c95">须知</div>
+				<div class="p30" id="must-know">
+					<div>
+						<p class="title">预定须知</p>
+						<p>本产品由上海驴妈妈兴旅国际旅行社有限公司及具有合法资质的地接社提供相关服务。</p>
+											<p>九龙湖公主酒店 <br />
+						1、酒店地址：广州市花都区花东镇九龙湖社区（花都区、新白云国际机场，近山前旅游大道） </p>
+						<p>2、入住凭证：请凭手机短信、本人身份证件到酒店前台办理入住手续。 </p>
+						<p>3、温馨提示：</p>
+						<p>a、为给您提供整洁舒适的住宿环境，酒店会在您入住前进行房间卫生清洁。因旺季期间酒店入住率较高，清洁时间相对较久，所以游客到达当地后可能需要等候至14：00后才能入住，可在办理入住前进行自由活动，如有不便之处，敬请见谅！</p>
+						<p>b、儿童不占床位，如需加早餐费用前台自理，儿童1.1米以下免费（每房限1位），1.1-1.4米按49元/位，高于1.4米98元/位 </p>
+
+					</div>
+					<div>
+						<p class="title">退改规则</p>
+						<p class="normal">1、退改规则 </p>
+						<p class="normal">（1）游玩当天：不退不改，带来不便敬请谅解；</p>
+						<p class="normal">（2）非假期日游玩日期前三天，假期日游玩日期前一周：请致电驴妈妈旅游网服务热线1010-6060申请退改；</p>
+						<p>2、产品中已将相关景点、酒店进行优惠打包，因此不可重复享受优惠（如特殊证件、优惠门票等），特别情况下涉及退费也仅退回优惠后的门票费用；</p>
+						<p>3、根据国家法律规定，为确保您的游程顺利，请随身携带并自行保管好您的有效身份证明（12岁以下儿童携带户口簿原件或复印件）；</p>
+						<p>4、请各位游客按照约定标准（如身高、年龄）为儿童报名，如因虚报、隐瞒产生的一切后果敬请自理，由此产生的相关损失也将由游客承担； </p>
+						<p>5、根据国家相关法规，若因人力不可抗拒的因素而造成对行程的影响，旅行社将协助游客进行解决，但不承担相应损失，若因此而增加的费用，敬请游客自己承担； </p>
+						<p>6、建议您保持良好的出游心态，互相理解，互相尊重，凡事友好协商，祝您拥有愉快而难忘的旅程。 </p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function(){
+			$(".h-nav").on('click','.table-cell',function(){
+				$(this).siblings('.table-cell').removeClass('cur');
+				$(this).addClass('cur');
+				var id = $(this).attr('data-href');
+				$("html,body").animate({scrollTop:$(id).offset().top - 167},1000);
+			});
+		});
+	</script>
+	
+
+</html>

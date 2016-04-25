@@ -1,0 +1,92 @@
+<!DOCTYPE >
+<html>
+	<head>
+		<title>我的</title> 
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<link rel="stylesheet" href="css/base.css">
+		<script>
+			!function(a) {
+				function d() {
+					var c = b.getBoundingClientRect().width;
+					console.log(c / 6.4);
+					a.rem = c / 6.4 > 100 ? 100 : 50 > c / 6.4 ? 50 : c / 6.4, b.style.fontSize = a.rem + "px";
+				}
+				var c, b = a.document.documentElement;
+				
+				a.addEventListener("resize", function() {
+					clearTimeout(c), c = setTimeout(d, 300)
+				}, !1), a.addEventListener("pageshow", function(a) {
+					a.persisted && (clearTimeout(c), c = setTimeout(d, 300))
+				}, !1), d()
+			}(window);
+		</script>
+		<style type="text/css">
+			.wrap{position: relative;height: 100%; min-height: 9.8rem;}
+			*,.wrap{font-family: STHeitiSC Light;}
+			
+			.list{position: relative;background: #fff;}
+			.list:before{content: '';position: absolute;top: 0; right: 0;left: 0; width: 100%;height: 1px;-webkit-transform: scaleY(.5);background: #c8c7cc;}
+			.list:after{content: '';position: absolute;bottom: 0; right: 0;left: 0; width: 100%;height: 1px;-webkit-transform: scaleY(.5);background: #c8c7cc;}
+		    .list>li,.list>li>a{ position: relative; overflow: hidden;display: block;}
+		    .list>li>a{display: block;text-align: left; height: 1rem; padding: 0 .3rem 0 .3rem; color: #353535;font-size: .24rem;font-family: inherit;}
+		    	.list>li>a span,.list>li>a em{display: block;}
+		    	.list>li>a em{padding-top: .15rem;}
+		    	.list>li>a span{color: #BABABA;font-family: inherit;font-size: .22rem;}
+		    	.list>li:after{content: '';position: absolute;bottom: 0; right: 0;width: 100%;height: 1px;-webkit-transform: scaleY(.5);background: #c8c7cc;}
+		    	.list>li:last-child:after{height: 0;}
+		    .list li.wallet a:before { background-position: 0 -3.84rem; }
+		    .list li.order a:before{ background-position: 0 -1.44rem; }
+		    .list li.myline a:before{background-position: 0 -.48rem; }
+		    .list li.voucher a:before{ background-position: 0 0rem; }
+		    .list li.more a:before{ background-position: 0 -2.88rem; }
+		    .list>li> .icon { position: absolute; right: .3rem; top: 50%; width: .15rem; height: .27rem; margin-top: -.135rem; background: url(images/icons/icon_right.png) 0 center / .15rem .27rem no-repeat;}
+		    
+		    .input-row .submit_btn{position:relative;margin: auto; width: 5.8rem;height:.68rem;line-height: .68rem;background-color: #FF9402; border-radius: .1rem;font-size: .32rem;color: #fff;text-align: center;}
+		    .logo{width: 3.1rem; height: 2.13rem;padding-top: .3rem;padding-bottom: .15rem;}
+		    .words{padding:.3rem; font-family: inherit; font-size: .2rem; color: #353535; line-height: .36rem; text-align: left;text-indent: .4rem;}
+		    .foot{font-family: inherit;font-size: .24rem;color: #BABABA;padding-top: 1rem;text-align: center;}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="wrap">
+			<div class="container tc" style="padding-bottom: 2rem;">
+				<img class="logo" src="images/icons/about.png"/>
+				<p class="words">米巴是由广州市新穗科技有限公司推出的一款上下班出行定制服务产品。我们通过与广州新穗巴士、一汽等拥有专业公共交通运营经验的公交企业达成战略合作，利用大数据平台推行“互联网+定制班车”的绿色出行方式，为出行需求相似的白领一族提供在线班车线路定制、车票预订，让用户享受一人一座、一站直达、快捷舒适的巴士服务。</p>
+				<ul class="list">
+					<li class="wallet">
+						<a href="http://www.mibus.com.cn">
+							<em>常见问题</em>
+							<span>www.mibus.com.cn</span>
+						</a>
+						<i class="icon"></i>
+					</li>
+					<li class="order">
+						<a >
+							<em>官方公众号</em>
+							<span>在微信公众号里输入"米巴"添加关注</span>
+						</a>
+						<i class="icon"></i>
+					</li>
+					<li class="myline">
+						<a href="javascript:;">
+							<em>客服热线</em>
+							<span>020-38773363</span>
+						</a>
+						<i class="icon"></i>
+					</li>
+				</ul>
+				<footer class="foot">
+					广州市新穗网络科技有限公司
+				</footer>
+			</div>
+		</div>
+	</body>
+	<script src="js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+
+</html>

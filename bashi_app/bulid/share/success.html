@@ -1,0 +1,55 @@
+<!DOCTYPE >
+<html>
+	<head>
+		<title>米巴</title> 
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<link rel="stylesheet" href="../css/base.css">
+		<script>
+			!function(a){function d(){var c=b.getBoundingClientRect().width;a.rem=c/6.4>100?100:50>c/6.4?50:c/6.4,b.style.fontSize=a.rem+"px"}var c,b=a.document.documentElement;a.addEventListener("resize",function(){clearTimeout(c),c=setTimeout(d,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(c),c=setTimeout(d,300))},!1),d()}(window);
+		</script>
+		<style>
+			body{ background: url(../images/share/share_bg.jpg) no-repeat; background-position: left top; background-size: cover; text-align: center; }
+			.wrap{ overflow: hidden; }
+			input::-webkit-input-placeholder { color:#000; }
+			input::-moz-input-placeholder { color:#000; }
+			input::-ms-input-placeholder { color:#000; }
+			.top_img{ margin-top: 2.91rem; }
+			.go,.download{ display: block; position: relative; overflow: hidden;  width: 4.2rem; height: 1.04rem; margin: .3rem auto 0; }
+			.go{ background: url(../images/share/shangban.png);background-position: left top; background-size: cover; }
+			.download{ background: url(../images/share/download.png);background-position: left top; background-size: cover; }
+			.go:active,.download:active{ background-size:4.38rem 1.21rem; }
+			.car_rool{ margin-top: .66rem; }
+			.word_bottom{ color: #c1c1c1; font-size: .2rem; text-align: justify; background: transparent;}
+			.word_bottom p { margin-bottom: .1rem; }
+			.list{ position: relative; display: -webkit-box; margin-top: .3rem; margin-bottom: .6rem; }
+			.list .list-item{ -webkit-box-flex: 1; display: block; font-size: .20rem; color: #C1C1C1; }
+			.list .list-item:before{ content: '';display: block; margin-left: 50%;-webkit-transform:translateX(-50%);transform:translateX(-50%); width: .81rem; height: .81rem; background: url(../images/share/list.png); background-size: 5.07rem .81rem; }
+			.list .list-item.two:before{ background-position: -1.46rem 0; }
+			.list .list-item.three:before{ background-position: -2.83rem 0; }
+			.list .list-item.four:before{ background-position: -4.27rem 0; }
+		</style>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<img class="top_img" src="../images/share/s-1.png" width="100%"/>
+			<a class="go" href="http://wechat.mibus.com.cn/Bus/"></a>
+			<a class="download" href="http://www.mibus.com.cn/mobile/"></a>
+			<img class="car_rool" src="../images/share/zenmeyong.jpg" width="100%"/>
+			<div class="list">
+				<a class="list-item one" href="">米巴APP/微信</a>
+				<a class="list-item two" href="">手机注册</a>
+				<a class="list-item three" href="">购票</a>
+				<a class="list-item four" href="">选择代金券</a>
+			</div>
+			<img src="../images/share/jiyou.jpg" width="100%"/>
+			<div class="p30 word_bottom">
+				<p>领券后７日内成功在米巴微信或app上购票并乘车，同时为邀请您的好友赢得30元奖励哦～</p>
+			</div>
+		</div>
+	</body>
+</html>

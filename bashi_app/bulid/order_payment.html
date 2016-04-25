@@ -1,0 +1,91 @@
+<!DOCTYPE >
+<html>
+	<head>
+		<title>定制路线</title> 
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<link rel="stylesheet" href="css/base.css">
+		<script>
+			!function(a){function d(){var c=b.getBoundingClientRect().width;a.rem=c/6.4>100?100:50>c/6.4?50:c/6.4,b.style.fontSize=a.rem+"px"}var c,b=a.document.documentElement;a.addEventListener("resize",function(){clearTimeout(c),c=setTimeout(d,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(c),c=setTimeout(d,300))},!1),d()}(window);
+		</script>
+		<style>
+			.container{ padding-bottom: 1.3rem; }
+			.row{ padding: .3rem; background: #fff; -webkit-box-shadow: 0px 2px 4px rgba(235,235,235,.9);box-shadow: 0px 2px 4px rgba(235,235,235,.9); border-top:1px solid rgba(217,217,217,.9); }
+			
+			.list{position: relative;background: transparent; -webkit-box-shadow: 0px 2px 4px rgba(235,235,235,.9);box-shadow: 0px 2px 4px rgba(235,235,235,.9); border-top:1px solid rgba(217,217,217,.9);}
+			.list .list-item{ position: relative; background: #fff; padding: .3rem; border-bottom: 1px solid rgba(217,217,217,.9); }
+			.list-item label{ font-size: .28rem; }
+			.list-item input{ width: 75%; font-size: .28rem; padding-left: .15rem; color: #909090; }
+			.btn,.btn:visited{position:relative;display: block; margin: .3rem auto; width: 5.8rem;height:.78rem;line-height: .78rem;background-color: #FF9402; border-radius: .78rem;font-size: .32rem;color: #fff;text-align: center;}
+			.btn:active{ background: transparent;  color: #FF9402; border: 1px solid #FF9402; }
+			.wallet .table{ padding: .3rem; background: #FFF; box-sizing: border-box; border-bottom: 1px solid rgba(217,217,217,.9) ;}
+			.table .t1{width: .78rem; height: .72rem; background: url(images/zhongchou/mibus_wallet.png) no-repeat left center / cover; background-size: .6rem .6rem;}
+			.table.wx .t1{background: url(images/zhongchou/wx_wallet.png) no-repeat left center / cover; background-size: .6rem .6rem;}
+			.table .t1.wallet{background: url(images/icons/pay_wallet.png) no-repeat left center/ cover;background-size: .6rem .6rem;}
+			.table .t2:after{content: ''; position: absolute; width: .48rem; height: .48rem; right: 0;top: 50%; -webkit-transform: translateY(-50%);background: url(images/icons/checkall.png) no-repeat center / .48rem .48rem;}
+			.table .t2 h1{color: #000; font-size: .28rem;}
+			.table .t2 p{color: #BABABA; font-size: .20rem;}
+			.table.checked .t2:after{background-image: url(images/icons/click.png);}
+		</style>
+	</head>
+
+	<body>
+		<div class="wrap">
+			<div class="container">
+				<form class="list">
+					<div class="list-item">
+						<label style="">订单号</label>
+						<span class="fr">201510221115</span>
+					</div>
+					<div class="list-item">
+						<label>在线支付</label>
+						<span class="fr ff9402">&#65509;4850</span>
+					</div>
+					<!-- 支付钱包 -->
+					<div class="wallet">
+						<div class="table checked" id="mibus" data-type="mibus">
+		                		<div class="table-cell t1"></div>
+		                		<div class="table-cell t2">
+		                			<div class="mt10">
+		                				<span>米巴余额:</span>
+		                				<span class="c909090 f12 ml5">150元</span>
+		                			</div>
+		                		</div>
+		                </div>
+						<div class="table wx" id="wx" data-type="wx">
+		                		<div class="table-cell t1"></div>
+		                		<div class="table-cell t2">
+		                			<h1>微信钱包</h1>
+		                			<p>推荐安装微信5.0及以上版本的使用</p>
+		                			<i></i>
+		                		</div>
+		                </div>
+					</div>
+					<a type="submit" class="btn" href="order_payment_success.html">我要支付</a>
+				</form>
+			</div>
+		</div>
+	</body>
+	<script src="js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/Mibus.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		(function($){
+			// 选择支付方式
+			$(".wallet").on('click','.table',payChose);
+			
+			function payChose(){
+				//  是否选中
+				if ($(this).hasClass('checked')) {
+					$(this).removeClass('checked'); //  取消选中
+				}else{
+					$(this).addClass('checked'); // 选中
+					type = $(this).attr('data-type'); // 判断是选中是钱包还是微信
+					$(this).siblings().removeClass('checked'); // 取消其它节点选中
+				}
+			}
+		})(Zepto);
+	</script>
+</html>

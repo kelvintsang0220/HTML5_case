@@ -1,0 +1,92 @@
+<!DOCTYPE >
+<html>
+	<head>
+		<title>定制结果</title> 
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<link rel="stylesheet" href="css/base.css">
+		<script>
+			!function(a){function d(){var c=b.getBoundingClientRect().width;a.rem=c/6.4>100?100:50>c/6.4?50:c/6.4,b.style.fontSize=a.rem+"px"}var c,b=a.document.documentElement;a.addEventListener("resize",function(){clearTimeout(c),c=setTimeout(d,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(c),c=setTimeout(d,300))},!1),d()}(window);
+		</script>
+		<style>
+		    *,.wrap,.container{font-family: STHeitiSC Light;}
+		    .container{padding-top: 1.24rem;padding-bottom: 1rem;}
+		    
+		    .header{height: .72rem;line-height: .72rem;}
+		    .h-nav > div{text-align: center; color: #353535;}
+		   	.h-nav .table-cell.cur:after,.h-nav .table-cell:before{content: '';position: absolute;display: block;left: 0;}
+		    .h-nav .table-cell:before{width: 1px; height: .4rem;background-color: #D8D8D8;top: .16rem;}
+		    .h-nav .table-cell a{color: #353535;}
+		    .h-nav .table-cell.cur a{color: #FF9402}
+		    .h-nav .table-cell.cur:after{width: 100%;height: .05rem;background-color: #FF9402;bottom: -.01rem;}
+		    .line .time{font-family: inherit;font-size: .2rem; color: #BABABA;}
+		    .line_con{width: 3.2rem;}
+		    .line_con .arrival-time{text-align: left;}
+		    .line_con .m_line{width: .3rem;}
+		    .links_con{position: absolute;overflow: hidden; bottom: 0;right: 0;}
+		    .links_con a{display: block;padding-top: .3rem; font-size: inherit; font-size: .32rem; color: #FF9402;}
+			.go-off{font-family: STHeitiSC Light;text-align: left; color: #353535; font-weight: normal;}
+			.status{color: #FF9402;padding-left: .1rem;}
+			.line .m_line{width: auto;padding-top:0rem;padding-bottom: 0;}
+			.start_time{padding-left: .1rem;}
+			.line_1{position: relative;padding-bottom: .15rem;}
+			.bottom_line{position: relative; width: 6.4rem; height: 1px; background-color: #EFF0F1;}
+			.order_time{color: #BABABA;font-size: .2rem;padding: .1rem .3rem .1rem 0; text-align: right;}
+			.start_time{color: #353535;}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="wrap">
+			<header class="header">
+				<nav class="nav clearfix">
+					<a class="back fl" id="back" href="mine.html"></a>
+					<h2>我的订单</h2>
+				</nav>
+			</header>
+			
+			<div class="container">
+				<ul class="table-view">
+					<a href="order_detail.html">
+						<li class="table-view-cell mb20">
+							<div class="flex line">
+								<div class="flex line_con">
+									<div class="flex-cell go-off">订单号:6553333222(1张)</div>
+								</div>
+								<div class="flex-cell time tr">已支付</div>
+							</div>
+							<div class="dotted"></div>
+							<div class="table line_1">
+								<div class="table-cell">
+									<div class="start_time">07:00</div>
+									<div class="start">
+										祈福新村<span class="status">-途经</span>
+									</div>
+									<div class="end">
+										客村tit创意园
+									</div>
+								</div>
+								<div class="table-cell tr line">
+									<div class="links_con">
+										<div class="flex-cell m_line">粤A6780</div>
+										<a href="#" class="">6元</a>
+									</div>
+								</div>
+							</div>
+							<div class="bottom_line"></div>
+							<div class="order_time">下单时间:07-19 10:30</div>
+						</li>
+					</a>
+					
+				</ul>
+			
+			</div>
+		</div>
+	</body>
+	
+
+</html>

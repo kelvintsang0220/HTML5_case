@@ -1,0 +1,562 @@
+<!DOCTYPE >
+<html>
+	<head>
+		<title>购票</title> 
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<link rel="stylesheet" href="css/base.css">
+		<script>
+			!function(a){function d(){var c=b.getBoundingClientRect().width;a.rem=c/6.4>100?100:50>c/6.4?50:c/6.4,b.style.fontSize=a.rem+"px"}var c,b=a.document.documentElement;a.addEventListener("resize",function(){clearTimeout(c),c=setTimeout(d,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(c),c=setTimeout(d,300))},!1),d()}(window);
+			
+//			window.dataObj =  data = [{
+// 				id: 10086,
+// 				SchDate: '2015-11-26T00:00:00Z',
+//				seat: 31,
+//				price: 0.1
+//			},
+// 			{	
+// 				id: 10087,
+// 				SchDate: '2015-11-27T00:00:00Z',
+//				seat: 31,
+//				price: 0.1
+//			},
+//			{
+// 				id: 10087,
+// 				SchDate: '2015-11-18T00:00:00Z',
+//				seat: 31,
+//				price: 1
+//			},
+//			{
+// 				id: 10087,
+// 				SchDate: '2015-11-19T00:00:00Z',
+//				seat: 31,
+//				price: 0.01
+//			},
+//			{
+// 				id: 10087,
+// 				SchDate: '2015-11-20T00:00:00Z',
+//				seat: 31,
+//				price: 5
+//			},
+//			{
+// 				id: 10087,
+// 				SchDate: '2015-11-23T00:00:00Z',
+//				seat: 31,
+//				price: 0.1
+//			}];
+		</script>
+		<style type="text/css">
+			.wrap,.container,.footer{font-family: STHeitiSC Light;}
+		    .container{padding-bottom: 1rem;}
+		    .links_con{position: absolute;overflow: hidden; bottom: 0;right: 0;}
+		    .links_con a{font-size: inherit; font-size: .2rem; color: #BABABA;text-decoration: underline;}
+		    	.footer{height: 1rem;padding: 0;}
+		    	.footer .data{position: static;}
+		    	.footer .data .time_con{position: absolute;top:50%;-webkit-transform: translateY(-50%);left: .3rem;}
+		    	.time_con .time,.time_con .money{font-family: inherit; color: #909090;}
+		    	.time_con .money span{font-size:.28rem;color: #ff4d02;}
+		    	.time_con .time{font-size: .2rem;margin-top: .04rem;margin-left: .1rem;}
+			.footer .pay{text-align: right;}
+			.footer .pay .btn{display: inline-block; margin-top:.1rem;margin-right: .3rem; width: 3.5rem; height: .8rem;line-height: .8rem;text-align: center; font-family: inherit;font-size: .28rem;color: #fff;background-color: #FD4E0B;border-radius: .1rem;}
+			
+			.table .done{position: absolute;right: 0;top: 50%; -webkit-transform: translateY(-50%); color: #FF9402;font-family: inherit;font-size: .28rem;}
+		    .line .time{font-family: inherit;font-size: .2rem; color: #BABABA;}
+		    .line_con{width: 2.2rem;}
+		    .go-off{font-weight: normal;}
+		    .table-view:before{content: '';position: absolute;top: 0;left: 0; width: 100%;height: 1px;-webkit-transform: scaleY(.5);background: #c8c7cc;}
+		    .table-view-cell:after{content: '';position: absolute;bottom: 0;left: 0; width: 100%;height: 1px;-webkit-transform: scaleY(.5);background: #c8c7cc;}
+		    
+			
+			/*------日历------*/
+			.calendar,.calendar .hd{position: relative;font-family: inherit;}
+			.calendar .hd{height: .72rem;line-height: .72rem; background: #fff;color: #353535;}
+			.prev-mon,.next-mon{ color: #FF9402; width: .64rem; cursor: pointer;}
+			.next-mon:active,.prev-mon:active{ background: #FF9402; color: #fff; }
+			.hd .month{font-size: .32rem;}
+			.hd .select{font-size: .24rem;}
+			.hd .select .sel_icon{width: .48rem;height: .48rem;background: url(./images/icons/checkall.png) no-repeat 50% 50%; background-size: .48rem .48rem;margin:.12rem 0 0 .15rem;}
+			/*.hd .select .fl{display: none;}*/
+			.hd .select.checked .sel_icon{background-image: url(./images/icons/click.png)}
+			/*------日历 主体------*/
+			.calendar_wrap .table{width: 100%;text-align: center; border-collapse: collapse;border-spacing: 0;}
+			.calendar_wrap .table li{display: table-cell;vertical-align:middle;}
+			.calendar>.body .weeks{height: .6rem;line-height: .6rem;background: #eee;font-family: inherit;font-size: .28rem;color: #353535;}
+			.calendar>.body .dates{background-color: #fff;}
+			.calendar>.body .dates > div{position: relative;width: 1.28rem; height: 1rem; border-right: 1px solid #D8D8D8;border-bottom: 1px solid #D8D8D8;font-size: .24rem;float: left;-webkit-box-sizing: border-box;}
+			.calendar>.body .dates .inner{display: block; position: absolute; left: 50%;-webkit-transform: translateX(-50%);margin-top: .15rem;}
+			.inner span,.inner i{display: block;text-align: center;}
+			.calendar>.body .dates li{position: relative;width: 1.28rem; height: 1rem;line-height: 1rem; border-right: 1px solid #D8D8D8;border-top: 1px solid #D8D8D8;font-size: .24rem; /*color: #D7D7D7;*/}
+			.calendar>.body .dates li.no_border{border-right: 0;}
+			.calendar>.body .dates li span,.calendar>.body .dates li i{display: block;line-height: 1;}
+			.calendar>.body .dates li span{margin-bottom: .1rem;}
+			.calendar>.body .dates li i{font-size: .2rem; color: #FF9402;}
+			.calendar>.body .dates li.past_day{background-color: #E7E7E7;border-right: 1px solid #D7D7D7;border-top: 1px solid #D7D7D7;}
+			.calendar>.body .dates li.cur{background-color: #ffaf41;border-right: 1px solid #D7D7D7;border-top: 1px solid #D7D7D7;}
+			.calendar>.body .dates li.pur{background-color: #63bbed;border-right: 1px solid #D7D7D7;border-top: 1px solid #D7D7D7;}
+			.calendar>.body .dates li.full{background-color: #f87c48;border-right: 1px solid #D7D7D7;border-top: 1px solid #D7D7D7;}
+			.calendar>.body .dates li.cur i,
+			.calendar>.body .dates li.pur i,
+			.calendar>.body .dates li.full i{color: #FFF;}
+			.calendar_wrap .status{height: .80rem; line-height: .80rem; font-size: .24rem;}
+			.calendar_wrap .status li{font-size: .24rem; color: #909090;}
+			.calendar_wrap .status li:before{display: inline-block;content: '';height: .22rem;width: .22rem;border: 1px solid #D8D8D8;background: #987;vertical-align: middle;margin-right: .06rem;-webkit-border-radius: .06rem;}
+			.calendar_wrap .status li.opt:before{background-color: #fff;}
+			.calendar_wrap .status li.sel:before{background-color: #FFAF41;}
+			.calendar_wrap .status li.buy:before{background-color: #63BBED;}
+			.calendar_wrap .status li.full:before{background-color: #F87C48;}
+			.calendar_wrap .status li.not:before{background-color: #D7D7D7;}
+			.calendar_wrap .voucher_wrap{min-height: 3.2rem;height: auto; border-top: 1px solid #D7D7D7;background-color: #fff;padding: 0 .3rem .3rem;}
+			.calendar_wrap .bus_voucher{position: relative;height: .64rem;line-height: .64rem;margin: .3rem 0 0 0;padding-left: .2rem;font-family: inherit; font-size: .24rem;color: #FF9402; border: 1px solid #FF9402;-webkit-border-radius: .1rem;}
+			.calendar_wrap .bus_voucher:after{content: ''; position: absolute;width:.15rem;height: .27rem;top: 50%;-webkit-transform: translateY(-50%);right: .2rem;background: url(images/icons/arrows_r.png) no-repeat; background-size: 100% 100%;}
+			.calendar_wrap .bus_voucher .voucher_price{float: right; margin-right: .5rem;}
+			.wrap .table-view-cell{padding: 0;}
+			
+			/*--日历表格--*/
+            .calendar{ position: relative;  width: 6.4rem;}
+            .calendar table{ width: 100%;}
+            .calendar table tbody{background: #fff;}
+            .calendar th{border-left: 1px #D8D8D8 solid; border-bottom: 1px #D8D8D8 solid; border-top: 1px #D8D8D8 solid; text-align: center;}
+            .calendar td{ position: relative; height: 1rem; width: 1rem; text-align: center; border-top: 1px #D8D8D8 solid; border-left: 1px #D8D8D8 solid; color: #353535;background: #fff;}
+            .calendar td.disable{ color: #999; background-color: #F8F8F8;}
+            .calendar td.past,.calendar td.enable{ color: #353535; background-color: #fff;}
+            .calendar td.hasTicket{ background-color: #fff; color: #FF9402;}
+            .calendar td.selected{ background-color: #FFAF41; color: #fff;}
+            .calendar td.selected .price{color: #fff;}
+            .calendar td .day,.calendar td .last,.calendar td .price{font-size: .2rem;}
+            .calendar td .day{ padding-top: .2rem; }
+            .calendar td .month{ position: absolute; top: 0; left: 0;font-size: .2rem; color: #909090;}
+            .price{color: #fff; display: none;}
+
+            .select-box{position: absolute; top: 0; right: -250px; width: 240px; border:1px #d9d9d9 solid;}
+            .select-box li{ list-style: none; padding: 10px; border-bottom: 1px #d9d9d9 solid;}
+            .day-time{ display: inline-block; border:1px #4e84ff solid;text-align: center; line-height: 25px;}
+            .weekday{ border-top: 1px #4e84ff solid; background-color: #4e84ff; color: #fff;}
+            .select{ display: inline-block; float: right;}
+            .select div{ display: inline-block;}
+            .select-btn{ padding: 3px 5px; margin-top: 15px;}
+
+            .select-tit{ text-align: center;}
+            .select-box .close{ width: 20px; height: 20px; float: right; border:1px #fff solid; border-radius: 50%; line-height: 22px; margin-top: 9px; margin-right: 10px; cursor: pointer; }
+            
+            .select_list{position: relative;	width: 5.78rem;	border: 1px solid #FF9402;border-top: none;	padding-left: .2rem;	border-bottom-left-radius: .1rem;border-bottom-right-radius: .1rem;box-sizing: border-box; display: none;}
+			.select_list li{height: .78rem;line-height: .78rem; color: #FF9402; border-bottom: 1px solid #eee;}
+			.select_list li:last-child{border-bottom: none;}
+			.tips{height: .78rem;line-height: .78rem;border-bottom: 1px solid #e8e8e8;font-size: .2rem;color: #FF9402;text-align: left;}
+			.tips .booking_rules{display: inline-block; padding-left: .3rem;background: url(images/icons/icon_remind.png) 0 50% no-repeat; background-size: .22rem;color: #FF9C00;text-decoration: underline;}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="wrap">
+			<ul class="table-view">
+				<li class="table-view-cell">
+					<div class="flex line">
+						<div class="flex line_con">
+							<div class="flex-cell go-off">08:30始发</div>
+							<div class="flex-cell arrival-time">到达07:45</div>
+						</div>
+						<div class="flex-cell time tr">07月24日</div>
+					</div>
+					<div class="table line_1">
+						<div class="table-cell">
+							<div class="start">
+								祈福新村
+							</div>
+							<div class="end">
+								客村tit创意园
+							</div>
+						</div>
+						<div class="table-cell tr">
+							<p class="done">0.1元</p>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<footer class="footer" id="footer">
+				<div class="flex">
+					<div class="flex-cell data">
+						<div class="time_con">
+							<div class="fl money">
+								<span id="sum_price">0</span>元
+							</div>
+							<div class="fl time">
+								共<span id="sum_days">0</span>天
+							</div>
+						</div>
+					</div>
+					<div class="flex-cell pay">
+						<a class="btn" id="submit_btn" href="pay.html">
+							付款
+						</a>
+					</div>
+				</div>
+			</footer>
+			<div class="container">
+				<div class="calendar_wrap">
+					
+					<div class="calendar" id="calendar">
+						
+						
+					</div>
+					
+					<div style="padding: 0 .3rem;">
+						<ul class="status table">
+				          <li class="opt">可选</li>
+				          <li class="sel">已选</li>
+				          <li class="buy">已购</li>
+				          <li class="full">已满</li>
+				          <li class="not">不可选</li>
+				        </ul>
+					</div>
+					<div class="voucher_wrap">
+						<div class="tips">
+							<a href="booking_rules.html#refund_rules" class="booking_rules">订票、退票规则</a>
+						</div>
+						<div class="bus_voucher">
+							点击即可享受代金券优惠
+						</div>
+					</div>
+					
+					<form id="sub_form">
+						<input type="hidden" id="sub_price">
+						<input type="hidden" id="sub_days">
+						<input type="hidden" id="ids">
+					</form>
+				
+				</div>
+			</div>
+		</div>
+	
+	</body>
+	<script src="js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/Mibus.min.js" type="text/javascript" charset="utf-8"></script>
+	<!--<script src="js/calendar.js" type="text/javascript" charset="utf-8"></script>-->
+	<script src="js/clndr.js" type="text/javascript" charset="utf-8"></script>
+   	<script type="text/javascript">
+		/*
+		 * 代金卷UI渲染在购票操作(247 行) 2015-8-13
+		 * 使用代金卷后的扣款代码(425 行) 2015-8-13
+		 * */
+		
+   		(function($){
+   			$("#calendar").clndr();
+   			// 后台传入数据
+   			var data = [{
+   				id: 10086,
+   				SchDate: '2015-11-26T00:00:00Z',
+				seat: 31,
+				price: 0.1
+			},
+   			{	
+   				id: 10087,
+   				SchDate: '2015-11-27T00:00:00Z',
+				seat: 31,
+				price: 0.1
+			},
+			{
+   				id: 10087,
+   				SchDate: '2015-11-18T00:00:00Z',
+				seat: 31,
+				price: 1
+			},
+			{
+   				id: 10087,
+   				SchDate: '2015-11-19T00:00:00Z',
+				seat: 31,
+				price: 0.01
+			},
+			{
+   				id: 10087,
+   				SchDate: '2015-11-20T00:00:00Z',
+				seat: 31,
+				price: 5
+			},
+			{
+   				id: 10087,
+   				SchDate: '2015-12-01T00:00:00Z',
+				seat: 31,
+				price: 5
+			},
+			{
+   				id: 10087,
+   				SchDate: '2015-12-02T00:00:00Z',
+				seat: 31,
+				price: 5
+			},
+			{
+   				id: 10087,
+   				SchDate: '2015-12-03T00:00:00Z',
+				seat: 31,
+				price: 0.1
+			}];
+			
+   			var oTd = $("#calendar table tbody").find('td'),
+   				arr = [],
+   				hasTickets = [],
+   				json = {},
+   				btn = true,
+   				all = 0,
+   				oDate = new Date(),
+   				yh = null,
+   				bus_voucher = true,first_use = true;
+   				
+   			var wrap = $(".time_con"),
+   				money_wrap = wrap.find(".money"),
+   				time_wrap = wrap.find(".time");
+   			
+   			var initPage = function(){
+   				// 获取可购票的td
+	   			$.each(oTd, function(i,item) {
+	   				if ($(this).hasClass('enable')) {
+	   					arr.push($(this));
+	   				}
+	   			});
+	   			// 购票操作
+	   			$.each(arr, function(i,$item) {
+					selectVote($item); 
+					if ($item.hasClass('hasTicket')) {
+						$(this).on('tap',function(e){
+							toggle($(this));
+		   					if (all == hasTickets.length) {
+		   						$("#select_all").addClass('checked');
+		   					}else{
+		   						$("#select_all").removeClass('checked');
+		   					}
+		   					calcul($(this));
+		   					
+		   					// 代金卷优惠
+		   					if(bus_voucher) // 判断用户是否有代金卷
+		   					{
+		   						$(".bus_voucher").html('点击即可享受代金券');
+		   						if (first_use) {
+		   							/*
+		   							 * data-voucher 扣款条件
+		   							 * */
+		   							var strDOM = '<ul class="select_list">'+
+											 '	<li class="item" data-voucher="0">首单优惠只需0.1</li>'+
+											 '	<li class="item" data-voucher="1">满50减10块</li>'+
+											 '	<li class="item" data-voucher="2">立减10元</li>'+
+											 '</ul>';
+		   						
+									$(".voucher_wrap").append(strDOM);
+									first_use = false;
+		   						}
+		   						
+		   					}else{
+		   						$(".bus_voucher").html('对不起您暂时没有可用代金卷');
+		   					}
+		   				});
+					}
+	   				
+	   			});
+   				
+   			}
+   			
+   			// 渲染dom
+			function selectVote(obj){
+				var day = parseInt( obj.attr('data-day') ); //日期
+				var month = parseInt( obj.attr('data-month') );
+				for (var i = 0; i < data.length; i++) {
+					var date = new Date(data[i].SchDate);
+					if( day == date.getDate() && month == (date.getMonth()+1) ){
+						obj.attr('data-id',data[i].id).addClass('hasTicket');
+						html = '<div class="day">' + date.getDate() + '</div><div class="last">余<span>'+ data[i].seat +'</span></div><div class="price">' + data[i].price + '</div>';
+						hasTickets.push(obj);
+						obj.html(html);
+					}
+				}
+			}
+			
+   			
+   			//计算票价
+   			function calcul(obj){
+   				var allPrice;
+   				var getPrice = parseFloat(obj.find('.price').text());
+   				
+   				yh = parseInt(obj.find('.last > span').text());
+   				
+				if ($("#sum_price").length != 0) {
+					var sum_price = parseFloat( $("#sum_price").text() );
+					allPrice = sum_price;
+					if (btn) {
+						if (getPrice < 1) {
+							allPrice =  ( parseFloat( allPrice ) + parseFloat(getPrice) ).toFixed(2);
+							console.log(allPrice);
+						}else{
+							allPrice += getPrice;
+							console.log(allPrice);
+						}
+					}else{
+						if (getPrice < 1) {
+							// 为了不出现0.0元的问题
+							allPrice =  ( parseFloat( allPrice ) - parseFloat(getPrice) ).toFixed(2);
+						}else{
+							allPrice -= getPrice;
+							if (allPrice.toString().indexOf('.') != 0) {
+								allPrice = Math.round(allPrice*100)/100;
+							}
+						}
+					}
+				} else{
+					if (getPrice < 1) {
+						allPrice = getPrice*100/100;
+					}else{
+						allPrice = getPrice;
+					}
+				}
+				
+				var allDays = all;
+   				money_wrap.html('<span id="sum_price">' + parseFloat( allPrice).toFixed(2) + '</span>元');
+   				time_wrap.html('共<span id="sum_days">' + allDays + '</span>天');
+   			}
+   			
+   			function calIds(){
+   				json.ids = [];
+   				// 获取可购票的td
+	   			$.each(arr, function(i,item) {
+	   				if ($(this).hasClass('selected')) {
+	   					var id = $(this).attr('data-id');
+	   					json.ids.push(id);
+	   				}
+	   			});
+   			}
+   			
+   			
+   			//提交表单
+   			function on_submit(){
+   				var $price = $('#sum_price');
+   				var $days = $('#sum_days');
+   				var postData = {
+   					price: $price.text(),
+   					days: $days.text()
+	          	};
+	          	
+	          	return postData;
+   			}
+   			
+   			function toggle($obj){
+   				if (!$obj.hasClass('selected')) {
+					$obj.addClass('selected');
+					++all;
+					btn = true;
+				}else{
+					$obj.removeClass('selected');
+					--all;
+					btn = false;
+				}
+				
+				yh = parseInt($obj.find('.last > span').text());
+				// 票数改变
+   				if (btn) {
+   					--yh;
+   					$obj.find('.last > span').text(yh);
+   				} else{
+   					++yh;
+   					$obj.find('.last > span').text(yh);
+   				};
+   			}
+   			
+   			//全买
+   			$("#select_all").on('tap',function(){
+   				var prices = 0;
+	   			//全选图标
+	   			if (!$(this).hasClass('checked')) {
+	   				$(this).addClass('checked');
+	   				$.each(hasTickets, function(i,$item) {
+	   					prices += parseFloat( $(this).find('.price').text() );
+	   					$(this).addClass('selected');
+		   			});
+		   			all = hasTickets.length;
+		   			money_wrap.html('<span id="sum_price">' + prices + '</span>元');
+		   			time_wrap.html('共<span id="sum_days">' + hasTickets.length + '</span>天');
+	   			}else{
+	   				$(this).removeClass('checked');
+	   				$.each(hasTickets, function(i,$item) {
+	   					$(this).removeClass('selected');
+		   			});
+		   			all = 0;
+	   				money_wrap.html('<span id="sum_price">' + 0 + '</span>元');
+	   				time_wrap.html('共<span id="sum_days">' + 0 + '</span>天');
+	   			}
+   			});
+   			
+   			// 点击代金卷事件
+   			$(".bus_voucher").on('tap',function(){
+   				if ($(".select_list").css('display') == 'block') {
+   					$(".select_list").fadeOut(400);
+   				}else{
+   					$(".select_list").fadeIn(400);
+   				}
+				   	
+				$(".select_list li").on('tap',function(){
+					var str = $(this).attr("data-voucher");
+					var words = $(this).html();
+					$(".bus_voucher").html(words);
+					
+					switch(str){
+						case '0': // 首单多少
+							$("#sum_price").html('0.1');
+  							break;
+						case '1': //满多少件多少
+							var sum_price = parseFloat( $("#sum_price").html() );
+							var voucher_price = 10;
+							// 假如是满50减10元
+							if (sum_price-voucher_price < 0) {
+								$("#sum_price").html('0');
+								
+							}else{
+								// 处理小数点
+								if (sum_price-voucher_price <1) {
+									console.log((sum_price-voucher_price).toFixed(1));
+									$("#sum_price").html((sum_price-voucher_price).toFixed(1));
+								}else{
+									if ((sum_price-voucher_price)*10%10 != 0 ) {
+										$("#sum_price").html((sum_price-voucher_price).toFixed(1));
+									}else{
+										$("#sum_price").html(sum_price-voucher_price);
+									}
+								}
+							}
+  							break;
+						case '2': //立减多少
+							var sum_price = parseFloat( $("#sum_price").html() );
+							var voucher_price = 18; // 立减18块
+							if (sum_price-voucher_price < 0) {
+								$("#sum_price").html('0');
+							}else{
+								// 处理小数点
+								if (sum_price-voucher_price <1) {
+									console.log((sum_price-voucher_price).toFixed(1));
+									$("#sum_price").html((sum_price-voucher_price).toFixed(1));
+								}else{
+									if ((sum_price-voucher_price)*10%10 != 0 ) {
+										$("#sum_price").html((sum_price-voucher_price).toFixed(1));
+									}else{
+										$("#sum_price").html(sum_price-voucher_price);
+									}
+								}
+							}
+  							break;
+								
+					}
+					$(".select_list").fadeOut(400);
+				});
+   			});
+   			
+   			$("#submit_btn").on('click',function(){
+   				calIds();
+   				var data = on_submit();
+   				$("#sub_price").attr('value',data.price);
+   				$("#sub_days").attr('value',data.days);
+   				$("#ids").attr('value',json.ids);
+   			});
+   			
+   			initPage();
+   		})(Zepto);
+   	</script>
+
+</html>

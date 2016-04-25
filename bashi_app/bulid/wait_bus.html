@@ -1,0 +1,184 @@
+<!DOCTYPE >
+<html>
+	<head>
+		<title>坐车</title> 
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<link rel="stylesheet" href="css/base.css">
+		<script>
+			!function(a){function d(){var c=b.getBoundingClientRect().width;a.rem=c/6.4>100?100:50>c/6.4?50:c/6.4,b.style.fontSize=a.rem+"px"}var c,b=a.document.documentElement;a.addEventListener("resize",function(){clearTimeout(c),c=setTimeout(d,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(c),c=setTimeout(d,300))},!1),d()}(window);
+		</script>
+		<style>
+		    .container{font-family: STHeitiSC Light; padding: .3rem;}
+		    
+		    .header{height: 1.6rem;}
+		    .header p{margin-top: 1.02rem; color: #909090;font-family: inherit;font-size: .20rem; text-align: center;}
+		    .success{position: absolute;font-size: .34rem;font-family: "微软雅黑"; color: #2996F1; font-weight: bold;left: 50%;-webkit-transform: translateX(-50%);margin-top: .34rem;}
+		    .success:before{content: '';position: absolute;top: 0;left: -.60rem; width: .48rem;height: .48rem;background: url(images/icons/success.png) no-repeat;-webkit-background-size:cover;}
+		    .line_1{padding-bottom: 0;}
+		    .btn_wrap{padding: .3rem;}
+		    .links_con{position: absolute;overflow: hidden; bottom: 0;right: 0;}
+		    .links_con a{font-size: inherit; font-size: .2rem; color: #BABABA;text-decoration: underline;}
+		    .checked{position:relative;display: block; margin: auto; width: 3.4rem;height:.8rem;line-height: .8rem;border: 1px solid #FF9402;background-color: #FFFFFF; border-radius: .8rem;font-size: .32rem;color: #FF9402;text-align: center;}
+		    .checked.disable{color: #B9BABB;background-color: #FFFFFF;border-color: #B9BABB;}
+		    .go-off,.arrival-time{text-align: left;}
+		    .line_con{width: 3.2rem;}
+		    /*---弹框---*/
+		   	#pop{position: fixed;display: none; width: 5.2rem;height: 6.68rem;top: 50%;left: 50%;transform: translate3d(-50%,-60%,0);-webkit-transform: translate3d(-50%,-60%,0);z-index: 1000;background: url(images/ticket.png) no-repeat center / 5.2rem 6.68rem ;}
+			#pop:after{position: absolute;content: '';bottom: -.26rem;width: .02rem;height: .3rem;right: .4rem;background: #fff;}
+			.pop_head{padding-top: .38rem;}
+			.pop_head p{text-align: center;}
+			.pop_head .time-s,.pop_head .time-end{font-family: "微软雅黑";font-weight: bold;font-size: .78rem;line-height: .78rem; color: #353535;}
+			
+			.pop_head .time-end{font-size: .4rem;line-height: .4rem}
+			.pop_head .route{font-size: inherit;font-size: .24rem;color: #353535;}
+			.pop_head .route .zhi{padding: 0 .1rem;}
+			#pop .close{ display: block; content: ''; position: absolute; bottom: -.72rem; right: .18rem; width: .48rem; height: .48rem; background: url(images/icons/close_s.png) 0 0 no-repeat; background-size: .48rem .48rem; }
+			.qr{position: absolute; width: 3.4rem; height: 3.4rem; left: .9rem;bottom: .38rem;}
+			.qr img{width: 100%; height: 100%;}
+			
+			.blink{
+			    animation: blink .75s linear infinite;  
+			    -webkit-animation: blink .75s linear infinite;
+			    color: #353535;
+			    transition: color .4s ease-out;
+			    -webkit-transition: color .4s ease-out;
+			}
+			@-webkit-keyframes blink {
+			    0% { opacity: 1; color: #353535;}
+			    14% { opacity: 1; color: rgba(255, 122, 0, .9);}
+			    28% { opacity: 1; color: rgba(255, 255, 0,.9);}
+			    42% { opacity: 1; color: rgba(0, 255, 0,.9);}
+			    56% { opacity: 1; color: rgba(0, 255, 255,.9);}
+			    70% { opacity: 1; color: rgba(255, 0, 255,.9);}
+			    84% { opacity: 1; color: rgba(0, 0, 255,.9);}
+			    98% { opacity: 1; color: rgba(255, 0, 0, .9);}
+			    100% { opacity: 1; color: #353535;}
+			}
+			
+			.table-view-cell{ border-radius: .1rem; }
+		</style>
+	</head>
+
+	<body>
+
+		<div class="wrap">
+			<footer class="footer" id="footer">
+				<a class="by_ticket" href="index.html">购票</a>
+				<a class="custom" href="custom_route.html">定制</a>
+				<a class="by_bus active">坐车</a>
+				<a class="mine" href="mine.html">我的</a>
+			</footer>
+			<div class="container">
+				<ul class="table-view">
+					<li class="table-view-cell mb20">
+						<div class="card-bar_none"></div>
+						<div class="flex line">
+							<div class="flex line_con">
+								<div class="flex-cell go-off">08:30始发</div>
+								<div class="flex-cell tl">
+									<span class="m_line">M001</span>
+								</div>
+								<div class="flex-cell arrival-time">到达07:45</div>
+							</div>
+							<div class="flex-cell tr bababa f12">2015/08/09</div>
+						</div>
+						<div class="dotted"></div>
+						<div class="table line_1">
+							<div class="table-cell">
+								<div class="start">
+									祈福新村
+								</div>
+								<div class="end">
+									客村tit创意园
+								</div>
+							</div>
+							<div class="table-cell tr">
+								<div class="links_con">
+									<a href="javascript:;" class="join_chat">加入群聊</a>
+									<a href="javascript:;" class="ml30">查看站点</a>
+								</div>
+							</div>
+						</div>
+						<div class="btn_wrap">
+							<a class="checked disable">
+								开始验票
+							</a>
+						</div>
+					</li>
+					<li class="table-view-cell mb20">
+						<div class="flex line">
+							<div class="flex line_con">
+								<div class="flex-cell go-off">08:30始发</div>
+								<div class="flex-cell tl">
+									<span class="m_line">M001</span>
+								</div>
+								<div class="flex-cell arrival-time">到达07:45</div>
+							</div>
+							<div class="flex-cell tr bababa f12">2015/08/09</div>
+						</div>
+						<div class="dotted"></div>
+						<div class="table line_1">
+							<div class="table-cell">
+								<div class="start">
+									祈福新村
+								</div>
+								<div class="end">
+									客村tit创意园
+								</div>
+							</div>
+							<div class="table-cell tr">
+								<div class="links_con">
+									<a href="javascript:;" class="join_chat">加入群聊</a>
+									<a href="javascript:;" class="ml30">查看站点</a>
+								</div>
+							</div>
+						</div>
+						<div class="btn_wrap">
+							<a class="checked enable">
+								开始验票
+							</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div id="mask"></div>
+			<div id="pop">
+				<div class="pop_head">
+					<p class="time-s blink">07/15</p>
+					<p class="time-end mt10">19:00途径</p>
+					<p class="route mt10">客村TIT创意园<span class="zhi">至</span>祈福新村</p>
+				</div>
+				<div class="qr">
+					<img src="images/icons/QR.png"/>
+				</div>
+				<div class="close" id="pop_close"></div>
+			</div>
+		</div>
+	</body>
+	<script src="js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/Mibus.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		({
+			initPage:function(){
+				$(".checked.enable").on('tap',function(){
+					$("#mask").css('display','block');
+					$("#pop").css('display','block');
+				});
+				$("#pop_close").on('tap',function(){
+					$("#mask").hide();
+					$("#pop").hide();
+				});
+				
+				$(".join_chat").on('tap',function(e){
+					e.preventDefault();
+					Mib.popWindow('images/qr/4.pic.jpg');
+				});
+			},
+		}).initPage();
+		
+	</script>
+</html>

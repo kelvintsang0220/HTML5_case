@@ -1,0 +1,6 @@
+@import "compass/utilities/sprites";
+@import "mine/*.png";
+//$icons-sprite-dimensions: true;
+$mine-spacing: 10px; //控制间隙 
+@include all-mine-sprites();
+

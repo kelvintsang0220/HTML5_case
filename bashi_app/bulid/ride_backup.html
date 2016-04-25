@@ -1,0 +1,431 @@
+<!DOCTYPE >
+<html>
+	<head>
+		<title>购票</title> 
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+		<!--<meta http-equiv="refresh" content="3" />-->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<link rel="stylesheet" href="css/base.css">
+		<script>
+			!function(a){function d(){var c=b.getBoundingClientRect().width;a.rem=c/6.4>100?100:50>c/6.4?50:c/6.4,b.style.fontSize=a.rem+"px"}var c,b=a.document.documentElement;a.addEventListener("resize",function(){clearTimeout(c),c=setTimeout(d,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(c),c=setTimeout(d,300))},!1),d()}(window);
+		</script>
+		<style>
+			.wrap,.container,.footer{font-family: STHeitiSC Light;}
+		    .container{padding-bottom: 1rem;}
+		    	.footer{height: .8rem;}
+			.footer .pay{text-align: right; padding: 0 .3rem;}
+			.footer .pay .button{margin-top:.1rem; width: 5.8rem; height: .8rem;font-family: inherit;font-size: .28rem;color: #fff;background-color: #FD4E0B;}
+			.sign-up:last-child{text-decoration: underline;}
+			.links_con{position: absolute;overflow: hidden; bottom: 0;right: 0;}
+		    .links_con a{font-size: inherit; font-size: .2rem; color: #BABABA;text-decoration: underline;}
+			
+			/*---地图---*/
+			.map{position: absolute;top: 1.7rem; width: 6.4rem; height: 8.6rem;}
+			#mymap{position:absolute; width: 100%;height: 100%;}
+			.btn_wrap{padding-bottom: .3rem;}
+			.btn_wrap p{text-align: center; color: #2996F1;font-family: inherit;font-size: .4rem;}
+			.btn_wrap p:nth-child(2){font-size: .24rem;color: #909090;}
+			.line_1{padding-bottom: 0;}
+			.btn{position:relative;display: block; margin: auto; width: 5.8rem;height:.78rem;line-height: .78rem;background-color: #FA4F20; border-radius: .1rem;font-size: .32rem;color: #fff;text-align: center;}
+			.container .table-view-cell{padding-bottom: .3rem; height: 1.4rem;}
+			.go-off > span{color: #BABABA; font-family: inherit; font-size: .20rem; padding-left: .08rem;}
+			.line .m_line{width: .9rem; padding-left: .34rem;}
+			.map .infoWrap table{width: 100%;}
+			.map .infoWrap .tdRight {
+              width: .7rem;
+              vertical-align: middle;
+              border-left: 1px solid #d8d8d8;
+              text-align: center;
+              font-size: .24rem;
+              color: #929292;
+            }
+            .map .icon {
+              background: url(images/lbs/go.png) no-repeat 0 0;
+              -webkit-background-size: 3.3rem 1.85rem;
+              background-size: .32rem .36rem;
+            }
+            .map .infoWrap .icon.right {
+              margin-top: .05rem;
+              display: block;
+              background-position: 0 0;
+              width: 0.32rem;
+              height: 0.36rem;
+              vertical-align: middle;
+              margin-left: 50%;
+              -webkit-transform: translateX(-50%);
+              transform: translateX(-50%);
+            }
+            
+            /*坑爹导航线*/
+            .scroll_wrap{
+            		position: absolute; 
+            		width: 6.4rem;
+            		height: 2.2rem;
+            		background: rgba(255,255,255,0.8);
+            		/*overflow: visible;*/
+            		border-bottom: 1px #e5e5e5 solid;
+            }
+            .scroll_wrap  div.list_con{
+	            	position: relative;
+	            	background: rgba(255,255,255,0.8); 
+	            	width:6.4rem;
+	            	height: 100%;
+	            	overflow: scroll;
+	            	padding: .2rem;
+	            	padding-right: 0;
+	            	-webkit-box-sizing: border-box;
+	            	-webkit-overflow-scrolling: touch;
+	            	z-index: 99;
+	        }
+            
+            .scroll_list{
+            		position: relative;
+            		margin: auto;
+            		-webkit-transition: all ease-out .4s;
+            		font-size: 0;
+            		width: 9rem;
+            }
+            .scroll_list li{
+           	 	position: relative;
+            		display: inline-block;
+            		width:1.2rem;
+            		height: auto;
+            		font-size: .24rem;
+            		padding-right: .2rem;
+            	}
+            	.scroll_list li.active a{background: #408FD1;color: #fff;}
+            .scroll_list li:after{
+            		content: '';
+            		position: absolute;
+            		bottom: -.388rem;
+            		width: 1.4rem;
+            		height: .0625rem;
+            		background: #868686;
+            		z-index: 99;
+            	}
+            	.scroll_list li:first-child:after{
+            		content: '';
+            		position: absolute;
+            		bottom: -.388rem;
+            		width: .7rem;
+            		height: .0625rem;
+            		left: 50%;
+            		background: #868686;
+            		z-index: 99;
+            	}
+            	.scroll_list li:first-child:before{
+            		content: '';
+            		position: absolute;
+            		bottom: -.5rem;
+            		width: .34rem;
+            		height: .34rem;
+            		left: 50%;
+            		margin-left: -.28rem;
+            		background: url(images/icons/origin_bg.png) no-repeat center / cover;
+            		z-index: 111;
+            	}
+            .scroll_list li:last-child:before{
+            		content: '';
+            		position: absolute;
+            		bottom: -.5rem;
+            		width: .34rem;
+            		height: .34rem;
+            		left: 50%;
+            		margin-left: -.28rem;
+            		background: url(images/icons/terminal_bg.png) no-repeat center / cover;
+            		z-index: 111;
+            	}
+            	.scroll_list li:last-child:after{
+            		content: '';
+            		position: absolute;
+            		bottom: -.388rem;
+            		width: .7rem;
+            		height: .0625rem;
+            		background: #868686;
+            		z-index: 99;
+            	}
+            	.scroll_list li a{
+            		position: relative;
+            		display: block;
+            		padding: .1rem;
+            		border: 1px solid #1586CE;
+            		border-radius: .08rem;
+            		background: #fff;
+            		color: #408FD1;
+            		font-family: inherit;
+            	}
+            	.scroll_list li.last.active a{background: #FF7A43;color: #fff;}
+            	.scroll_list li.last a{
+            		color: #FF7A43;
+            		border-color: #FF7A43;
+            	}
+            	.scroll_list li.last a:before{
+            		background: #FF7A43;
+            	}
+            	.scroll_list li.last a:after{
+            		background: #fff;
+            		border: 1px solid #FF7A43;
+            	}
+            	.scroll_list li a:before{
+            		content: '';
+            		position: absolute;
+            		bottom: -.3rem;
+            		width: 1px;
+            		height: .3rem;
+            		left: 50%;
+            		-webkit-transform: translateX(-50%);
+            		background: #1586CE;
+            		z-index: 100;
+            	}
+            	.scroll_list li a:after{
+            		content: '';
+            		position: absolute;
+            		bottom: -.45rem;
+            		width: .15rem;
+            		height: .15rem;
+            		left: 50%;
+            		-webkit-transform: translateX(-50%);
+            		background: #fff;
+            		border: 1px solid #1586CE;
+            		border-radius: 100%;
+            		z-index: 100;
+            	}
+            	
+            	.scroll_list li > i{
+            		font-family: inherit;
+            		position: absolute;
+            		display: block;
+            		color: #408FD1;
+            		bottom: -.875rem;
+            		left: .3rem;
+            	}
+            	.mui-ellipsis-2{
+            		font-size: .2rem;
+			}
+            	.scroll_list li.last > i{color: #FF7A43;}
+            	.toggle{left: 50%;z-index: 99999; bottom: -.rem; padding: .1rem; margin-left: -.32rem;text-align: center;width: .64rem; height: .13rem;position: absolute;border: 1px solid #e5e5e5;border-top: 0;border-bottom-left-radius: 6px; border-bottom-right-radius: 6px;background: rgba(255,255,255,0.8);}
+            	.toggle img{position: relative; width: .64rem;height: .13rem;vertical-align: middle;}
+            	a:enabled:active{border:0;outline:none;}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="wrap">
+			<footer class="footer" id="footer">
+				<div class="flex">
+					<div class="flex-cell pay">
+						<a class="btn" href="by_ticket.html">
+							购票
+						</a>
+					</div>
+				</div>
+			</footer>
+			<div class="container">
+				
+				<ul class="table-view">
+					<li class="table-view-cell">
+						<div class="flex line">
+							<div class="flex line_con">
+								<div class="flex-cell go-off tl">08:30发车 <span>2015/07/30</span></div>
+							</div>
+							<div class="flex-cell">
+								<div class="m_line fr">粤A10086</div>
+							</div>
+						</div>
+						<div class="dotted"></div>
+						<div class="table line_1">
+							<div class="table-cell">
+								<div class="start">
+									祈福新村
+								</div>
+								
+							</div>
+							<div class="table-cell">
+								<div class="end">
+									客村tit创意园
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+				
+				<div class="map">
+					<!--<div class="scroll_wrap">
+						<div class="list_con">
+							<ul class="scroll_list">
+							</ul>
+						</div>
+						
+						<div class="toggle" id="toggle">
+							<img src="images/lbs/toggle.png"/>
+						</div>
+					</div>
+					-->
+					<div id="mymap">
+					</div>
+				</div>
+			</div>
+		</div>
+	
+	</body>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=cqG9ilO8and6RQ9KDUoMQSG1"></script>
+	<script src="js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		var arr = [{
+				id: "4659",
+				lng: "113.339745",
+				lat: "22.977055",
+				name: "祈福新村",
+				time: '07:00'
+			},
+			{
+				id: "4659",
+				lng: "113.345065",
+				lat: "22.97692",
+				name: "祈福新村学院路口",
+				time: '07:30'
+			},{
+				id: "4659",
+				lng: "113.305222",
+				lat: "22.970378",
+				name: "钟村某个路口",
+				time: '08:00'
+			},{
+				id: "4659",
+				lng: "113.306956",
+				lat: "22.971881",
+				name: "钟村文化广场(公交站)",
+				time: '08:30'
+			},{
+				id: "4659",
+				lng: "113.32578",
+				lat: "23.120323",
+				name: "珠江新城碧海湾",
+				time: '09:00'
+			},{
+				id: "4659",
+				lng: "113.331561",
+				lat: "23.103845",
+				name: "客村TIT创意园",
+				time: '09:30'
+			}];
+		//司机的坐标
+		var driverPoint = ['113.331561','22.977055'];
+		var carp = new BMap.Point(driverPoint[0], driverPoint[1]);
+		
+		
+		
+		var map,
+			_city = '广州', //默认定位至广州
+			geolocation,
+			point = [], // 路线所有点
+			approach = []; //途径点
+			
+		map = new BMap.Map("mymap");
+		map.centerAndZoom(_city, 12);
+		map.enableScrollWheelZoom(true);	
+		
+		
+		for (var i =0; i < arr.length; i++) {
+			point.push( new BMap.Point(arr[i].lng,arr[i].lat) );
+		}
+		
+		// 地图定位模块
+		var LBS = {
+			init:function(){
+				this.initEvent();
+				this.setOverlay();
+				this.driverGPS();
+			},
+			initEvent:function(){
+				
+				var polyline = new BMap.Polyline(point, {strokeColor:"#AB2BED", strokeWeight:4, strokeOpacity:0.8});   //创建折线
+				polyline.disableMassClear();
+				map.addOverlay(polyline);   //描线
+			},
+			setOverlay:function(){
+				
+				//设置每个坐标的覆盖物弹窗
+				function addMarker(point,_icon){
+				  	var marker = new BMap.Marker(new BMap.Point(point.lng,point.lat),{icon:_icon});  // 创建标注
+					map.addOverlay(marker);
+					var opts = {
+						  width : 0,     // 信息窗口宽度
+						  height: 0,     // 信息窗口高度
+						  title : "上车点:" , // 信息窗口标题
+					 }
+					
+					var infoWindow = new BMap.InfoWindow("", opts);  // 创建信息窗口对象 
+					infoWindow.setContent('<div class="infoWrap">' +
+		                '                           <table>' +
+		                '                               <tr>' +
+		                '                                   <td class="left"><div>'+point.name +'</div></td>' +
+		                '                                   <td class="tdRight" onclick="ale();" style="vertical-align:middle">' +
+		                '										<span class="icon right"></span>导航' +
+		                '                               </td></tr>' +
+		                '                           </table>' +
+		                '                       </div>'
+		              );
+		              
+		              
+					marker.addEventListener("click", function(){          
+						map.openInfoWindow(infoWindow,new BMap.Point(point.lng,point.lat)); //开启信息窗口
+					});
+				}
+				
+				
+				// 设置起终点和途径点覆盖物
+				for (var i = 0; i < arr.length; i ++) {
+					if (i == 0) {
+						var myIcon = new BMap.Icon("images/lbs/start.png", new BMap.Size(32,32));
+						addMarker(arr[i],myIcon);
+					}else if(i == 1 || i == 2){
+						var myIcon = new BMap.Icon("images/lbs/approach.png", new BMap.Size(32,32));
+						addMarker(arr[i],myIcon);
+					}else if(i==arr.length-1){
+						var myIcon = new BMap.Icon("images/lbs/end_location.png", new BMap.Size(32,32));
+						addMarker(arr[i],myIcon);
+					}else if(i==arr.length-2){
+						var myIcon = new BMap.Icon("images/lbs/approach_end.png", new BMap.Size(32,32));
+						addMarker(arr[i],myIcon);
+					}else{
+						var myIcon = new BMap.Icon("images/lbs/approach.png", new BMap.Size(32,32));
+						addMarker(arr[i],myIcon);
+					}
+					
+				}
+				
+				
+			},
+			
+			driverGPS:function(){
+				var driverIcon = new BMap.Icon("images/lbs/car.png", new BMap.Size(32, 32), { //小车图片
+					//offset: new BMap.Size(0, -5),    //相当于CSS精灵
+					imageOffset: new BMap.Size(0, 0) //图片的偏移量。为了是图片底部中心对准坐标点。
+				});
+				var carMk = new BMap.Marker(carp, {
+					icon: driverIcon
+				});
+				map.addOverlay(carMk);
+				var i = 0;
+				function resetMkPoint(i){
+					carMk.setPosition(point[i]);
+					if (i < point.length) {
+						setTimeout(function() {
+							i++;
+							resetMkPoint(i);
+						}, 3000);
+					}
+				}
+				resetMkPoint(0);
+			}
+		};
+		
+		LBS.init();
+	</script>
+
+</html>

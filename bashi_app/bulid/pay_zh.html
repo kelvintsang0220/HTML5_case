@@ -1,0 +1,128 @@
+<!DOCTYPE >
+<html>
+	<head>
+		<title>定制路线</title> 
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="msapplication-tap-highlight" content="no">
+		<link rel="stylesheet" href="css/base.css">
+		<script>
+			!function(a){function d(){var c=b.getBoundingClientRect().width;a.rem=c/6.4>100?100:50>c/6.4?50:c/6.4,b.style.fontSize=a.rem+"px"}var c,b=a.document.documentElement;a.addEventListener("resize",function(){clearTimeout(c),c=setTimeout(d,300)},!1),a.addEventListener("pageshow",function(a){a.persisted&&(clearTimeout(c),c=setTimeout(d,300))},!1),d()}(window);
+		</script>
+		<style>
+			.ff9402{ color: #FF9402; }
+			.c000{ color: #000; }
+			.c39B44A{ color: #39B44A; }
+			.c909090{ color: #909090; }
+			.container{ padding-bottom: 1.3rem; }
+			.text-justify{ text-align: justify; }
+			.title{ padding: .3rem; color: #959595; }
+			.row{ padding: .3rem; background: #fff; -webkit-box-shadow: 0px 2px 4px rgba(235,235,235,.9);box-shadow: 0px 2px 4px rgba(235,235,235,.9); border-top:1px solid rgba(217,217,217,.9); }
+			textarea{ resize:none; width: 100%; outline: 0; background: transparent; border: none; font-size: .28rem; color: #222;}
+			textarea::-webkit-input-placeholder{ color: #FF9402; }
+			
+			.list{position: relative;background: transparent; -webkit-box-shadow: 0px 2px 4px rgba(235,235,235,.9);box-shadow: 0px 2px 4px rgba(235,235,235,.9); border-top:1px solid rgba(217,217,217,.9);}
+			.list .list-item{ background: #fff; position: relative; padding: .3rem; border-bottom: 1px solid rgba(217,217,217,.9); }
+			.list-item label{ font-size: .28rem; }
+			.list-item input{ width: 75%; font-size: .28rem; padding-left: .15rem; color: #909090; }
+			.btn,.btn:visited{position:relative;display: block; margin: .3rem auto; width: 5.8rem;height:.78rem;line-height: .78rem;background-color: #FF9402; border-radius: .78rem;font-size: .32rem;color: #fff;text-align: center;}
+			.btn:active{ background: transparent;  color: #FF9402; border: 1px solid #FF9402; } 
+			.id009{	position: absolute; right: 0.3rem; top:.22rem; }
+			.id009 .reduction,.id009 .plus{ width: .58rem; height: .58rem; border: 1px solid #FF9619; background: #FF9402; color: #fff; font-size: .28rem;}
+			.id009 .number{  width: .72rem; height: .58rem; border: 1px solid #FF9619; border-left: none;border-right: none; background: #fff; color: #FF9402; font-size: .28rem;}
+			.id009 .reduction{ border-bottom-left-radius: .1rem;border-top-left-radius: .1rem; }
+			.id009 .plus{ border-bottom-right-radius: .1rem;border-top-right-radius: .1rem; }
+			.id009 .reduction,.id009 .plus,.id009 .number{ display: inline-block; text-align: center; line-height: .58rem; }
+			.id009 .reduction:active,.id009 .plus:active{ background: #FFF; color: #FF9402; }
+
+		</style>
+	</head>
+
+	<body>
+
+		<div class="wrap">
+			<div class="container">
+				<h2 class="title">回报信息</h2>
+				<div class="row">
+					<p class="text-justify">花都九龙岛欧然风光露肉季节各种风情花都九龙岛欧洲小镇自然风光露肉季节各种风情</p>
+					<p class="f10 c909090 mt10 text-justify">花都九龙岛欧洲小镇自然风光露肉季节各种风情花都九龙岛欧洲小镇自然风光露肉季节各种风情</p>
+				</div>
+				<h2 class="title">备注</h2>
+				<div class="row">
+					<textarea name="" rows="4" cols="" placeholder="给官方客服留下你要叮嘱的信息"></textarea>
+				</div>
+				<h2 class="title">付款</h2>
+				<form class="list">
+					<div class="list-item">
+						<label style="">联系人</label>
+						<input type="text" placeholder="必填"></input>
+					</div>
+					<div class="list-item">
+						<label>手机号</label>
+						<input type="text" placeholder="请输入您的手机号码"></input>
+					</div>
+					<div class="list-item">
+						<label style="">人数</label>
+						<div class="id009"><span class="reduction" id="reduction">一</span><span class="number" id="iden_number">1</span><span class="plus" id="plus">十</span></div>
+						<input type="hidden" name="" id="staff" value="1" />
+					</div>
+					<div class="list-item">
+						<label style="">支持金额</label>
+						<div class="fr"><i>&#65509;</i><span id="support_amount">0</span></div>
+					</div>
+					<div class="list-item ff9402">
+						<label>总计</label>
+						<span class="fr"><span>&#65509;</span><span id="total_money">0</span></span>
+						<input type="hidden" name="" id="total_money_input" value="" />
+					</div>
+					<h2 class="title">如果截止日期没有达到筹资目标，您支持的金额将返还到您的支付账号</h2>
+					<a type="submit" class="btn" href="order_payment.html">我要支付</a>
+				</form>
+				
+			</div>
+		</div>
+	</body>
+	<script src="js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/Mibus.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/zepto.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/Mibus.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		(function($){
+			var support_amount  = 299; // 支持金额
+			var max_number = 9;
+			var initial_val =  Number( $("#iden_number").text() );
+			$("#support_amount").html(support_amount);
+			$("#total_money").html(support_amount);
+			$("#reduction").on('click',function(){
+				
+				if( initial_val > 1){
+					--initial_val;
+				}else{
+					return false;
+				}
+				$("#iden_number").html(initial_val);
+				$("#staff").attr('value', initial_val);
+				$("#total_money").html( Number( $("#total_money").text() ) - support_amount);
+			});
+			$("#plus").on('click',function(){
+				if( initial_val < max_number){
+					++initial_val;
+				}else if(initial_val === max_number){
+					alert('已经达到人数限制');
+					return false;
+				}
+				$("#iden_number").html(initial_val);
+				$("#staff").attr('value', initial_val);
+				$("#total_money").html(support_amount*initial_val);
+			});
+			
+			$("#submit_btn").on('click',function(){
+				
+				$("#total_money_input").attr('value', Number($("#total_money").text()) );
+			});
+			
+		})(Zepto);
+	</script>
+</html>
